@@ -8,12 +8,12 @@ Atdaa solves these problems using a novel interface that allows you quickly sear
 
 Futhermore, we recognize that taste is a very personal thing. Mass review systems like Yelp and Trip Advisor lead to generic and diluted results that are as good as flipping a coin. Instead, it makes sense to get recommendations from the people that you trust the most. Have a friend that is a coffee snob? Follow his coffee tag and you'll immediately have his places added to your map! Is your brother a picky vegetarian? Add his food places and you'll never be stumped when trying to find a good vegetarian joint again!
 
-<img src="https://github.com/macnube/Atdaa/blob/master/Images/Map.png" width="200" style="margin: 5">
-<img src="https://github.com/macnube/Atdaa/blob/master/Images/MapPOICard.png" width="200" style="margin: 5">
-<img src="https://github.com/macnube/Atdaa/blob/master/Images/PlaceSearch.png" width="200" style="margin: 5">
-<img src="https://github.com/macnube/Atdaa/blob/master/Images/PlaceInfo.png" width="200" style="margin: 5">
-<img src="https://github.com/macnube/Atdaa/blob/master/Images/BeerTag.png" width="200" style="margin: 5">
-<img src="https://github.com/macnube/Atdaa/blob/master/Images/FoodNote.png" width="200" style="margin: 5">
+<img src="https://github.com/macnube/Atdaa/blob/master/Images/Map.png" width="230" style="margin: 20">
+<img src="https://github.com/macnube/Atdaa/blob/master/Images/MapPOICard.png" width="230" style="margin: 20">
+<img src="https://github.com/macnube/Atdaa/blob/master/Images/PlaceSearch.png" width="230" style="margin: 20">
+<img src="https://github.com/macnube/Atdaa/blob/master/Images/PlaceInfo.png" width="230" style="margin: 20">
+<img src="https://github.com/macnube/Atdaa/blob/master/Images/BeerTag.png" width="230" style="margin: 20">
+<img src="https://github.com/macnube/Atdaa/blob/master/Images/FoodNote.png" width="230" style="margin: 20">
 
 ## Current State
 Currently Atdaa is in MVP state with only the ability to add places to your own personal map. We look forward to adding the social component in future releases and to continue to develop the tags and categories available to our users. 
