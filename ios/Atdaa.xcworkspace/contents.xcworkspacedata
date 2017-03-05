@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../../old_Atdaa/BuenosAires2.gpx">
+   </FileRef>
+   <FileRef
       location = "group:Atdaa.xcodeproj">
    </FileRef>
    <FileRef
