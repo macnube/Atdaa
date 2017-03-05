@@ -155,7 +155,7 @@ class ToolbarIconAnimated extends Component {
 
 	render() {
 		return (
-			<Animatable.View 
+			<View 
 				style={this.styleDraggableContainer()}
 				ref={(container) => {
 					this.container = container;
@@ -167,7 +167,7 @@ class ToolbarIconAnimated extends Component {
 						style={this.styleImage()}
 						animatedStyle={this.state.pan.getLayout()}
 						panHandlers={this.panResponder.panHandlers} />
-			</Animatable.View>
+			</View>
 			
 		)
 	}
