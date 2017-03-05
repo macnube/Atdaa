@@ -6,15 +6,15 @@ Atdaa solves these problems using a novel interface that allows you quickly sear
 
 Futhermore, we recognize that taste is a very personal thing. Mass review systems like Yelp and Trip Advisor lead to generic and diluted results that are as good as flipping a coin. Instead, it makes sense to get recommendations from the people that you trust the most. Have a friend that is a coffee snob? Follow his coffee tag and you'll immediately have his places added to your map! Is your brother a picky vegetarian? Add his food places and you'll never be stumped when trying to find a good vegetarian joint again!
 
-<div style="margin-left: 30; margin-right: 30">
-	<img src="https://github.com/macnube/Atdaa/blob/master/Images/Map.png" width="230" style="margin-left: 70">
-	<img src="https://github.com/macnube/Atdaa/blob/master/Images/MapPOICard.png" width="230" style="margin: 20">
-	<img src="https://github.com/macnube/Atdaa/blob/master/Images/PlaceSearch.png" width="230" style="margin: 20">
+<div style="margin-left: 30px; margin-right: 30px">
+	<img src="https://github.com/macnube/Atdaa/blob/master/Images/Map.png" width="230" style="margin-left: 70px">
+	<img src="https://github.com/macnube/Atdaa/blob/master/Images/MapPOICard.png" width="230" style="margin: 20px">
+	<img src="https://github.com/macnube/Atdaa/blob/master/Images/PlaceSearch.png" width="230" style="margin: 20px">
 </div>
-<div style="margin-left: 30; margin-right: 30">
-	<img src="https://github.com/macnube/Atdaa/blob/master/Images/PlaceInfo.png" width="230" style="margin-left: 70">
-	<img src="https://github.com/macnube/Atdaa/blob/master/Images/BeerTag.png" width="230" style="margin: 20">
-	<img src="https://github.com/macnube/Atdaa/blob/master/Images/FoodNote.png" width="230" style="margin: 20">
+<div style="margin-left: 30px; margin-right: 30px">
+	<img src="https://github.com/macnube/Atdaa/blob/master/Images/PlaceInfo.png" width="230" style="margin-left: 70px">
+	<img src="https://github.com/macnube/Atdaa/blob/master/Images/BeerTag.png" width="230" style="margin: 20px">
+	<img src="https://github.com/macnube/Atdaa/blob/master/Images/FoodNote.png" width="230" style="margin: 20px">
 </div>
 
 ## Current State
