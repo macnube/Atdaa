@@ -39,6 +39,13 @@ yarn-error.log
 # ios/Pods,
 ios/Pods/
 
+# Podfile versions
+ios/Podfile.lock
+
+# user personal info,for example debug info
+ios/Atdaa.xcodeproj/project.xcworkspace/
+ios/Atdaa.xcodeproj/xcuserdata
+
 # BUCK
 buck-out/
 \.buckd/
