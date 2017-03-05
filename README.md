@@ -25,6 +25,7 @@ Currently Atdaa is in MVP state with only the ability to add places to your own 
 6. run `pod install`
 7. Open xCode workspace file that now appears in ios directory and follow these [instructions](https://github.com/magus/react-native-facebook-login/issues/216) to update RCTFB library files
 8. Build and Run
+
 ## Tech Stack
 ### Main Framework: React Native / Redux
 ### Main Libraries: react-native-maps, react-native-google-search-autocomplete
