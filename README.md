@@ -7,12 +7,14 @@ Have you ever maintained a list of your favorite bars, restaurants, stores and c
 Atdaa solves these problems using a novel interface that allows you quickly search and add a place to your map with built in tags and custom notes. You can then easily get results on the go by using the filter toolbar to show the results that match exactly what your looking for. Great coffee and food on the go? Easy. What about a place that has good house music and killer cocktails close by? No sweat. 
 
 Futhermore, we recognize that taste is a very personal thing. Mass review systems like Yelp and Trip Advisor lead to generic and diluted results that are as good as flipping a coin. Instead, it makes sense to get recommendations from the people that you trust the most. Have a friend that is a coffee snob? Follow his coffee tag and you'll immediately have his places added to your map! Is your brother a picky vegetarian? Add his food places and you'll never be stumped when trying to find a good vegetarian joint again!
-<img src="https://github.com/macnube/Atdaa/blob/master/Images/Map.png" width="300">
-<img src="https://github.com/macnube/Atdaa/blob/master/Images/MapPOICard.png" width="300">
-<img src="https://github.com/macnube/Atdaa/blob/master/Images/PlaceSearch.png" width="300">
-<img src="https://github.com/macnube/Atdaa/blob/master/Images/PlaceInfo.png" width="300">
-<img src="https://github.com/macnube/Atdaa/blob/master/Images/BeerTag.png" width="300">
-<img src="https://github.com/macnube/Atdaa/blob/master/Images/FoodNote.png" width="300">
+
+<img src="https://github.com/macnube/Atdaa/blob/master/Images/Map.png" width="200" style="margin: 5">
+<img src="https://github.com/macnube/Atdaa/blob/master/Images/MapPOICard.png" width="200" style="margin: 5">
+<img src="https://github.com/macnube/Atdaa/blob/master/Images/PlaceSearch.png" width="200" style="margin: 5">
+<img src="https://github.com/macnube/Atdaa/blob/master/Images/PlaceInfo.png" width="200" style="margin: 5">
+<img src="https://github.com/macnube/Atdaa/blob/master/Images/BeerTag.png" width="200" style="margin: 5">
+<img src="https://github.com/macnube/Atdaa/blob/master/Images/FoodNote.png" width="200" style="margin: 5">
+
 ## Current State
 Currently Atdaa is in MVP state with only the ability to add places to your own personal map. We look forward to adding the social component in future releases and to continue to develop the tags and categories available to our users. 
 ## Installation Instructions
