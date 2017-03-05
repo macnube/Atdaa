@@ -1,0 +1,8 @@
+export const SET_CARD_ID = 'SET_CARD_ID'
+export const SET_CARD_SCROLL_INFO = 'SET_CARD_SCROLL_INFO'
+export const END_CARD_SCROLL = 'END_CARD_SCROLL'
+export const TOGGLE_SCROLL = 'TOGGLE_SCROLL'
+export const SET_PLACE_INFO = "SET_PLACE_INFO"
+export const SET_REGION = 'SET_REGION'
+export const SET_USER_LOCATION = 'SET_USER_LOCATION'
+export const LOGOUT = "LOGOUT"
