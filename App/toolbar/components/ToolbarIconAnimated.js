@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 import {
 	View,
@@ -11,9 +11,8 @@ import {
 
 var PropTypes = React.PropTypes;
 
-import * as Animatable from 'react-native-animatable';
 import { inDropZone } from '../../utils/helpers'
-import Icon from '../../shared/Icon';
+import Icon from '../../shared/Icon'
 
 
 class ToolbarIconAnimated extends Component {
