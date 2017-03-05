@@ -7,7 +7,7 @@ Have you ever maintained a list of your favorite bars, restaurants, stores and c
 Atdaa solves these problems using a novel interface that allows you quickly search and add a place to your map with built in tags and custom notes. You can then easily get results on the go by using the filter toolbar to show the results that match exactly what your looking for. Great coffee and food on the go? Easy. What about a place that has good house music and killer cocktails close by? No sweat. 
 
 Futhermore, we recognize that taste is a very personal thing. Mass review systems like Yelp and Trip Advisor lead to generic and diluted results that are as good as flipping a coin. Instead, it makes sense to get recommendations from the people that you trust the most. Have a friend that is a coffee snob? Follow his coffee tag and you'll immediately have his places added to your map! Is your brother a picky vegetarian? Add his food places and you'll never be stumped when trying to find a good vegetarian joint again!
-![Atdaa app](./Images/Map.png)
+![Atdaa app]<img src="https://github.com/macnube/Atdaa/Images/Map.png" width="48">
 ![Atdaa app](./Images/MapPOICard.png)
 ![Atdaa app](./Images/PlaceSearch.png)
 ![Atdaa app](./Images/PlaceInfo.png)
