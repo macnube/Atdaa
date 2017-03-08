@@ -16,7 +16,8 @@ const HeaderTags = ({ layoutInfo, icon, onBack, placeInfo }) => {
     alignSelf: 'center'
   }
   console.log('icon going into HeaderTags', icon)
-  icon.imageURI = icon.imageURI.split('_')[0]
+  var newIcon = {...icon}
+  newIcon.imageURI = newIcon.imageURI.split('_')[0]
   return (
     <View style={[styles.container, {backgroundColor: icon.iconColor}]}>
       <ManageTagsNavBar
@@ -29,7 +30,7 @@ const HeaderTags = ({ layoutInfo, icon, onBack, placeInfo }) => {
         <Icon
           style={iconStyle}
           shadow={true}
-          icon={icon}
+          icon={newIcon}
           layoutInfo={layoutInfo} />
         <Text style={styles.iconText}>{icon.name}</Text>
       </View>
