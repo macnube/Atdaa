@@ -11,7 +11,7 @@ function id(state = '', action) {
 
 function email(state = '', action) {
 	switch(action.type) {
-		case types.SET_USER_INFO: return action.info.email;
+		case types.SET_USER_INFO: return action.info.email || ''
 		default: return state
 	}
 }

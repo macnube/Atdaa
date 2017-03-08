@@ -103,8 +103,8 @@ class LoginContainer extends Component {
       .then((data) => {
         console.log('data from signIn', data)
         var userInfo = {
-          id: data.uid,
-          email: data.email
+          id: data.user.uid,
+          email: data.user.email
         }
         console.log('userInfo', userInfo)
         this.setState({
