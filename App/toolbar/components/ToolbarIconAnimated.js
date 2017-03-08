@@ -32,12 +32,15 @@ class ToolbarIconAnimated extends Component {
 	componentWillMount() {
 		this.panResponder = PanResponder.create({
 			onStartShouldSetPanResponder: () => {
-				this.startTime = Date.now();
-				console.log("icon props", this.props.icon)
 				if (this.props.icon.id === 'empty') {
 					this.props.handleSelect(this.props.icon.priority)
 					return false
 				} else {
+					this.startTime = Date.now();
+					this._iconInfo = this._getIconInfo();
+					this._trashZone = this._iconInfo.dropZones[4]
+					this._containerStyles.style.zIndex = 100;
+					this._updateNativeStyles();
 					return true;
 				}
 			},
@@ -70,19 +73,16 @@ class ToolbarIconAnimated extends Component {
 	}
 
 	_handlePanResponderMove(e, gesture) {
-		var icon = this._getIconInfo();
-		const trashZone = icon.dropZones[4];
-		this._containerStyles.style.zIndex = 100;
-		this._updateNativeStyles();
-		if (!this.trashToggled) {
+		var delay = this.endTime - this.startTime > 1200
+		if (!this.trashToggled && delay) {
 			this.props.toggleTrash();
 			this.trashToggled = true;
 		}
-		if (inDropZone(gesture, trashZone, this.props.layoutInfo, 4)) {
+		if (inDropZone(gesture, this._trashZone, this.props.layoutInfo, 4)) {
 			if (!this.inTrash) {
 				Animated.spring(
 					this.state.pan,
-					{toValue: {x: trashZone.xmin - icon.left, y: 0}}
+					{toValue: {x: this._trashZone.xmin - icon.left, y: 0}}
 				).start();
 			}
 			this.inTrash = true;
@@ -98,8 +98,7 @@ class ToolbarIconAnimated extends Component {
 
 	_handlePanResponderEnd(e, gesture) {
 		this.endTime = Date.now();
-		if (this.endTime - this.startTime < 300) {
-			console.log("Time Duration", this.endTime - this.startTime)
+		if (this.endTime - this.startTime < 1200) {
 			this.snapBack()
 			this.props.handleSelect(this.props.icon.priority)
 			if (this.trashToggled) {

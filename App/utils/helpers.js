@@ -217,6 +217,7 @@ export const formatPlaceDetails = (details, myPlaces) => {
   var type = details.types[0]
   const isNew = myPlaces.ids.indexOf(details.place_id) === -1
   const tags = isNew ? [] : myPlaces.placeById[details.place_id].tags
+  const categoryNotes = isNew ? {} : (myPlaces.placeById[details.place_id].categoryNotes || {})
   const primaryIcon = isNew ? {imageURI: 'plusIcon'} : myPlaces.placeById[details.place_id].primaryIcon
 
   type = type[0].toUpperCase() + type.slice(1)
@@ -224,6 +225,7 @@ export const formatPlaceDetails = (details, myPlaces) => {
     name: details.name,
     isNew: isNew,
     tags: tags,
+    categoryNotes: categoryNotes,
     primaryIcon: primaryIcon,
     phone: details.international_phone_number,
     type: type,
