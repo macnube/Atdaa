@@ -15,9 +15,11 @@ const googleAPI = "AIzaSyChab7O6hfps-mXbk-DDtsdThWongFboZA";
 
 
 class PlaceSearch extends Component {
+  /*
   componentDidMount() {
     this.refs['placeSearch'].triggerFocus();
   }
+  */
 
   renderRow(rowData) {
     var name, address;
@@ -85,6 +87,9 @@ class PlaceSearch extends Component {
             },
             separator: {
               height: StyleSheet.hairlineWidth
+            },
+            container: {
+              flex: 1
             }
           }}
 

@@ -26,6 +26,7 @@ class PlaceSearchContainer extends Component {
   }
 
   componentDidMount () {
+    console.log('Mounting placesearch with location', this.state.location)
     var geo = navigator.geolocation
     if (!this.state.location) {
       geo.getCurrentPosition((position) => {
