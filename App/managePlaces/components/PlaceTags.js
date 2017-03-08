@@ -8,13 +8,32 @@ import {
 import { getIconById } from '../../utils/helpers'
 
 import PlaceTagsRow from './placeTagsResources/PlaceTagsRow'
+import PlaceNotesRow from './placeTagsResources/PlaceNotesRow'
 
 const PlaceTags = (props) => {
   const tags = props.placeCategories.map((data, index) => {
     const icon = getIconById(data.category)
     console.log('Cateogry Icon from PlaceTags', icon)
-    const tags = data.tags.map((tag) => getIconById(tag))
-    return <PlaceTagsRow icon={icon} tags={tags} key={index} />
+    console.log('props into PlaceTags:', props)
+    var categoryNotes = props.categoryNotes || {}
+    if (icon.id in categoryNotes) {
+      return (
+        <PlaceNotesRow
+          icon={icon}
+          handleEditCategory={props.handleEditCategory}
+          note={props.categoryNotes[icon.id]}
+          key={index} />
+      )
+    } else {
+      const categoryTags = data.tags.map((tag) => getIconById(tag))
+      return (
+        <PlaceTagsRow
+          icon={icon}
+          tags={categoryTags}
+          handleEditCategory={props.handleEditCategory}
+          key={index} />
+      )
+    }
   })
   console.log('props going into PlaceTags', props)
   return (
@@ -25,6 +44,13 @@ const PlaceTags = (props) => {
 }
 
 export default PlaceTags
+
+PlaceTags.propTypes = {
+  placeCategories: React.PropTypes.array.isRequired,
+  categoryNotes: React.PropTypes.object
+}
+
+
 
 var styles = StyleSheet.create({
   container: {

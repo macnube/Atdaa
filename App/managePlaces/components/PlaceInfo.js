@@ -28,7 +28,7 @@ const PlaceInfo = (props) => {
     : <View />
   tags = props.placeInfo.isNew
     ? <View />
-    : <PlaceTagsContainer place={props.placeInfo} />
+    : <PlaceTagsContainer place={props.placeInfo} handleEditCategory={props.handleEditCategory}/>
   icon = props.placeInfo.isNew
     ? {id: 'addTagLight', imageURI: 'addTagLight'}
     : props.placeInfo.primaryIcon

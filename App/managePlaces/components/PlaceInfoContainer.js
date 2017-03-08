@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addPlace } from '../actions'
+import { addPlace, editPlaceCategory } from '../actions'
 
 import dashboard from '../../dashboard'
 import api from '../../utils/api'
@@ -46,6 +46,10 @@ class PlaceInfoContainer extends Component {
 
   handleAddTag () {
     this.props.setSelectedTab('manageTags')
+  }
+
+  handleEditCategory (categoryIcon) {
+    this.props.editPlaceCategory(categoryIcon)
   }
 
   handleToMap () {
@@ -96,6 +100,7 @@ class PlaceInfoContainer extends Component {
         hours={this.getHours()}
         open={this.getOpen()}
         handleAddTag={this.handleAddTag.bind(this)}
+        handleEditCategory={this.handleEditCategory.bind(this)}
         handleToMap={this.handleToMap.bind(this)}
         handleEditNotes={this.handleEditNotes.bind(this)}
         handleNotesChange={this.handleNotesChange.bind(this)}
@@ -122,6 +127,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     addPlace (place, currentTime) {
       dispatch(addPlace(place, currentTime))
+    },
+    editPlaceCategory (category) {
+      dispatch(editPlaceCategory(category))
     }
   }
 }

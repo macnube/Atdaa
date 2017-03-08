@@ -14,3 +14,16 @@ export function updatePlaceNote (note) {
     note
   }
 }
+
+export function editPlaceCategory (category) {
+	return {
+		type: types.EDIT_PLACE_CATEGORY,
+		category
+	}
+}
+
+export function clearPlaceCategory () {
+	return {
+		type: types.CLEAR_PLACE_CATEGORY
+	}
+}

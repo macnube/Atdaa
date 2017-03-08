@@ -5,7 +5,7 @@ import { ListView } from 'react-native'
 
 import dashboard from '../../dashboard'
 import login from '../../login'
-import { addPlace } from '../actions'
+import { addPlace, editPlaceCategory, clearPlaceCategory } from '../actions'
 import ManageTags from './ManageTags'
 import api from '../../utils/api'
 import * as helpers from '../../utils/helpers'
@@ -21,13 +21,23 @@ class ManageTagsContainer extends Component {
     this._data = []
     this.state = {
       dataSource: this.ds.cloneWithRows(iconData),
-      categoryIcon: null,
+      categoryIcon: this.props.myPlaces.editPlaceCategory,
       scrollEnabled: true,
       selectedTags: [...this.props.placeInfo.tags],
       categoryNotes: this.props.placeInfo.categoryNotes || {},
       notes: '',
       editNotes: false
     }
+  }
+
+  componentWillMount () {
+    if (this.props.myPlaces.editPlaceCategory) {
+      this.handleShowTags(this.props.myPlaces.editPlaceCategory)
+    }
+  }
+
+  componentWillUnmount () {
+    this.props.clearPlaceCategory()
   }
 
   handleAddPlace () {
@@ -183,6 +193,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     setSelectedTab (tab) {
       dispatch(dashboard.actions.setSelectedTab(tab))
+    },
+    editPlaceCategory (category) {
+      dispatch(editPlaceCategory(category))
+    },
+    clearPlaceCategory () {
+      dispatch(clearPlaceCategory())
     }
   }
 }

@@ -8,3 +8,7 @@ export const SET_SELECTED_ICON = 'SET_SELECTED_ICON'
 export const LOGOUT = 'LOGOUT'
 export const OPEN_MODAL = 'OPEN_MODAL'
 export const CLOSE_MODAL = 'CLOSE_MODAL'
+
+
+//FROM managePlaces
+export const EDIT_PLACE_CATEGORY = 'EDIT_PLACE_CATEGORY'

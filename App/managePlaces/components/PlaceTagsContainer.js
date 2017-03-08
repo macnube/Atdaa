@@ -16,7 +16,10 @@ class PlaceTagsContainer extends Component {
 
   render () {
     return (
-      <PlaceTags placeCategories={this.state.placeCategories} />
+      <PlaceTags
+        placeCategories={this.state.placeCategories}
+        categoryNotes={this.props.place.categoryNotes}
+        handleEditCategory={this.props.handleEditCategory} />
     )
   }
 }

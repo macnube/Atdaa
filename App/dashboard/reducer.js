@@ -20,6 +20,7 @@ function scrollEnabled (state = true, action) {
 function selectedTab (state = 'map', action) {
   switch (action.type) {
     case types.SET_SELECTED_ICON: return 'iconSearch'
+    case types.EDIT_PLACE_CATEGORY: return 'manageTags'
     case types.SET_SELECTED_TAB: return action.tab
     case types.ADD_PLACE:
     case types.SET_PLACE_INFO: return 'placeInfo'

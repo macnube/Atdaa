@@ -68,8 +68,17 @@ export function lastUpdated (state = null, action) {
   }
 }
 
+export function editPlaceCategory (state = null, action) {
+  switch (action.type) {
+    case types.EDIT_PLACE_CATEGORY: return action.category
+    case types.CLEAR_PLACE_CATEGORY: return null
+    default: return state
+  }
+}
+
 export default combineReducers({
   placeById,
   ids,
-  lastUpdated
+  lastUpdated,
+  editPlaceCategory
 })
