@@ -71,11 +71,11 @@ const ManageTags = (props) => {
       icon={categoryIcon}
       onBack={props.handleBackToCategory}
       placeInfo={placeInfo}
-      handleEditNotes={props.handleEditNotes}
       handleNotesChange={props.handleNotesChange}
+      handleNoteSizeChange={props.handleNoteSizeChange}
       handleSaveNotes={props.handleSaveNotes}
-      notes={props.notes}
-      editNotes={props.editNotes} />
+      notes={props.notes} 
+      noteHeight={props.noteHeight}/>
   )
   if (categoryIcon) {
     main = categoryIcon.type === 'note' ? notes : list

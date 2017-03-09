@@ -26,7 +26,7 @@ class ManageTagsContainer extends Component {
       selectedTags: [...this.props.placeInfo.tags],
       categoryNotes: this.props.placeInfo.categoryNotes || {},
       notes: '',
-      editNotes: false
+      noteHeight: 0
     }
   }
 
@@ -53,15 +53,15 @@ class ManageTagsContainer extends Component {
     this.props.addPlace(newPlace, currentTime)
   }
 
-  handleNotesChange (notes) {
+  handleNotesChange (text) {
     this.setState({
-      notes: notes
+      notes: text
     })
   }
 
-  handleEditNotes () {
+  handleNoteSizeChange (height) {
     this.setState({
-      editNotes: !this.state.editNotes
+      noteHeight: height
     })
   }
 
@@ -79,9 +79,9 @@ class ManageTagsContainer extends Component {
       this.handleAddRemoveTag(this.state.categoryIcon)
     }
     this.setState({
-      editNotes: false,
       categoryNotes: newCategoryNotes
     })
+    this.handleBackToCategory()
   }
 
   handleBackToCategory () {
@@ -167,12 +167,12 @@ class ManageTagsContainer extends Component {
         handleBackToCategory={this.handleBackToCategory.bind(this)}
         handleBackToPlaceInfo={() => this.props.setSelectedTab('placeInfo')}
         handleBackToMap={() => this.props.setSelectedTab('map')}
-        handleEditNotes={this.handleEditNotes.bind(this)}
         handleNotesChange={this.handleNotesChange.bind(this)}
+        handleNoteSizeChange={this.handleNoteSizeChange.bind(this)}
         handleSaveNotes={this.handleSaveNotes.bind(this)}
         selectedTags={this.state.selectedTags}
-        notes={this.state.notes}
-        editNotes={this.state.editNotes} />
+        notes={this.state.notes} 
+        noteHeight={this.state.noteHeight} />
     )
   }
 }

@@ -11,36 +11,22 @@ import {
 class CategoryNotes extends Component {
 
   render () {
-    const saveNote = this.props.editNotes
-  ? (
-    <TouchableHighlight
-      style={styles.editButton}
-      onPress={() => {
-        this.refs.note.blur()
-        this.props.handleSaveNotes()
-      }}>
-      <Text style={styles.editText}>Save Note</Text>
-    </TouchableHighlight>
-    )
-  : <View />
     return (
       <View style={styles.container}>
         <View style={styles.headerContainer}>
           <Text>Notes</Text>
         </View>
-        <TextInput
-          ref='note'
-          style={styles.textInput}
-          editable={true}
-          multiline={true}
-          value={this.props.notes || ''}
-          onChangeText={(text) => this.props.handleNotesChange(text)}
-          onFocus={() => {
-            console.log('focused!')
-            this.props.handleEditNotes()
-          }}
-          placeholder='No notes...Click to edit' />
-        {saveNote}
+        <View style={styles.inputContainer}>
+          <TextInput
+            ref='note'
+            style={[styles.textInput, {height: Math.max(30, this.props.noteHeight)}]}
+            editable={true}
+            multiline={true}
+            value={this.props.notes || ''}
+            onChangeText={(text) => this.props.handleNotesChange(text)}
+            onContentSizeChange={(event) => this.props.handleNoteSizeChange(event.nativeEvent.contentSize.height)}
+            placeholder='No notes...Click to edit' />
+        </View>
       </View>
     )
   }
@@ -61,17 +47,10 @@ var styles = StyleSheet.create({
     borderColor: 'black'
   },
   textInput: {
-    height: 50
+    padding: 5
   },
-  editButton: {
-    alignSelf: 'flex-end',
-    alignItems: 'center',
-    height: 40,
-    width: 50
-  },
-  editText: {
-    fontSize: 15,
-    textAlign: 'center',
-    color: 'rgb(129, 187, 255)'
+  inputContainer: {
+    marginTop: 10,
+    backgroundColor: 'white',
   }
 })

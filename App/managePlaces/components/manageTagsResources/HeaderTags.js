@@ -32,7 +32,6 @@ const HeaderTags = ({ layoutInfo, icon, onBack, placeInfo }) => {
           shadow={true}
           icon={newIcon}
           layoutInfo={layoutInfo} />
-        <Text style={styles.iconText}>{icon.name}</Text>
       </View>
     </View>
   )
@@ -48,7 +47,7 @@ HeaderTags.propTypes = {
 
 var styles = StyleSheet.create({
   container: {
-    height: 100,
+    height: 85,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -66,10 +65,10 @@ var styles = StyleSheet.create({
   },
   iconContainer: {
     height: 90,
-    top: -6,
+    top: -20,
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     backgroundColor: 'transparent',
   }
 });

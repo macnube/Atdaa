@@ -20,19 +20,18 @@ const ManageCategoryNote = (props) => {
       <HeaderTags
         layoutInfo={props.layoutInfo}
         icon={props.icon}
-        onBack={props.onBack}
+        onBack={props.handleSaveNotes}
         placeInfo={props.placeInfo} />
       <View style={styles.textContainer}>
         <Text>What did you like from the menu?</Text>
         <Text>Please add it to the notes below:</Text>
       </View>
       <CategoryNotes
-        editNotes={props.editNotes}
-        handleEditNotes={props.handleEditNotes}
         handleNotesChange={props.handleNotesChange}
         handleSaveNotes={props.handleSaveNotes}
-        notes={props.notes} />
-      <View style={{height: 50}} />
+        handleNoteSizeChange={props.handleNoteSizeChange}
+        notes={props.notes}
+        noteHeight={props.noteHeight} />
     </KeyboardAvoidingView>
   )
 }
