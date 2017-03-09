@@ -30,13 +30,6 @@ const Icons = {
     imageURI: 'food',
     iconColor: 'rgb(150,228,228)'
   },
-  fingerfood: {
-    id: 'fingerfood',
-    type: 'category',
-    name: 'Finger Food',
-    imageURI: 'fingerfood',
-    iconColor: 'rgb(178,213,113)',
-  },
   livemusic: {
     id: 'livemusic',
     type: 'category',

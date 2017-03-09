@@ -32,11 +32,11 @@ class CreateAccountContainer extends Component {
 
 		let token = data.credentials.token
 		api.signInFacebook(token)
-			.then( (user) => {
-				console.log('user from firestack', user);
+			.then( (data.) => {
+				console.log('data from firestack', data.);
 				const userInfo = {
-					id: user.uid,
-					email: user.email,
+					id: data.user.uid,
+					email: data.user.email,
 				}
 				api.setLocalUserInfo(userInfo);
 				this.props.setUserInfo(userInfo);
