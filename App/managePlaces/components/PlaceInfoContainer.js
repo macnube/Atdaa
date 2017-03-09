@@ -14,7 +14,6 @@ class PlaceInfoContainer extends Component {
     super(props)
     this.state = {
       distance: 0,
-      editNotes: false,
       notes: props.placeInfo.notes || ''
     }
   }
@@ -62,12 +61,6 @@ class PlaceInfoContainer extends Component {
     })
   }
 
-  handleEditNotes () {
-    this.setState({
-      editNotes: !this.state.editNotes
-    })
-  }
-
   handleSaveNotes () {
     this.setState({
       editNotes: false
@@ -102,10 +95,8 @@ class PlaceInfoContainer extends Component {
         handleAddTag={this.handleAddTag.bind(this)}
         handleEditCategory={this.handleEditCategory.bind(this)}
         handleToMap={this.handleToMap.bind(this)}
-        handleEditNotes={this.handleEditNotes.bind(this)}
         handleNotesChange={this.handleNotesChange.bind(this)}
         handleSaveNotes={this.handleSaveNotes.bind(this)}
-        editNotes={this.state.editNotes}
         notes={this.state.notes}
          />
     )

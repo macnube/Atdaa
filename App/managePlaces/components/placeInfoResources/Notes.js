@@ -9,7 +9,6 @@ import {
 } from 'react-native'
 
 const Notes = (props) => {
-  const edit = props.editNotes ? "Done Editing" : "Edit"
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -23,17 +22,20 @@ const Notes = (props) => {
         onChangeText={(text) => props.handleNotesChange(text)}
         onEndEditing={props.handleSaveNotes}
         onFocus={() => console.log('clicking on notes!!!!')}
-        placeholder='No notes...Click to edit' />
-      <TouchableHighlight
-        style={styles.editButton}
-        onPress={props.handleEditNotes}>
-        <Text style={styles.editText}>{edit}</Text>
-      </TouchableHighlight>
+        placeholder='No notes...Touch to edit, touch away to save' />
     </View>
   )
 }
 
 export default Notes
+
+/*
+      <TouchableHighlight
+        style={styles.editButton}
+        onPress={props.handleEditNotes}>
+        <Text style={styles.editText}>{edit}</Text>
+      </TouchableHighlight>
+*/
 
 var styles = StyleSheet.create({
   container: {

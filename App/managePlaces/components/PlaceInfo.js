@@ -53,8 +53,6 @@ const PlaceInfo = (props) => {
         {tags}
         {map}
         <Notes
-          editNotes={props.editNotes}
-          handleEditNotes={props.handleEditNotes}
           handleNotesChange={props.handleNotesChange}
           handleSaveNotes={props.handleSaveNotes}
           notes={props.notes} />
