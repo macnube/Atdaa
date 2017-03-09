@@ -16,7 +16,8 @@ class POICards extends Component {
     super(props)
     this.ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
-    });
+    })
+    this._totalCardWidth = 310
     this.state = {
       dataSource: this.ds.cloneWithRows(props.cardsInfo)
     }
@@ -34,18 +35,18 @@ class POICards extends Component {
 
   componentDidMount () {
     if (this.props.cardIndex) {
-      var xOffset = this.props.cardIndex * 270 // Needs to be updated whenever Card Width changes, 
+      var xOffset = this.props.cardIndex * this._totalCardWidth // Needs to be updated whenever Card Width changes,
       this.refs['cards'].scrollTo({x: xOffset, y: 0, animated: true})
       this._offset = xOffset
     }
   }
-   
+
   componentDidUpdate (prevProps, prevState) {
     console.log('Test')
     if (prevProps.cardIndex === this.props.cardIndex) {
       console.log('Card has not changed')
     } else {
-      var xOffset = this.props.cardIndex * 270
+      var xOffset = this.props.cardIndex * this._totalCardWidth
       this.refs['cards'].scrollTo({x: xOffset, y: 0, animated: true})
     }
   }
@@ -81,8 +82,8 @@ class POICards extends Component {
 
   render () {
     const width = Dimensions.get('window').width
-    const cardWidth = 250
-    const cardMargin = 10
+    const cardWidth = 300
+    const cardMargin = 5
     const totalWidth = cardWidth + cardMargin * 2
     const padding = (width - cardWidth) / 2 - cardMargin
     return (

@@ -61,8 +61,8 @@ POICard.defaultProps = {
 const styles = StyleSheet.create({
   container: {
     height: 95,
-    margin: 10,
-    width: 250,
+    margin: 5,
+    width: 300,
     flexDirection: 'row',
     zIndex: 10,
     backgroundColor: 'white',

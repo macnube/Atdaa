@@ -17,6 +17,7 @@ class POICardsContainer extends Component {
     console.log('Mounting cards with props', props)
     super(props)
     this._matchingPlaces = this.props.matchingPlaces
+    this._totalCardWidth = 310 // Update this if the card width ever changes, here and in POICards & POICard
     this.state = {
       cardIndex: this._matchingPlaces.ids.indexOf(this.props.cardId),
       matched: this._isMatched(this.props.matchingPlaces.ids, this.props.cardId)
@@ -40,7 +41,7 @@ class POICardsContainer extends Component {
   _onCardScrollEnd (event) {
     console.log('event from endCardScroll', event.nativeEvent.contentOffset.x)
     var nextCardId
-    var currentOffset = this.state.cardIndex * 270
+    var currentOffset = this.state.cardIndex * this._totalCardWidth
     var nextOffset = event.nativeEvent.contentOffset.x
     const matchingPlacesIds = this._matchingPlaces.ids
     if (currentOffset > nextOffset && this.state.cardIndex !== 0) {
@@ -231,7 +232,6 @@ class POICardsContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    //map: state.map,
     myPlaces: state.myPlaces,
     filters: toolbar.selectors.getFilters(state.toolbar),
   }
@@ -241,7 +241,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setPlaceInfo(place) {
       dispatch(placeSearch.actions.setPlaceInfo(place))
-    },
+    }
     /*
     setCardId(id) {
       dispatch(setCardId(id))
@@ -255,7 +255,5 @@ const mapDispatchToProps = (dispatch) => {
     */
   }
 }
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(POICardsContainer)
