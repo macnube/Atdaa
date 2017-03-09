@@ -21,7 +21,6 @@ const IconSearchRow = ({ layoutInfo, icon, handleNewIcon, handleShowTags, handle
     width: layoutInfo.searchIcon.height * 1.4
   }
   const handlePress = icon.type === 'note' ? handleUpdateToolbar : handleShowTags
-  console.log('Icon going into IconSearchRow', icon)
   return (
     <View style={[styles.iconRow, styleRow]}>
       <TouchableWithoutFeedback

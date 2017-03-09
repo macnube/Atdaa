@@ -329,3 +329,10 @@ export const sortToolbar = (toolbar) => {
     }
   })
 }
+
+export const isInToolbar = (icon, toolbar) => {
+  var ids = toolbar.map((curr) => {
+    return curr.id
+  })
+  return ids.indexOf(icon.id) > -1
+}

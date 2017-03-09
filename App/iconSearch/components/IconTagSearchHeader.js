@@ -13,7 +13,6 @@ import IconSearchNavBar from './IconSearchNavBar';
 
 
 const IconTagSearchHeader = ({ layoutInfo, icon, onBack }) => {
-	console.log("Icon going into IconTagSearchBar", icon);
 	const iconStyle = {
 		height: layoutInfo.searchIcon.height,
 		width: layoutInfo.searchIcon.height,

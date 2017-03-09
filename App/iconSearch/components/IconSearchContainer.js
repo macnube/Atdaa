@@ -5,7 +5,7 @@ import { ListView } from 'react-native'
 import dashboard from '../../dashboard'
 import toolbar from '../../toolbar'
 import { setNewIcon } from '../actions'
-import { compareToolbars, getAllCategories, getIconById, getTagsByCategoryId, getCategoryIdByTagId } from '../../utils/helpers'
+import { compareToolbars, getAllCategories, getIconById, getTagsByCategoryId, getCategoryIdByTagId, isInToolbar } from '../../utils/helpers'
 import IconSearch from './IconSearch'
 
 class IconSearchContainer extends Component {
@@ -33,18 +33,14 @@ class IconSearchContainer extends Component {
 
   componentWillReceiveProps (nextProps) {
     var data
-    console.log('NextProps are', nextProps)
     var toolbarsEqual = compareToolbars(this.props.toolbar, nextProps.toolbar)
     if (!this.state.categoryIcon || (nextProps.iconSelected.id === 'empty' || nextProps.iconSelected.type === 'note')) {
-      console.log('setting categoryIcon to null')
       data = this._getData(nextProps.toolbar)
       this.setState({
         dataSource: this.ds.cloneWithRows(data),
         categoryIcon: null
       })
     } else if (!toolbarsEqual && nextProps.iconSelected.id !== 'empty') {
-      console.log('toolbars are not equal!!!')
-      console.log('value of categoryIcon', this.state.categoryIcon)
       data = this._getTagData([this.state.categoryIcon,
         ...getTagsByCategoryId(this.state.categoryIcon.id)], nextProps.toolbar)
       this.setState({
@@ -62,14 +58,12 @@ class IconSearchContainer extends Component {
   }
 
   handleShowTags (icon) {
-    console.log('category icon is:', icon)
     var categoryIcon = {
       ...icon,
       imageURI: icon.imageURI.split('_')[0]
     }
     console.log('categoryIcon is:', categoryIcon)
     var newData = this._getTagData([categoryIcon, ...getTagsByCategoryId(icon.id)], this.props.toolbar)
-    console.log('NewData from handleShowTags', newData)
     this.setState({
       dataSource: this.ds.cloneWithRows(newData),
       categoryIcon: categoryIcon
@@ -91,7 +85,11 @@ class IconSearchContainer extends Component {
 
   handleUpdateToolbar (icon) {
     console.log('iconSelected', this.props.iconSelected.priority)
-    this.props.updateToolbarIcon(icon.id, this.props.toolbar, this.props.iconSelected.priority)
+    console.log('Toolbar is: ', this.props.toolbar)
+    console.log('Icon is ', icon)
+    if (!isInToolbar(icon, this.props.toolbar)) {
+      this.props.updateToolbarIcon(icon.id, this.props.toolbar, this.props.iconSelected.priority)
+    }
   }
 
   _getData (toolbar) {

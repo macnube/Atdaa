@@ -14,7 +14,6 @@ import IconTagSearchHeader from './IconTagSearchHeader'
 const IconSearch = (props) => {
   const { dataSource, layoutInfo, handleShowTags, handleBackToMap,
     handleNewIcon, scrollEnabled, categoryIcon } = props
-  console.log('Props into IconSearch', props)
 
   const renderRow = (data) => {
     if (categoryIcon) {
