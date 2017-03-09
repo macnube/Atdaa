@@ -67,21 +67,27 @@ class ManageTagsContainer extends Component {
 
   handleSaveNotes () {
     var newCategoryNotes = {...this.state.categoryNotes, [this.state.categoryIcon.id]: this.state.notes}
+    var newSelectedTags = [...this.state.selectedTags]
     console.log('Category notes are:', newCategoryNotes)
     console.log('category Icon is: ', this.state.categoryIcon)
     console.log('notes : ', this.state.notes)
     if (!(this.state.categoryIcon.id in this.state.categoryNotes) && this.state.notes !== '') {
       console.log('adding food tag')
-      this.handleAddRemoveTag(this.state.categoryIcon)
+      newSelectedTags.push(this.state.categoryIcon.id)
     } else if (this.state.categoryIcon.id in this.state.categoryNotes && this.state.notes === '') {
       console.log('removing food tag')
       delete newCategoryNotes[this.state.categoryIcon.id]
-      this.handleAddRemoveTag(this.state.categoryIcon)
+      var index = newSelectedTags.indexOf(this.state.categoryIcon.id)
+      newSelectedTags = [...newSelectedTags.slice(0, index), ...newSelectedTags.slice(index + 1)]
     }
+    console.log('Selectedtags before iconData', this.state.selectedTags)
+    var iconData = this._getData(newSelectedTags)
     this.setState({
+      dataSource: this.ds.cloneWithRows(iconData),
+      selectedTags: newSelectedTags,
+      categoryIcon: null,
       categoryNotes: newCategoryNotes
     })
-    this.handleBackToCategory()
   }
 
   handleBackToCategory () {

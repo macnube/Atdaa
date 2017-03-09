@@ -37,7 +37,7 @@ export default CategoryNotes
 var styles = StyleSheet.create({
   container: {
     marginTop: 15,
-    marginHorizontal: 30,
+    marginHorizontal: 30
   },
   headerContainer: {
     height: 30,
@@ -47,10 +47,12 @@ var styles = StyleSheet.create({
     borderColor: 'black'
   },
   textInput: {
-    padding: 5
+    padding: 5,
+    minHeight: 140
   },
   inputContainer: {
     marginTop: 10,
     backgroundColor: 'white',
+    minHeight: 150
   }
 })
