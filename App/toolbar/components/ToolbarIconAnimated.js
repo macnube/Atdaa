@@ -73,8 +73,9 @@ class ToolbarIconAnimated extends Component {
 	}
 
 	_handlePanResponderMove(e, gesture) {
-		var delay = this.endTime - this.startTime > 1200
-		if (!this.trashToggled && delay) {
+		this.moveTime = Date.now();
+		var delay = this.moveTime - this.startTime > 1000
+		if (!this.trashToggled && delay) {	
 			this.props.toggleTrash();
 			this.trashToggled = true;
 		}
@@ -82,7 +83,7 @@ class ToolbarIconAnimated extends Component {
 			if (!this.inTrash) {
 				Animated.spring(
 					this.state.pan,
-					{toValue: {x: this._trashZone.xmin - icon.left, y: 0}}
+					{toValue: {x: this._trashZone.xmin - this._iconInfo.left, y: 0}}
 				).start();
 			}
 			this.inTrash = true;
@@ -98,7 +99,7 @@ class ToolbarIconAnimated extends Component {
 
 	_handlePanResponderEnd(e, gesture) {
 		this.endTime = Date.now();
-		if (this.endTime - this.startTime < 1200) {
+		if (this.endTime - this.startTime < 1000) {
 			this.snapBack()
 			this.props.handleSelect(this.props.icon.priority)
 			if (this.trashToggled) {
