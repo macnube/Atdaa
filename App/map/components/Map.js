@@ -14,6 +14,7 @@ import GPSButton from './GPSButton'
 class Map extends Component {
 
   renderPlaces () {
+    console.log('Rerendering Map Places')
     return this.props.markerPlaces.ids.map((id, index) => {
       const place = this.props.markerPlaces.placeById[id]
       const selected = place.place_id === this.props.POICardId
@@ -24,7 +25,7 @@ class Map extends Component {
         <MapView.Marker
           coordinate={place.latlng}
           anchor={anchor}
-          key={index}
+          key={id}
           onPress={() => this.props.handleMarkerClick(place)}>
           <MapMarker
             selected={selected}

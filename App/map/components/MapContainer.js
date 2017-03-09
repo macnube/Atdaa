@@ -85,7 +85,7 @@ class MapContainer extends Component {
 		const { region } = this.state;
   	const { myPlaces, filters } = this.props;
   	this.markerPlaces = this._getPlaces(myPlaces, filters, region, 5)
-  	this.visiblePlaces = this._getPlaces(this.markerPlaces, filters, region, 1.1);
+  	this.visiblePlaces = this._getPlaces(this.markerPlaces, filters, region, 1.2);
   	this.matchingPlaces = this._getMatchingPlaces(this.visiblePlaces)
 		if (this.props.searchMarker) {
     	var nextRegion = {
