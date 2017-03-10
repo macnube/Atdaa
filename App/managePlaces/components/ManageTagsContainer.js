@@ -41,16 +41,21 @@ class ManageTagsContainer extends Component {
   }
 
   handleAddPlace () {
-    const newPlace = {
-      ...this.props.placeInfo,
-      isNew: false,
-      primaryIcon: helpers.getPrimaryIcon(this.state.selectedTags),
-      tags: this.state.selectedTags,
-      categoryNotes: this.state.categoryNotes
+    console.log('this is selectedTags', this.state.selectedTags)
+    if (this.state.selectedTags.length > 0) {
+      const newPlace = {
+        ...this.props.placeInfo,
+        isNew: false,
+        primaryIcon: helpers.getPrimaryIcon(this.state.selectedTags),
+        tags: this.state.selectedTags,
+        categoryNotes: this.state.categoryNotes
+      }
+      const currentTime = new Date().getTime() / 1000
+      api.updateMyPlaces(this.props.userId, this.props.myPlaces, newPlace, currentTime)
+      this.props.addPlace(newPlace, currentTime)
+    } else {
+      this.props.setSelectedTab('placeInfo')
     }
-    const currentTime = new Date().getTime() / 1000
-    api.updateMyPlaces(this.props.userId, this.props.myPlaces, newPlace, currentTime)
-    this.props.addPlace(newPlace, currentTime)
   }
 
   handleNotesChange (text) {
