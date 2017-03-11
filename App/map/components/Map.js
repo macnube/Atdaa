@@ -18,6 +18,7 @@ class Map extends Component {
     return this.props.markerPlaces.ids.map((id, index) => {
       const place = this.props.markerPlaces.placeById[id]
       const selected = place.place_id === this.props.POICardId
+      const zIndex = selected ? 10 : 1
       const anchor = this.props.showNames
         ? { x: 0.1, y: 0.6 }
         : { x: 0.5, y: 0.5 }
@@ -25,6 +26,7 @@ class Map extends Component {
         <MapView.Marker
           coordinate={place.latlng}
           anchor={anchor}
+          style={{zIndex: zIndex}}
           key={id}
           onPress={() => this.props.handleMarkerClick(place)}>
           <MapMarker
