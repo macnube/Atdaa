@@ -22,6 +22,8 @@ target 'Atdaa' do
   'RCTVibration',
   'RCTWebSocket'
   ]
+  
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
   pod 'Yoga', :path => yoga_path
   
