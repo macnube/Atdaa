@@ -91,8 +91,8 @@ class MapContainer extends Component {
     	var nextRegion = {
         latitude: this.props.searchMarker.latlng.latitude,
         longitude: this.props.searchMarker.latlng.longitude,
-        latitudeDelta: LATITUDE_DELTA / 30,
-        longitudeDelta: LONGITUDE_DELTA / 30,
+        latitudeDelta: LATITUDE_DELTA / 5,
+        longitudeDelta: LATITUDE_DELTA / 5 * ASPECT_RATIO,
     	}
     	this.setState({
     		region: nextRegion
@@ -247,6 +247,9 @@ class MapContainer extends Component {
 				layoutInfo={this.props.layoutInfo}
 				moveMapToPlace={this.moveMapToPlace.bind(this)}
 				searchMarker={this.props.searchMarker}
+				scrollEnabled={this.props.scrollEnabled}
+        rotateEnabled={this.props.rotateEnabled}
+        pitchEnabled={this.props.pitchEnabled}
 				/>
 			)
 	}
@@ -417,6 +420,9 @@ class MapContainer extends Component {
 
 MapContainer.defaultProps = {
 	showGPS: true,
+	scrollEnabled: true,
+	pitchEnabled: true,
+	rotateEnabled: true
 }
 /*
 const mapStateToProps = (state) => {

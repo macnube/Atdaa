@@ -59,18 +59,18 @@ export default MapMarker
 
 var styles = StyleSheet.create({
   selectedMarker: {
-    height: 40,
-    width: 40,
+    height: 43,
+    width: 43,
     borderRadius: 20,
-    zIndex: 10,
+    zIndex: 10
   },
   scoreSize: {
-    height: 12, 
-    width: 12,
-  }, 
+    height: 12,
+    width: 12
+  },
   selectedScoreSize: {
     height: 15,
-    width: 15,
+    width: 15
   },
   selectedText: {
     fontSize: 9,
@@ -89,51 +89,51 @@ var styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: colors.activeIcon,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   markerInactive: {
     height: 18,
-    width: 18,
+    width: 18
   },
   markerOne: {
-    height: 20,
-    width: 20,
-    borderRadius: 10,
+    height: 23,
+    width: 23,
+    borderRadius: 10
   },
   markerOneBig: {
-    height: 24,
-    width: 24,
-    borderRadius: 13,
+    height: 25,
+    width: 25,
+    borderRadius: 13
   },
   markerTwo: {
-    height: 22,
-    width: 22,
-    borderRadius: 11,
-  },
-  markerTwoBig: {
-    height: 26,
-    width: 26,
-    borderRadius: 14,
-  },
-  markerThree: {
-    height: 24,
-    width: 24,
-    borderRadius: 12,
-  },
-  markerThreeBig: {
     height: 28,
     width: 28,
-    borderRadius: 15,
+    borderRadius: 11
   },
-  markerFour: {
-    height: 26,
-    width: 26,
-    borderRadius: 13,
-  },
-  markerFourBig: {
+  markerTwoBig: {
     height: 30,
     width: 30,
-    borderRadius: 16,
+    borderRadius: 14
+  },
+  markerThree: {
+    height: 31,
+    width: 31,
+    borderRadius: 12
+  },
+  markerThreeBig: {
+    height: 33,
+    width: 33,
+    borderRadius: 15
+  },
+  markerFour: {
+    height: 33,
+    width: 33,
+    borderRadius: 13
+  },
+  markerFourBig: {
+    height: 35,
+    width: 35,
+    borderRadius: 16
   },
   container: {
     height: 55,

@@ -22,7 +22,12 @@ const PlaceInfo = (props) => {
   map = props.placeInfo.isNew
     ? (
       <View style={styles.mapContainer}>
-        <MapContainer showGPS={false} searchMarker={props.placeInfo} />
+        <MapContainer
+          showGPS={false}
+          scrollEnabled={false}
+          pitchEnabled={false}
+          rotateEnabled={false}
+          searchMarker={props.placeInfo} />
       </View>
       )
     : <View />
@@ -36,6 +41,14 @@ const PlaceInfo = (props) => {
     ? <Image style={styles.imageContainer} source={{uri: props.placeInfo.photoURI}} />
     : <View style={[styles.imageContainer, {backgroundColor: 'grey'}]} />
   const containerPadding = props.editNotes ? 50 : 20
+  const notes = props.placeInfo.isNew
+    ? <View />
+    : (
+      <Notes
+        handleNotesChange={props.handleNotesChange}
+        handleSaveNotes={props.handleSaveNotes}
+        notes={props.notes} />
+    )
   return (
     <KeyboardAvoidingView
       style={[styles.container, {paddingBottom: containerPadding}]}
@@ -52,10 +65,7 @@ const PlaceInfo = (props) => {
           handleAddTag={props.handleAddTag} />
         {tags}
         {map}
-        <Notes
-          handleNotesChange={props.handleNotesChange}
-          handleSaveNotes={props.handleSaveNotes}
-          notes={props.notes} />
+        {notes}
       </ScrollView>
     </KeyboardAvoidingView>
   )
@@ -80,6 +90,6 @@ var styles = StyleSheet.create({
     height: 150
   },
   mapContainer: {
-    height: 300
+    height: 250
   }
 })

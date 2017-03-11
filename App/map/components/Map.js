@@ -76,6 +76,8 @@ class Map extends Component {
   }
 
   render () {
+    console.log('Rendering map with props', this.props.scrollEnabled)
+    console.log('Rendering map with props', this.props.region)
     return (
       <View style={{flex: 1}}>
         {this.renderPOI()}
@@ -89,7 +91,10 @@ class Map extends Component {
           region={this.props.region}
           onRegionChangeComplete={this.props.handleRegionChange}
           loadingEnabled={true}
-          showsUserLocation={true} >
+          showsUserLocation={true}
+          scrollEnabled={this.props.scrollEnabled}
+          rotateEnabled={this.props.rotateEnabled}
+          pitchEnabled={this.props.pitchEnabled} >
           {this.renderPlaces()}
           {this.renderSearchMarker()}
         </MapView>
