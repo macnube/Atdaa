@@ -38,11 +38,12 @@ class SplashContainer extends Component {
     })
   }
 
-  toDashboard () {
+  toDashboard (localLastUpdated = -1) {
     const { DashboardContainer } = dashboard
     this.props.navigator.push({
       title: 'Dashboard',
-      component: DashboardContainer
+      component: DashboardContainer,
+      localLastUpdated: localLastUpdated
     })
   }
 
@@ -76,7 +77,7 @@ class SplashContainer extends Component {
   }
 
   componentDidMount () {
-    //api.deleteLocalUserInfo()
+    // api.deleteLocalUserInfo()
     this.getCurrentLocation()
     api.getLocalUserInfo()
       .then((userInfo) => {
@@ -85,24 +86,8 @@ class SplashContainer extends Component {
         })
         if (userInfo) {
           console.log('This is user from SplashContainer', userInfo)
-          api.getFirebaseUserPlaces(userInfo.id)
-            .then((snapshot) => {
-              if (snapshot.value) {
-                console.log('Info on server, checking which one is most recent')
-                var places = getLatestPlaces(userInfo.myPlaces, snapshot.value)
-                userInfo = {
-                  ...userInfo,
-                  ...places
-                }
-              }
-              this.props.setUserInfo(userInfo)
-              this.toDashboard()
-            })
-            .catch((error) => {
-              console.log('error getting server info', error)
-              this.props.setUserInfo(userInfo)
-              this.toDashboard()
-            })
+          this.props.setUserInfo(userInfo)
+          this.toDashboard(userInfo.myPlaces.lastUpdated)
         } else {
           this.setState({
             reading: false

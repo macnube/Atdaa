@@ -42,6 +42,21 @@ class DashboardContainer extends Component {
 
   componentWillMount () {
     this.props.setLayout(getLayout())
+    api.getFirebaseUserPlaces(this.props.user.id)
+      .then((snapshot) => {
+        console.log('Info on server, checking which one is most recent')
+        if (snapshot.value.lastUpdated > this.props.localLastUpdated && this.props.localLastUpdated !== -1) {
+          console.log('Updating from server!!!!')
+          var userInfo = {
+            ...this.props.user,
+            ...snapshot.value
+          }
+          this.props.setUserInfo(userInfo)
+        }
+      })
+      .catch((error) => {
+        console.log('error getting server info, sticking with local data', error)
+      })
   }
 
   componentWillUpdate (nextProps, nextState) {
@@ -91,6 +106,7 @@ class DashboardContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     dashboard: state.dashboard,
+    user: login.selectors.getUserInfo(state.user),
     newIcon: state.newIcon,
     placeInfo: placeSearch.selectors.getPlaceInfo(state.placeInfo)
   }
@@ -100,6 +116,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setSelectedTab (tab) {
       dispatch(setSelectedTab(tab))
+    },
+    setUserInfo (userInfo) {
+      dispatch(login.actions.setUserInfo(userInfo))
     },
     setLayout (layoutInfo) {
       dispatch(setLayout(layoutInfo))

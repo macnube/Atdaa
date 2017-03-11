@@ -3,5 +3,9 @@ export const getUserId = (state) => {
 }
 
 export const getUserInfo = (state) => {
-	return state.userInfo
+	var userInfo = {
+		email: state.email,
+		id: state.id
+	}
+	return userInfo
 }
