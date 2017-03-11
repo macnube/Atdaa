@@ -31,6 +31,7 @@ PlaceInfoNavBar.propTypes = {
 
 var styles = StyleSheet.create({
 	navBar: {
+		position: 'absolute',
 		height: 66,
 		width: Dimensions.get('window').width,
 		flexDirection: 'row',

@@ -53,7 +53,6 @@ const PlaceInfo = (props) => {
     <KeyboardAvoidingView
       style={[styles.container, {paddingBottom: containerPadding}]}
       behavior='position'>
-      <PlaceInfoNavBar handleToMap={props.handleToMap} />
       <ScrollView>
         {placeImage}
         <PlaceDetails
@@ -67,6 +66,7 @@ const PlaceInfo = (props) => {
         {map}
         {notes}
       </ScrollView>
+      <PlaceInfoNavBar handleToMap={props.handleToMap} />
     </KeyboardAvoidingView>
   )
 }
@@ -87,7 +87,7 @@ var styles = StyleSheet.create({
     backgroundColor: 'rgb(250,250,250)'
   },
   imageContainer: {
-    height: 150
+    height: 200
   },
   mapContainer: {
     height: 250
