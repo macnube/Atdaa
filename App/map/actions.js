@@ -42,3 +42,10 @@ export function toggleScroll () {
     type: types.TOGGLE_SCROLL
   }
 }
+
+export function setNearbyPlaces (places) {
+  return {
+    type: types.SET_NEARBY_PLACES,
+    places
+  }
+}

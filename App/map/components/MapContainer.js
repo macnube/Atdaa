@@ -6,7 +6,15 @@ import {
 	LayoutAnimation,
 } from 'react-native';
 
-import { setCardScrollInfo, endCardScroll, setCardId, setRegion, setUserLocation} from '../actions'
+import { 
+	setCardScrollInfo,
+	endCardScroll,
+	setCardId,
+	setRegion,
+	setUserLocation,
+	setNearbyPlaces 
+} from '../actions'
+import { getNearbyPlaces, getPlaceDetails } from '../../utils/api'
 import placeSearch from '../../placeSearch'
 import dashboard from '../../dashboard'
 import { 
@@ -15,7 +23,8 @@ import {
 	compareToolbars, 
 	compareRegions,
 	getMapPlaces,
-	getMapIcon
+	getMapIcon,
+	filterPlacesByType
 } from '../../utils/helpers'
 import { 
 	getMatchingPlaces, 
@@ -64,6 +73,33 @@ class MapContainer extends Component {
   	this.markerPlaces = this._getPlaces(myPlaces, filters, region, 5)
   	this.visiblePlaces = this._getPlaces(this.markerPlaces, filters, region, 1.1);
   	this.matchingPlaces = this._getMatchingPlaces(this.visiblePlaces)
+  	if (this.state.userLocation.latitude !== nextState.userLocation.latitude) {
+      getNearbyPlaces(this.props.userLocation)
+      .then((res) => res.json())
+      .then((responseJson) => {
+      	var filteredPlaces = filterPlacesByType(responseJson.results)
+      	var counter = 0
+      	var places = []
+      	filteredPlaces.forEach((place) => {
+      		getPlaceDetails(place.place_id)
+      		.then((res) => res.json())
+      		.then((details) => {
+      			counter ++
+      			if (counter === filteredPlaces.length) {
+    					console.log('Setting Nearby Places with ', places)
+      				this.props.setNearbyPlaces(places)
+      			}
+      			places.push(details.result)
+      		})
+      		.catch((error) => {
+      			console.log('Error getting plcae details', error)
+      		})
+      	})
+      })
+      .catch((error) => {
+        console.log('Error getting nearby places', error)
+      })
+    }
   	/*
   	if ((this.state.cardId !== nextState.cardId) && nextState.cardId) {
   		var place = this.markerPlaces.placeById[nextState.cardId]
@@ -100,6 +136,31 @@ class MapContainer extends Component {
 		} else if (!region) {
 			this.getCurrentLocation();
 		}
+    getNearbyPlaces(this.props.userLocation)
+      .then((res) => res.json())
+      .then((responseJson) => {
+      	var filteredPlaces = filterPlacesByType(responseJson.results)
+      	var counter = 0
+      	var places = []
+      	filteredPlaces.forEach((place) => {
+      		getPlaceDetails(place.place_id)
+      		.then((res) => res.json())
+      		.then((details) => {
+      			counter ++
+      			if (counter === filteredPlaces.length) {
+    					console.log('Setting Nearby Places with ', places)
+      				this.props.setNearbyPlaces(places)
+      			}
+      			places.push(details.result)
+      		})
+      		.catch((error) => {
+      			console.log('Error getting plcae details', error)
+      		})
+      	})
+      })
+      .catch((error) => {
+        console.log('Error getting nearby places', error)
+      })
 	}
 
 	componentWillUnmount() {
@@ -469,6 +530,9 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		setUserLocation(userLocation) {
 			dispatch(setUserLocation(userLocation))
+		},
+		setNearbyPlaces(places) {
+			dispatch(setNearbyPlaces(places))
 		}
 	}
 }

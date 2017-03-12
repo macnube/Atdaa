@@ -84,6 +84,30 @@ export const getLatestPlaces = (first, second) => {
   } else return second
 }
 
+export const filterPlacesByType = (places) => {
+  var typesFilter = [
+    'art_gallery',
+    'bakery',
+    'bar',
+    'lodging',
+    'meal_delivery',
+    'meal_takeaway',
+    'bowling_alley',
+    'movie_theater',
+    'cafe',
+    'night_club',
+    'museum',
+    'casino',
+    'restaurant',
+    'food'
+  ]
+  return places.filter((place) => {
+    return place.types.some((type) => {
+      return typesFilter.indexOf(type) > -1
+    })
+  })
+}
+
 export const getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
   var R = 6371 // Radius of the earth in km
   var dLat = deg2rad(lat2 - lat1)  // deg2rad below

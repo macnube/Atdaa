@@ -1,18 +1,16 @@
-import React, { Component} from 'react';
+import React, { Component} from 'react'
 
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import helpers from '../../utils/helpers';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 
 import {
   View,
   Text,
   Dimensions,
-  StyleSheet
+  StyleSheet,
+  TouchableHighlight
 } from 'react-native'
 
-const googleAPI = "AIzaSyChab7O6hfps-mXbk-DDtsdThWongFboZA";
-
-
+const googleAPI = "AIzaSyChab7O6hfps-mXbk-DDtsdThWongFboZA"
 
 class PlaceSearch extends Component {
   /*
@@ -35,14 +33,48 @@ class PlaceSearch extends Component {
     }
     console.log("rowData going into PlaceSearch", rowData);
     return (
-      <View style={{flex: 1, justifyContent: 'space-around', paddingRight: 15}}>
+      <View>
         <Text style={{color: 'rgb(139, 139, 139)', fontSize: 18}}>{name}</Text>
-        <Text style={{color: 'rgb(195,195,195)', fontSize: 14}}>{address}</Text>
+        <Text style={{color: 'rgb(195,195,195)', fontSize: 14, marginTop: 2}}>{address}</Text>
       </View>
     )
   }
 
-  renderLoading() {
+  renderNearby (nearbyPlaces) {
+    if (this.props.showNearby) {
+      var nearby = nearbyPlaces.map((place, index) => {
+        return (
+          <TouchableHighlight
+            onPress={() => this.props.handleSetPlace({}, place)}
+            key={index}>
+            <View>
+              <View style={styles.nearbyRow}>
+                <Text
+                  ellipsizeMode='tail'
+                  numberOfLines={1}
+                  style={styles.nearbyName}>{place.name}</Text>
+                <Text
+                  ellipsizeMode='tail'
+                  numberOfLines={1}
+                  style={{color: 'rgb(195,195,195)', fontSize: 14, marginTop: 2}}>{place.vicinity}</Text>
+              </View>
+              <View style={styles.separator} />
+            </View>
+          </TouchableHighlight>
+        )
+      })
+      return (
+        <View>
+          <Text>Places Nearby</Text>
+          {nearby}
+        </View>
+      )
+    } else {
+      return <View />
+    }
+  }
+
+  renderLoading () {
     return (
       <View style={styles.textContainer}>
         <Text style={styles.loadingText}>Loading Place Card</Text>
@@ -58,6 +90,7 @@ class PlaceSearch extends Component {
         <GooglePlacesAutocomplete
           ref="placeSearch"
           placeholder='Search'
+          textInputProps={{onChangeText: this.props.handleChangeText}}
           minLength={2} // minimum length of text to search
           autoFocus={true}
           listViewDisplayed='auto'    // true/false/undefined
@@ -74,6 +107,7 @@ class PlaceSearch extends Component {
             language: 'en', // language of the results
             location: this.props.location,
             radius: "5000",
+            types: 'establishment'
           }}
           styles={{
             predefinedPlacesDescription: {
@@ -81,6 +115,8 @@ class PlaceSearch extends Component {
             },
             row: {
               height: 57,
+              justifyContent: 'space-around',
+              flexDirection: 'column',
               padding: 0,
               paddingVertical: 7,
               paddingLeft: 22
@@ -100,10 +136,9 @@ class PlaceSearch extends Component {
             // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
             rankby: 'distance',
           }}
-
-
-          filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
-          />
+          >
+          {this.renderNearby(this.props.nearbyPlaces)}
+          </GooglePlacesAutocomplete>
       </View>
     )
 
@@ -122,6 +157,22 @@ var styles = StyleSheet.create({
   },
   loadingText: {
     fontSize: 20,
+  },
+  nearbyRow: {
+    justifyContent: 'space-around',
+    paddingRight: 13,
+    paddingVertical: 7,
+    paddingLeft: 22,
+    height: 57
+  },
+  separator: {
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#c8c7cc'
+  },
+  nearbyName: {
+    color: 'rgb(139, 139, 139)',
+    fontSize: 18,
+    width: 300
   }
 })
 

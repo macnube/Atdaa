@@ -13,6 +13,7 @@ import toolbar from '../../toolbar'
 import iconSearch from '../../iconSearch'
 import placeSearch from '../../placeSearch'
 import login from '../../login'
+import map from '../../map'
 
 import Dashboard from './Dashboard'
 
@@ -116,6 +117,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setSelectedTab (tab) {
       dispatch(setSelectedTab(tab))
+    },
+    setNearbyPlaces (places) {
+      dispatch(map.actions.setNearbyPlaces(places))
     },
     setUserInfo (userInfo) {
       dispatch(login.actions.setUserInfo(userInfo))

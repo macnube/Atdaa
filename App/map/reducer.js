@@ -58,9 +58,17 @@ function showNames (state = false, action) {
   }
 }
 
+function nearbyPlaces (state = [], action) {
+  switch (action.type) {
+    case types.SET_NEARBY_PLACES: return action.places
+    default: return state
+  }
+}
+
 export default combineReducers({
   region,
   userLocation,
   cardId,
-  showNames
+  showNames,
+  nearbyPlaces
 })

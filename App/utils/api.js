@@ -35,6 +35,20 @@ export const getPlaces = (search, currentLocation) => {
   return fetch(url).then((res) => res.json())
 }
 
+export const getPlaceDetails = (id) => {
+  var url = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${id}&key=${googleAPI}`
+  console.log('this is the request url', url)
+  return fetch(url)
+}
+
+export const getNearbyPlaces = (userLocation) => {
+  var latlng = userLocation.latitude + ',' + userLocation.longitude
+  var radius = 200
+  var url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${googleAPI}&location=${latlng}&radius=${radius}`
+  console.log('this is the request url', url)
+  return fetch(url)
+}
+
 // Firestack API calls
 export const createUser = (email, password) => {
   return firestack.auth.createUserWithEmail(email, password)

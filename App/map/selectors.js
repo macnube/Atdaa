@@ -6,6 +6,12 @@ import toolbar from '../toolbar'
 const getMapRegion = (state) => state.map.region
 const getToolbarFilters = (state) => toolbar.selectors.getFilters(state.toolbar)
 const getPlaces = (state) => state.myPlaces
+const getNearby = (state) => state.nearbyPlaces
+
+export const getNearbyPlaces = createSelector(
+  [getNearby],
+  (nearbyPlaces) => nearbyPlaces
+)
 
 export const getMarkerPlaces = createSelector(
   [getMapRegion, getToolbarFilters, getPlaces],

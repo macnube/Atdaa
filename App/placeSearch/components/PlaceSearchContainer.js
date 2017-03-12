@@ -12,6 +12,7 @@ class PlaceSearchContainer extends Component {
   constructor (props) {
     super(props)
     console.log('PlaceSearch with location: ', props.userLocation.latitude + ',' + props.userLocation.longitude)
+    console.log('PlaceSearch with nearbyPlaces', props.nearbyPlaces)
     console.log('map', map)
     var location
     if (props.userLocation.latitude) {
@@ -21,7 +22,8 @@ class PlaceSearchContainer extends Component {
     }
     this.state = {
       location: location,
-      loading: false
+      loading: false,
+      showNearby: true
     }
   }
 
@@ -42,7 +44,8 @@ class PlaceSearchContainer extends Component {
     console.log('data from handleSetPlace', data)
     console.log('details from handleSetPlace', details)
     this.setState({
-      loading: true
+      loading: true,
+      showNearby: false
     })
     if (details) {
       var place = formatPlaceDetails(details, this.props.myPlaces)
@@ -64,11 +67,27 @@ class PlaceSearchContainer extends Component {
     }
   }
 
+  handleChangeText (text) {
+    console.log('handleChangeText with text', text)
+    if (text.length > 0) {
+      this.setState({
+        showNearby: false
+      })
+    } else {
+      this.setState({
+        showNearby: true
+      })
+    }
+
+  }
+
   render () {
     return (
       <PlaceSearch
         loading={this.state.loading}
         handleSetPlace={this.handleSetPlace.bind(this)}
+        handleChangeText={this.handleChangeText.bind(this)}
+        showNearby={this.state.showNearby}
         location={this.state.location}
         {...this.props} />
 
@@ -79,7 +98,8 @@ class PlaceSearchContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     myPlaces: state.myPlaces,
-    userLocation: state.map.userLocation
+    userLocation: state.map.userLocation,
+    nearbyPlaces: state.map.nearbyPlaces
   }
 }
 
