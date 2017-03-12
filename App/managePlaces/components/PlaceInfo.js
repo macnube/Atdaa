@@ -40,7 +40,7 @@ const PlaceInfo = (props) => {
   const placeImage = props.placeInfo.photoURI
     ? <Image style={styles.imageContainer} source={{uri: props.placeInfo.photoURI}} />
     : <View style={[styles.imageContainer, {backgroundColor: 'grey'}]} />
-  const containerPadding = props.editNotes ? 50 : 20
+  const containerPadding = props.editNotes ? 50 : 0
   const notes = props.placeInfo.isNew
     ? <View />
     : (
@@ -66,7 +66,9 @@ const PlaceInfo = (props) => {
         {map}
         {notes}
       </ScrollView>
-      <PlaceInfoNavBar handleToMap={props.handleToMap} />
+      <PlaceInfoNavBar
+        handleToMap={props.handleToMap}
+        keyboardHeight={props.keyboardHeight} />
     </KeyboardAvoidingView>
   )
 }

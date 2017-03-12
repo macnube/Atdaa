@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addPlace, editPlaceCategory } from '../actions'
-
+import { Keyboard } from 'react-native'
 import dashboard from '../../dashboard'
 import api from '../../utils/api'
 import login from '../../login'
@@ -14,12 +14,15 @@ class PlaceInfoContainer extends Component {
     super(props)
     this.state = {
       distance: 0,
-      notes: props.placeInfo.notes || ''
+      notes: props.placeInfo.notes || '',
+      keyboardHeight: 0
     }
   }
 
   componentDidMount () {
     const place = this.props.placeInfo
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this))
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this))
     if (!place.photoURI) {
       console.log('Here')
       if (place.photos) {
@@ -40,6 +43,24 @@ class PlaceInfoContainer extends Component {
           position.coords.latitude, position.coords.longitude,
           place.latlng.latitude, place.latlng.longitude)
       })
+    })
+  }
+
+  componentWillUnmount () {
+    this.keyboardDidShowListener.remove()
+    this.keyboardDidHideListener.remove()
+  }
+
+  keyboardDidShow (e) {
+    console.log('Keyboard is showing with height', e.endCoordinates.height)
+    this.setState({
+      keyboardHeight: e.endCoordinates.height
+    })
+  }
+
+  keyboardDidHide (e) {
+    this.setState({
+      keyboardHeight: 0
     })
   }
 
@@ -98,6 +119,7 @@ class PlaceInfoContainer extends Component {
         handleNotesChange={this.handleNotesChange.bind(this)}
         handleSaveNotes={this.handleSaveNotes.bind(this)}
         notes={this.state.notes}
+        keyboardHeight={this.state.keyboardHeight}
          />
     )
   }

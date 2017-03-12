@@ -19,7 +19,7 @@ const PlaceInfoNavBar = (props) => {
       style={styles.navBar}>
       <TouchableHighlight
         onPress={() => props.handleToMap()}>
-        <View style={styles.nav}>
+        <View style={[styles.nav, {top: props.keyboardHeight}]}>
           <Image style={styles.back} source={{uri: 'backArrowLight'}} />
         </View>
       </TouchableHighlight>
