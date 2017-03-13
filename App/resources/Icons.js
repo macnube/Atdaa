@@ -35,7 +35,7 @@ const Icons = {
     type: 'category',
     name: 'Live Music',
     imageURI: 'livemusic',
-    iconColor: 'rgb(180,133,187)',
+    iconColor: 'rgb(191,212,245)',
   },
   cocktail: {
     id: 'cocktail',
