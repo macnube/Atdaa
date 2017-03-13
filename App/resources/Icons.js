@@ -65,6 +65,20 @@ const Icons = {
     imageURI: 'coffee',
     iconColor: 'rgb(210,178,138)',
   },
+  juice: {
+    id: 'juice',
+    type: 'category',
+    name: 'Juice',
+    imageURI: 'juice',
+    iconColor: 'rgb(254,183,115)',
+  },
+  tea: {
+    id: 'tea',
+    type: 'category',
+    name: 'Tea',
+    imageURI: 'tea',
+    iconColor: 'rgb(200,231,157)',
+  },
   /*
   atmosphere: {
     id: 'atmosphere',
@@ -75,7 +89,7 @@ const Icons = {
   },
   */
 
-  //Atmosphere tags
+  // Atmosphere tags
   /*
   dancing: {
     id: 'dancing',
@@ -120,6 +134,262 @@ const Icons = {
     imageURI: 'atmosphere'
   },
   */
+  // Juice Tags
+  apple: {
+    id: 'apple',
+    type: 'tag',
+    name: 'Apple',
+    imageURI: 'juice'
+  },
+  beet: {
+    id: 'beet',
+    type: 'tag',
+    name: 'Beet',
+    imageURI: 'juice'
+  },
+  blueberry: {
+    id: 'blueberry',
+    type: 'tag',
+    name: 'Blueberry',
+    imageURI: 'juice'
+  },
+  cantalope: {
+    id: 'cantalope',
+    type: 'tag',
+    name: 'Cantalope',
+    imageURI: 'juice'
+  },
+  carrot: {
+    id: 'carrot',
+    type: 'tag',
+    name: 'Carrot',
+    imageURI: 'juice'
+  },
+  celery: {
+    id: 'celery',
+    type: 'tag',
+    name: 'Celery',
+    imageURI: 'juice'
+  },
+  coconut: {
+    id: 'coconut',
+    type: 'tag',
+    name: 'Coconut',
+    imageURI: 'juice'
+  },
+  cranberry: {
+    id: 'cranberry',
+    type: 'tag',
+    name: 'Cranberry',
+    imageURI: 'juice'
+  },
+  grape: {
+    id: 'grape',
+    type: 'tag',
+    name: 'Grape',
+    imageURI: 'juice'
+  },
+  grapefruit: {
+    id: 'grapefruit',
+    type: 'tag',
+    name: 'Grapefruit',
+    imageURI: 'juice'
+  },
+  guava: {
+    id: 'guava',
+    type: 'tag',
+    name: 'Guava',
+    imageURI: 'juice'
+  },
+  honeydew: {
+    id: 'honeydew',
+    type: 'tag',
+    name: 'Honeydew',
+    imageURI: 'juice'
+  },
+  kiwi: {
+    id: 'kiwi',
+    type: 'tag',
+    name: 'Kiwi',
+    imageURI: 'juice'
+  },
+  lemonade: {
+    id: 'lemonade',
+    type: 'tag',
+    name: 'Lemonade',
+    imageURI: 'juice'
+  },
+  lime: {
+    id: 'lime',
+    type: 'tag',
+    name: 'Lime',
+    imageURI: 'juice'
+  },
+  mango: {
+    id: 'mango',
+    type: 'tag',
+    name: 'Mango',
+    imageURI: 'juice'
+  },
+  maracuya: {
+    id: 'maracuya',
+    type: 'tag',
+    name: 'Maracuya',
+    imageURI: 'juice'
+  },
+  orange: {
+    id: 'orange',
+    type: 'tag',
+    name: 'Orange',
+    imageURI: 'juice'
+  },
+  melon: {
+    id: 'melon',
+    type: 'tag',
+    name: 'Melon',
+    imageURI: 'juice'
+  },
+  papaya: {
+    id: 'papaya',
+    type: 'tag',
+    name: 'Papaya',
+    imageURI: 'juice'
+  },
+  passionfruit: {
+    id: 'passionfruit',
+    type: 'tag',
+    name: 'Passionfruit',
+    imageURI: 'juice'
+  },
+  persimmon: {
+    id: 'persimmon',
+    type: 'tag',
+    name: 'Persimmon',
+    imageURI: 'juice'
+  },
+  pineapple: {
+    id: 'pineapple',
+    type: 'tag',
+    name: 'Pineapple',
+    imageURI: 'juice'
+  },
+  pomegranate: {
+    id: 'pomegranate',
+    type: 'tag',
+    name: 'Pomegranate',
+    imageURI: 'juice'
+  },
+  raspberry: {
+    id: 'raspberry',
+    type: 'tag',
+    name: 'Raspberry',
+    imageURI: 'juice'
+  },
+  spinach: {
+    id: 'spinach',
+    type: 'tag',
+    name: 'Spinach',
+    imageURI: 'juice'
+  },
+  strawberry: {
+    id: 'strawberry',
+    type: 'tag',
+    name: 'Strawberry',
+    imageURI: 'juice'
+  },
+  tomato: {
+    id: 'tomato',
+    type: 'tag',
+    name: 'Tomato',
+    imageURI: 'juice'
+  },
+  turnip: {
+    id: 'turnip',
+    type: 'tag',
+    name: 'Turnip',
+    imageURI: 'juice'
+  },
+  zapote: {
+    id: 'zapote',
+    type: 'tag',
+    name: 'Zapote',
+    imageURI: 'juice'
+  },
+
+  // Tea Tags
+
+  black_tea: {
+    id: 'black_tea',
+    type: 'tag',
+    name: 'Black Tea',
+    imageURI: 'tea'
+  },
+  earl_grey: {
+    id: 'earl_grey',
+    type: 'tag',
+    name: 'Earl Grey',
+    imageURI: 'tea'
+  },
+  genmaicha: {
+    id: 'genmaicha',
+    type: 'tag',
+    name: 'Genmaicha',
+    imageURI: 'tea'
+  },
+  green_tea: {
+    id: 'green_tea',
+    type: 'tag',
+    name: 'Green Tea',
+    imageURI: 'tea'
+  },
+  iced_tea: {
+    id: 'iced_tea',
+    type: 'tag',
+    name: 'Iced Tea',
+    imageURI: 'tea'
+  },
+  kombucha: {
+    id: 'kombucha',
+    type: 'tag',
+    name: 'Kombucha',
+    imageURI: 'tea'
+  },
+  masala_chai: {
+    id: 'masala_chai',
+    type: 'tag',
+    name: 'Masala Chai',
+    imageURI: 'tea'
+  },
+  matcha: {
+    id: 'matcha',
+    type: 'tag',
+    name: 'Matcha',
+    imageURI: 'tea'
+  },
+  mate: {
+    id: 'mate',
+    type: 'tag',
+    name: 'Mate',
+    imageURI: 'tea'
+  },
+  oolong_tea: {
+    id: 'oolong_tea',
+    type: 'tag',
+    name: 'Oolong Tea',
+    imageURI: 'tea'
+  },
+  turkish_tea: {
+    id: 'turkish_tea',
+    type: 'tag',
+    name: 'Turkish Tea',
+    imageURI: 'tea'
+  },
+  white_tea: {
+    id: 'white_tea',
+    type: 'tag',
+    name: 'White Tea',
+    imageURI: 'tea'
+  },
 
   //Cofee Tags
   capuccino: {
