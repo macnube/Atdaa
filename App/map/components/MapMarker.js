@@ -14,7 +14,10 @@ import * as colors from '../../resources/Colors'
 const MapMarker = ({ selected, place, showName}) => {
   console.log("place going into mapMarker", place)
   const scoreSize = selected ? styles.selectedScoreSize : styles.scoreSize
-  const uri = place.score === 0 ? place.primaryIcon.imageURI + '_clean_inactive' : place.mapIcon.imageURI
+  var uri
+  if (place.score === 0 && selected) uri = place.primaryIcon.imageURI + '_inactive'
+  else if (place.score === 0) uri = place.primaryIcon.imageURI + '_clean_inactive'
+  else uri = place.mapIcon.imageURI
   var markerStyle;
   if (selected) {
     markerStyle = [styles.selectedMarker, styles.shadow]
