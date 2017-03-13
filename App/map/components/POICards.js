@@ -6,7 +6,7 @@ import {
   StyleSheet
 } from 'react-native'
 
-import { placeTagsInCategory } from '../../utils/helpers'
+import { placeTagsInCategory, getCategoryIdByTagId } from '../../utils/helpers'
 
 import POICard from './POICard'
 
@@ -57,8 +57,14 @@ class POICards extends Component {
       console.log('value of acc is', acc)
       if (filter.priority === 0) {
         return acc
-      } else if (filter.type === 'tag' && tags.indexOf(filter.id) > -1) {
-        return acc.concat([filter])
+      } else if ((filter.type === 'tag' || filter.type === 'note') && tags.indexOf(filter.id) > -1) {
+        var categoryId = getCategoryIdByTagId(filter.id)
+        console.log('CategoryID is: ', categoryId)
+        console.log('fitler is ', filter)
+        console.log('acc is ', acc)
+        if (acc.every((icon) => getCategoryIdByTagId(icon.id) !== categoryId)) {
+          return acc.concat([filter])
+        } else return acc
       } else if (filter.type === 'category' && placeTagsInCategory(tags, filter.id)) {
         return acc.concat([filter])
       } else {
