@@ -55,9 +55,9 @@ class POICards extends Component {
     const tags = placeInfo.tags
     return filters.reduce((acc, filter) => {
       console.log('value of acc is', acc)
-      if (filter.priority === 0) {
-        return acc
-      } else if ((filter.type === 'tag' || filter.type === 'note') && tags.indexOf(filter.id) > -1) {
+      if (filter.priority === 0) return acc
+      else if (filter.id === placeInfo.mapIcon.id) return acc
+      else if ((filter.type === 'tag' || filter.type === 'note') && tags.indexOf(filter.id) > -1) {
         var categoryId = getCategoryIdByTagId(filter.id)
         console.log('CategoryID is: ', categoryId)
         console.log('fitler is ', filter)
@@ -66,7 +66,9 @@ class POICards extends Component {
           return acc.concat([filter])
         } else return acc
       } else if (filter.type === 'category' && placeTagsInCategory(tags, filter.id)) {
-        return acc.concat([filter])
+        if (acc.every((icon) => getCategoryIdByTagId(icon.id) !== filter.id)) {
+          return acc.concat([filter])
+        } else return acc
       } else {
         return acc
       }

@@ -36,7 +36,7 @@ const POICard = ({ placeInfo, setPlaceInfo, distance, cardIcons, open, match }) 
             </View>
             <POITagsBar
               cardIcons={cardIcons}
-              placeInfo={placeInfo} />
+              placeInfo={placeInfo}/>
           </View>
         </View>
       </View>
