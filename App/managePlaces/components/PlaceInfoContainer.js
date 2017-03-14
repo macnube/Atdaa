@@ -14,6 +14,7 @@ class PlaceInfoContainer extends Component {
     super(props)
     this.state = {
       distance: 0,
+      editNotes: false,
       notes: props.placeInfo.notes || '',
       keyboardHeight: 0
     }
@@ -73,11 +74,24 @@ class PlaceInfoContainer extends Component {
   }
 
   handleToMap () {
+    if (this.state.editNotes) {
+      this.setState({
+        editNotes: false
+      })
+      const newPlace = {
+        ...this.props.placeInfo,
+        notes: this.state.notes
+      }
+      const currentTime = new Date().getTime() / 1000
+      api.updateMyPlaces(this.props.userId, this.props.myPlaces, newPlace, currentTime)
+      this.props.addPlace(newPlace, currentTime)
+    }
     this.props.setSelectedTab('map')
   }
 
   handleNotesChange (notes) {
     this.setState({
+      editNotes: true,
       notes: notes
     })
   }

@@ -89,7 +89,7 @@ var styles = StyleSheet.create({
     backgroundColor: 'rgb(250,250,250)'
   },
   imageContainer: {
-    height: 200
+    height: 250
   },
   mapContainer: {
     height: 250

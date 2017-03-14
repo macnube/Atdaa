@@ -13,7 +13,7 @@ import LinearGradient from 'react-native-linear-gradient'
 const PlaceInfoNavBar = (props) => {
   return (
     <LinearGradient
-      colors={['rgba(0,0,0,0)', 'rgba(0,0,0,.01)']}
+      colors={['rgba(0,0,0,0)', 'rgba(0,0,0,.02)']}
       start={{x: 0.5, y: 0.4}}
       end={{x: 0.5, y: 1.0}}
       style={styles.navBar}>
