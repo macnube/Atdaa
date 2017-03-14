@@ -89,7 +89,6 @@ export const filterPlacesByType = (places) => {
     'art_gallery',
     'bakery',
     'bar',
-    'lodging',
     'meal_delivery',
     'meal_takeaway',
     'bowling_alley',
@@ -204,16 +203,31 @@ export const placeOpen = (placeInfo) => {
     var today = d.getDay()
     var hours = placeInfo.open.weekday[today].split('y: ')[1]
     if (hours === 'Closed') return 'Closed'
-    var openingHour = toMilitaryTime(hours.split(' – ')[0])
-    var closingHour = toMilitaryTime(hours.split(' – ')[1])
-    closingHour = closingHour < openingHour ? closingHour + 24 : closingHour
-    if ((d.getHours() >= openingHour) && (d.getHours() < closingHour)) {
-      console.log('Current time is', d.getHours())
-      return 'Open Now'
-    } else return 'Closed'
+    var reg = /, /g
+    if (reg.test(hours)) {
+      hours = hours.split(', ')
+      console.log('split opening hours!', hours)
+      for (var i = 0; i < hours.length; i++) {
+        var open = isOpen(hours[i], d.getHours())
+        if (open === 'Open Now') break
+      }
+      return open
+    } else {
+      return isOpen(hours, d.getHours())
+    }
   } else {
     return 'Unknown'
   }
+}
+
+const isOpen = (hours, current) => {
+  var openingHour = toMilitaryTime(hours.split(' – ')[0])
+  var closingHour = toMilitaryTime(hours.split(' – ')[1])
+  closingHour = closingHour < openingHour ? closingHour + 24 : closingHour
+  if ((current >= openingHour) && (current < closingHour)) {
+    console.log('Current time is', current)
+    return 'Open Now'
+  } else return 'Closed'
 }
 
 const toMilitaryTime = (hour) => {
