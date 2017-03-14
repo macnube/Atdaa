@@ -46,12 +46,15 @@ class DashboardContainer extends Component {
     api.getFirebaseUserPlaces(this.props.user.id)
       .then((snapshot) => {
         console.log('Info on server, checking which one is most recent')
-        if (snapshot.value.lastUpdated > this.props.localLastUpdated && this.props.localLastUpdated !== -1) {
+        console.log('Server last updated is: ', snapshot.value)
+        console.log('Local last updated is: ', this.props.localLastUpdated)
+        if (snapshot.value.myPlaces.lastUpdated > this.props.localLastUpdated && this.props.localLastUpdated !== -1) {
           console.log('Updating from server!!!!')
           var userInfo = {
             ...this.props.user,
             ...snapshot.value
           }
+          api.setLocalUserInfo(userInfo)
           this.props.setUserInfo(userInfo)
         }
       })

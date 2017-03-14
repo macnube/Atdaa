@@ -33,19 +33,37 @@ class CreateAccountContainer extends Component {
     api.signInFacebook(token)
       .then((data) => {
         console.log('data from firestack', data)
-        const userInfo = {
+        var userInfo = {
           id: data.user.uid,
           email: data.user.email
         }
-        api.setLocalUserInfo(userInfo)
-        this.props.setUserInfo(userInfo)
-        this.props.toDashboard()
+        api.getFirebaseUserPlaces(userInfo.id)
+          .then((snapshot) => {
+            console.log('here with snapshot', snapshot)
+            if (snapshot.value) {
+              console.log('snapshot value from snapshot', snapshot.value)
+              userInfo = {
+                ...userInfo,
+                myPlaces: {...snapshot.value.myPlaces}
+              }
+            } else {
+              console.log('no data on server')
+            }
+            api.setLocalUserInfo(userInfo)
+            this.props.setUserInfo(userInfo)
+            this.props.toDashboard()
+          })
+          .catch((error) => {
+            this.setState({
+              downloading: error
+            })
+            api.setLocalUserInfo(userInfo)
+            this.props.setUserInfo(userInfo)
+            this.props.toDashboard()
+            console.log('error fetching data from server', error)
+          })
       })
       .catch((error) => {
-        this.setState({
-          isLoading: false,
-          error: error.description
-        })
         console.log('Facebook login failed with', error)
       })
   }

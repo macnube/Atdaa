@@ -43,7 +43,9 @@ class SplashContainer extends Component {
     this.props.navigator.push({
       title: 'Dashboard',
       component: DashboardContainer,
-      localLastUpdated: localLastUpdated
+      passProps: {
+        localLastUpdated: localLastUpdated
+      }
     })
   }
 
@@ -87,7 +89,9 @@ class SplashContainer extends Component {
         if (userInfo) {
           console.log('This is user from SplashContainer', userInfo)
           this.props.setUserInfo(userInfo)
-          this.toDashboard(userInfo.myPlaces.lastUpdated)
+          var lastUpdated = 0
+          if (userInfo.myPlaces) lastUpdated = userInfo.myPlaces.lastUpdated || 0
+          this.toDashboard(lastUpdated)
         } else {
           this.setState({
             reading: false
