@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import api from '../../utils/api'
 import CreateAccount from './CreateAccount'
 import CreateEmailContainer from './CreateEmailContainer'
+import LoginContainer from './LoginContainer'
 
 class CreateAccountContainer extends Component {
 
@@ -17,6 +18,17 @@ class CreateAccountContainer extends Component {
     this.props.navigator.push({
       title: 'Sign Up',
       component: CreateEmailContainer,
+      passProps: {
+        toDashboard: this.props.toDashboard,
+        setUserInfo: this.props.setUserInfo
+      }
+    })
+  }
+
+  toLogIn () {
+    this.props.navigator.push({
+      title: 'Login',
+      component: LoginContainer,
       passProps: {
         toDashboard: this.props.toDashboard,
         setUserInfo: this.props.setUserInfo
@@ -79,7 +91,8 @@ class CreateAccountContainer extends Component {
         isLoading={this.state.isLoading}
         onFacebookCreateAccount={this.onFacebookCreateAccount.bind(this)}
         onFacebookLogout={this.onFacebookLogout.bind(this)}
-        toCreateEmail={this.toCreateEmail.bind(this)} />
+        toCreateEmail={this.toCreateEmail.bind(this)}
+        toLogIn={this.toLogIn.bind(this)} />
     )
   }
 }
