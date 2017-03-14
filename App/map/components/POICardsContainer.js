@@ -4,10 +4,9 @@ import { connect } from 'react-redux'
 import { Dimensions, LayoutAnimation } from 'react-native'
 
 import { setCardScrollInfo, endCardScroll, setCardId, toggleScroll } from '../actions'
-import { getDistanceFromLatLonInKm } from '../../utils/helpers'
+import { getDistanceFromLatLonInKm, placeOpen } from '../../utils/helpers'
 import placeSearch from '../../placeSearch'
 import toolbar from '../../toolbar'
-import { placeOpen } from '../../utils/helpers'
 import POICards from './POICards'
 import POICard from './POICard'
 import SinglePOICard from './SinglePOICard'
@@ -25,7 +24,9 @@ class POICardsContainer extends Component {
   }
 
   shouldComponentUpdate (nextProps, nextState) {
+    if (nextState.matched === false && this.state.matched === false) return true
     if (nextState.cardIndex === this.state.cardIndex) {
+      console.log('Not updating POICardsContainer')
       return false
     } else return true
   }
