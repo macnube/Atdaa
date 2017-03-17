@@ -3,6 +3,7 @@ package com.atdaa;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.BV.LinearGradient.LinearGradientPackage;
 import io.fullstack.firestack.FirestackPackage;
@@ -36,6 +37,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativeConfigPackage(),
             new CodePush(null, getApplicationContext(), BuildConfig.DEBUG),
             new LinearGradientPackage(),
             new FirestackPackage(),

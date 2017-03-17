@@ -3,9 +3,10 @@ import {
   AsyncStorage
 } from 'react-native'
 
+import Config from 'react-native-config'
 import Firestack from 'react-native-firestack'
 
-var googleAPI = 'AIzaSyChab7O6hfps-mXbk-DDtsdThWongFboZA'
+var googleAPI = Config.GOOGLE_API_KEY
 var firestackConfig = {
   debug: true
 }

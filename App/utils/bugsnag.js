@@ -1,5 +1,6 @@
 import { Client } from 'bugsnag-react-native'
-const client = new Client('91b33e87b842149c352d08456c6f6821')
+import Config from 'react-native-config'
+const client = new Client(Config.BUGSNAG_CLIENT)
 export default client
 
 
