@@ -199,12 +199,15 @@ export const getMapIcon = (place, filters) => {
 
 export const placeOpen = (placeInfo) => {
   if (placeInfo.open.weekday && Array.isArray(placeInfo.open.weekday)) {
+    var normalHours = /\d+:\d+\s\w*\s*\W\s\d+:\d+\s\w*/
+    var splitHours = /\d+:\d+\s\w*\s*\W\s\d+:\d+\s\w*,/g // To find split times
     var d = new Date()
-    var today = d.getDay()
+    var today = (d.getDay() - 1) === -1 ? 6 : d.getDay() - 1
+    console.log('Today from placeOpen', today)
     var hours = placeInfo.open.weekday[today].split('y: ')[1]
     if (hours === 'Closed') return 'Closed'
-    var reg = /, /g
-    if (reg.test(hours)) {
+    else if (hours === 'Open 24 hours') return 'Open Now'
+    else if (splitHours.test(hours)) {
       hours = hours.split(', ')
       console.log('split opening hours!', hours)
       for (var i = 0; i < hours.length; i++) {
@@ -212,8 +215,10 @@ export const placeOpen = (placeInfo) => {
         if (open === 'Open Now') break
       }
       return open
-    } else {
+    } else if (normalHours.test(hours)) {
       return isOpen(hours, d.getHours())
+    } else {
+      return 'Unknown'
     }
   } else {
     return 'Unknown'
