@@ -1,7 +1,7 @@
 import React, { Component } from 'React'
 import { connect } from 'react-redux'
 
-import { ListView } from 'react-native'
+import { ListView, Keyboard } from 'react-native'
 
 import dashboard from '../../dashboard'
 import login from '../../login'
@@ -26,11 +26,14 @@ class ManageTagsContainer extends Component {
       selectedTags: [...this.props.placeInfo.tags],
       categoryNotes: this.props.placeInfo.categoryNotes || {},
       notes: '',
-      noteHeight: 0
+      noteHeight: 0,
+      keyboard: false
     }
   }
 
   componentWillMount () {
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this))
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this))
     if (this.props.myPlaces.editPlaceCategory) {
       this.handleShowTags(this.props.myPlaces.editPlaceCategory)
     }
@@ -38,6 +41,20 @@ class ManageTagsContainer extends Component {
 
   componentWillUnmount () {
     this.props.clearPlaceCategory()
+    this.keyboardDidShowListener.remove()
+    this.keyboardDidHideListener.remove()
+  }
+
+  keyboardDidShow (e) {
+    this.setState({
+      keyboard: true
+    })
+  }
+
+  keyboardDidHide (e) {
+    this.setState({
+      keyboard: false
+    })
   }
 
   handleAddPlace () {
@@ -182,8 +199,9 @@ class ManageTagsContainer extends Component {
         handleNoteSizeChange={this.handleNoteSizeChange.bind(this)}
         handleSaveNotes={this.handleSaveNotes.bind(this)}
         selectedTags={this.state.selectedTags}
-        notes={this.state.notes} 
-        noteHeight={this.state.noteHeight} />
+        notes={this.state.notes}
+        noteHeight={this.state.noteHeight}
+        keyboard={this.state.keyboard} />
     )
   }
 }

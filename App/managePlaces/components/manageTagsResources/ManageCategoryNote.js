@@ -11,28 +11,31 @@ import HeaderTags from './HeaderTags'
 import CategoryNotes from './CategoryNotes'
 
 const ManageCategoryNote = (props) => {
-  var margin = 0
+  const instructions = !props.keyboard
+  ? (
+    <View style={styles.textContainer}>
+      <Text>What did you like from the menu?</Text>
+      <Text>Please add it to the notes above</Text>
+    </View>
+  )
+  : <View />
   return (
-    <KeyboardAvoidingView
-      style={[styles.container, {marginTop: margin}]}
-      behavior='position'
-      onKeyboardChange={() => console.log('keyboard open/close')} >
+    <View
+      style={styles.container}>
       <HeaderTags
         layoutInfo={props.layoutInfo}
         icon={props.icon}
         onBack={props.handleSaveNotes}
-        placeInfo={props.placeInfo} />
-      <View style={styles.textContainer}>
-        <Text>What did you like from the menu?</Text>
-        <Text>Please add it to the notes below:</Text>
-      </View>
+        placeInfo={props.placeInfo}
+        marginBottom={10} />
       <CategoryNotes
         handleNotesChange={props.handleNotesChange}
         handleSaveNotes={props.handleSaveNotes}
         handleNoteSizeChange={props.handleNoteSizeChange}
         notes={props.notes}
         noteHeight={props.noteHeight} />
-    </KeyboardAvoidingView>
+      {instructions}
+    </View>
   )
 }
 
@@ -42,6 +45,7 @@ var styles = StyleSheet.create({
   container: {
   },
   textContainer: {
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginTop: 10
   }
 })

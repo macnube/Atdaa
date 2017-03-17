@@ -75,7 +75,8 @@ const ManageTags = (props) => {
       handleNoteSizeChange={props.handleNoteSizeChange}
       handleSaveNotes={props.handleSaveNotes}
       notes={props.notes} 
-      noteHeight={props.noteHeight}/>
+      noteHeight={props.noteHeight} 
+      keyboard={props.keyboard} />
   )
   if (categoryIcon) {
     main = categoryIcon.type === 'note' ? notes : list

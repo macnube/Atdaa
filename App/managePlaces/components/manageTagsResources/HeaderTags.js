@@ -9,7 +9,7 @@ import {
 import Icon from '../../../shared/Icon'
 import ManageTagsNavBar from './ManageTagsNavBar'
 
-const HeaderTags = ({ layoutInfo, icon, onBack, placeInfo }) => {
+const HeaderTags = ({ layoutInfo, icon, onBack, placeInfo, marginBottom }) => {
   const iconStyle = {
     height: layoutInfo.searchIcon.height,
     width: layoutInfo.searchIcon.height,
@@ -19,7 +19,7 @@ const HeaderTags = ({ layoutInfo, icon, onBack, placeInfo }) => {
   var newIcon = {...icon}
   newIcon.imageURI = newIcon.imageURI.split('_')[0]
   return (
-    <View style={[styles.container, {backgroundColor: icon.iconColor}]}>
+    <View style={[styles.container, {backgroundColor: icon.iconColor, marginBottom: marginBottom}]}>
       <ManageTagsNavBar
         categoryIcon={icon}
         width={layoutInfo.toolbar.width}
@@ -45,13 +45,16 @@ HeaderTags.propTypes = {
   onBack: React.PropTypes.func.isRequired
 }
 
+HeaderTags.defaultProps = {
+  marginBottom: 60
+}
+
 var styles = StyleSheet.create({
   container: {
     height: 85,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 60,
     shadowColor: 'rgb(203,203,203)',
     shadowOffset: {width: 1, height: 2},
     shadowRadius: 3,
