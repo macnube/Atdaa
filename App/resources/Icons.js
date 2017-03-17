@@ -309,12 +309,6 @@ const Icons = {
     name: 'Turnip',
     imageURI: 'juice'
   },
-  zapote: {
-    id: 'zapote',
-    type: 'tag',
-    name: 'Zapote',
-    imageURI: 'juice'
-  },
 
   // Tea Tags
 

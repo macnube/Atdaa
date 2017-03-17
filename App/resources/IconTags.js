@@ -27,7 +27,7 @@ const IconTags = {
     'coconut', 'cranberry', 'grape', 'grapefruit', 'guava', 'honeydew',
     'kiwi', 'lemonade', 'lime', 'mango', 'maracuya', 'melon', 'orange',
     'papaya', 'passionfruit', 'persimmon', 'pineapple', 'pomegranate',
-    'raspberry', 'spinach', 'strawberry', 'tomato', 'turnip', 'zapote'],
+    'raspberry', 'spinach', 'strawberry', 'tomato', 'turnip'],
   tea: ['black_tea', 'earl_grey', 'genmaicha', 'green_tea', 'iced_tea',
     'kombucha', 'masala_chai', 'matcha', 'mate', 'oolong_tea', 'turkish_tea',
     'white_tea']
