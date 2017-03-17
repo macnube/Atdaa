@@ -58,7 +58,7 @@ class LoginContainer extends Component {
         }
         console.log('userInfo', userInfo)
         this.setState({
-          downloading: 'downloading and updating userInfo'
+          downloading: 'downloading info'
         })
         api.getFirebaseUserPlaces(userInfo.id)
           .then((snapshot) => {

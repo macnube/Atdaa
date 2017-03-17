@@ -20,7 +20,7 @@ const IconTags = {
     'dubstep', 'hiphop', 'rave'],
   coffee: ['capuccino', 'latte', 'aeropress', 'french_press',
     'espresso', 'americano', 'cold_brew', 'turkish_coffee', 'cortado',
-    'macchiato'],
+    'macchiato', 'decaf', 'moka', 'flat_white', 'frappe', 'drip'],
   livemusic: ['jazz', 'rock', 'concert', 'milonga'],
   food: ['food'],
   juice: ['apple', 'beet', 'blueberry', 'cantalope', 'carrot', 'celery',

@@ -446,6 +446,36 @@ const Icons = {
     name: 'Macchiato',
     imageURI: 'coffee'
   },
+  decaf: {
+    id: 'decaf',
+    type: 'tag',
+    name: 'Decaf',
+    imageURI: 'coffee'
+  },
+  drip: {
+    id: 'drip',
+    type: 'tag',
+    name: 'Drip',
+    imageURI: 'coffee'
+  },
+  flat_white: {
+    id: 'flat_white',
+    type: 'tag',
+    name: 'Flat White',
+    imageURI: 'coffee'
+  },
+  frappe: {
+    id: 'frappe',
+    type: 'tag',
+    name: 'Frappe',
+    imageURI: 'coffee'
+  },
+  moka: {
+    id: 'moka',
+    type: 'tag',
+    name: 'Moka',
+    imageURI: 'coffee'
+  },
 
   //DJ Tags
   house: {
