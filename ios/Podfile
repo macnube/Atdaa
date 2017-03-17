@@ -7,32 +7,12 @@ target 'Atdaa' do
 
   # Pods for Atdaa
 
-  react_path = '../node_modules/react-native'
-  yoga_path = File.join(react_path, 'ReactCommon/yoga')
-
-  pod 'React', path: react_path, :subspecs => [
-  'Core',
-  'RCTActionSheet',
-  'RCTGeolocation',
-  'RCTImage',
-  'RCTLinkingIOS',
-  'RCTNetwork',
-  'RCTSettings',
-  'RCTText',
-  'RCTVibration',
-  'RCTWebSocket'
-  ]
-  
-  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
-
-  pod 'Yoga', :path => yoga_path
-  
-  pod 'GoogleMaps'
-
   target 'AtdaaTests' do
     inherit! :search_paths
     # Pods for testing
   end
+
+  pod 'GoogleMaps'
 
 end
 source 'https://github.com/CocoaPods/Specs.git'

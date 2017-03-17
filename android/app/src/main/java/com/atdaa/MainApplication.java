@@ -3,13 +3,13 @@ package com.atdaa;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.microsoft.codepush.react.CodePush;
 import com.BV.LinearGradient.LinearGradientPackage;
-import com.cboy.rn.splashscreen.SplashScreenReactPackage;
-import com.airbnb.android.react.maps.MapsPackage;
 import io.fullstack.firestack.FirestackPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.magus.fblogin.FacebookLoginPackage;
 import com.bugsnag.BugsnagReactNative;
+import com.airbnb.android.react.maps.MapsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -21,6 +21,12 @@ import java.util.List;
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+
+    @Override
+    protected String getJSBundleFile() {
+      return CodePush.getJSBundleFile();
+    }
+
     @Override
     public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
@@ -30,13 +36,13 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new CodePush(null, getApplicationContext(), BuildConfig.DEBUG),
             new LinearGradientPackage(),
-            new SplashScreenReactPackage(),
-            new MapsPackage(),
             new FirestackPackage(),
             new FBSDKPackage(),
             new FacebookLoginPackage(),
-            BugsnagReactNative.getPackage()
+            BugsnagReactNative.getPackage(),
+            new MapsPackage()
       );
     }
   };
