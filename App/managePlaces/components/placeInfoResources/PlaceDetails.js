@@ -19,26 +19,24 @@ import OpenHours from './OpenHours'
 import Open from './Open'
 
 const PlaceDetails = ({ placeInfo, icon, handleAddTag, hours, distance, open }) => {
+  const textColor = placeInfo.isNew ? 'rgb(120,120,120)' : 'white'
+  const mainInfoColor = placeInfo.isNew ? 'rgb(240, 240, 240)' : icon.iconColor
   return (
     <View style={styles.container}>
       <View style={styles.mainContainer}>
+        <View style={[styles.mainInfo, {backgroundColor: mainInfoColor}]}>
+          <Text style={[styles.nameText, {color: textColor}]} numberOfLines={1}>{placeInfo.name}</Text>
+          <Text style={[styles.typeText, {color: textColor}]}>{placeInfo.type}</Text>
+        </View>
         <TouchableOpacity
           onPress={() => handleAddTag()}>
-          <View style={[styles.iconContainer, {backgroundColor: icon.iconColor}]}>
+          <View style={styles.iconContainer}>
             <Icon
               style={{height: 50}}
               icon={icon}
               shadow={true} />
           </View>
         </TouchableOpacity>
-        <View style={styles.mainInfo}>
-          <Text style={styles.nameText} numberOfLines={1}>{placeInfo.name}</Text>
-          <View style={styles.openInfo}>
-            <Open open={open} />
-            <Text style={styles.distanceText}>{distance} Km</Text>
-          </View>
-          <Text style={styles.typeText}>{placeInfo.type}</Text>
-        </View>
       </View>
       <View style={styles.contactContainer}>
         <Phone />
@@ -67,33 +65,33 @@ const styles = StyleSheet.create({
     alignItems: 'stretch'
   },
   mainContainer: {
-    flexDirection: 'row',
-    height: 80
-  },
-  iconContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 85,
-    height: 80,
-    backgroundColor: colors.pumpkinOrange,
-    opacity: 0.7
+    height: 90,
+    backgroundColor: 'transparent'
   },
   mainInfo: {
-    flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'stretch',
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 12,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: 'rgb(238,238,238)'
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    height: 90,
+    paddingBottom: 15,
+    paddingTop: 30
+  },
+  iconContainer: {
+    position: 'absolute',
+    alignSelf: 'center',
+    top: -115,
+    backgroundColor: 'transparent',
+    zIndex: 10
   },
   nameInfo: {
     flexDirection: 'column',
     fontSize: 17,
     justifyContent: 'space-around',
     color: 'rgb(74,74,74)'
+  },
+  nameText: {
+    fontSize: 20,
+    color: 'rgb(120,120,120)'
   },
   openInfo: {
     flexDirection: 'row'
@@ -114,7 +112,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderColor: 'rgb(238,238,238)',
     height: 80,
-    paddingHorizontal: 30
+    paddingHorizontal: 30,
+    zIndex: 1
   },
   locationContainer: {
     flexDirection: 'column',

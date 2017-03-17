@@ -53,7 +53,9 @@ const PlaceInfo = (props) => {
     <KeyboardAvoidingView
       style={[styles.container, {paddingBottom: containerPadding}]}
       behavior='position'>
-      <ScrollView>
+      <ScrollView
+        onScroll={(event) => props.handleScroll(event)}
+        scrollEventThrottle={50}>
         {placeImage}
         <PlaceDetails
           placeInfo={props.placeInfo}
@@ -68,7 +70,10 @@ const PlaceInfo = (props) => {
       </ScrollView>
       <PlaceInfoNavBar
         handleToMap={props.handleToMap}
-        keyboardHeight={props.keyboardHeight} />
+        keyboardHeight={props.keyboardHeight}
+        icon={icon}
+        placeInfo={props.placeInfo}
+        navFillHeight={props.navFillHeight} />
     </KeyboardAvoidingView>
   )
 }

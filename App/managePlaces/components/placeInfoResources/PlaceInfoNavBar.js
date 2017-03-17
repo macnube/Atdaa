@@ -5,17 +5,37 @@ import {
   View,
   StyleSheet,
   TouchableHighlight,
-  Dimensions
+  Dimensions,
+  Text
 } from 'react-native'
 
 import LinearGradient from 'react-native-linear-gradient'
 
 const PlaceInfoNavBar = (props) => {
-  return (
+  const textColor = props.placeInfo.isNew ? 'rgb(120,120,120)' : 'white'
+  const mainInfoColor = props.placeInfo.isNew ? 'rgb(240, 240, 240)' : props.icon.iconColor
+  const solid = (
+    <View style={styles.mainContainer}>
+      <View style={[styles.navFill, {height: props.navFillHeight}]} />
+      <View style={[styles.mainInfo, {backgroundColor: mainInfoColor}]}>
+        <TouchableHighlight
+          onPress={() => props.handleToMap()}>
+          <View style={[styles.nav, {top: props.keyboardHeight}]}>
+            <Image style={[styles.back, {marginTop: 0}]} source={{uri: 'backArrowLight'}} />
+          </View>
+        </TouchableHighlight>
+        <View style={styles.textContainer} >
+          <Text style={[styles.nameText, {color: textColor}]} numberOfLines={1}>{props.placeInfo.name}</Text>
+          <Text style={[styles.typeText, {color: textColor}]}>{props.placeInfo.type}</Text>
+        </View>
+        <View style={styles.nav} />
+      </View>
+    </View>
+  )
+  const normal = (
     <LinearGradient
-      colors={['rgba(0,0,0,0)', 'rgba(0,0,0,.02)']}
-      start={{x: 0.5, y: 0.4}}
-      end={{x: 0.5, y: 1.0}}
+      colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.02)']}
+      locations={[0.4, 1.0]}
       style={styles.navBar}>
       <TouchableHighlight
         onPress={() => props.handleToMap()}>
@@ -25,6 +45,8 @@ const PlaceInfoNavBar = (props) => {
       </TouchableHighlight>
     </LinearGradient>
   )
+
+  return props.navFillHeight > 20 ? normal : solid
 }
 
 export default PlaceInfoNavBar
@@ -36,7 +58,7 @@ PlaceInfoNavBar.propTypes = {
 var styles = StyleSheet.create({
   navBar: {
     position: 'absolute',
-    height: 66,
+    height: 90,
     width: Dimensions.get('window').width,
     flexDirection: 'row',
     alignItems: 'center',
@@ -45,6 +67,44 @@ var styles = StyleSheet.create({
     shadowOpacity: .25,
     shadowOffset: {width: 1, height: 2},
     shadowRadius: 2
+  },
+  mainContainer: {
+    position: 'absolute',
+    width: Dimensions.get('window').width,
+    alignItems: 'stretch',
+    shadowColor: 'rgb(0,0,0)',
+    shadowOpacity: .25,
+    shadowOffset: {width: 1, height: 2},
+    shadowRadius: 2,
+    backgroundColor: 'transparent'
+  },
+  mainInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 65,
+  },
+  textContainer: {
+    justifyContent: 'space-between',
+    alignSelf: 'center',
+    alignItems: 'center',
+    height: 70,
+    paddingBottom: 15,
+    paddingTop: 20
+  },
+  nameText: {
+    fontSize: 20,
+    color: 'rgb(120,120,120)'
+  },
+  typeText: {
+    color: 'rgb(120,120,120)',
+    fontSize: 14
+  },
+  iconContainer: {
+    position: 'absolute',
+    alignSelf: 'center',
+    top: 75,
+    backgroundColor: 'transparent',
   },
   filler: {
     width: 58
@@ -61,5 +121,8 @@ var styles = StyleSheet.create({
   nav: {
     width: 60,
     alignItems: 'center',
+  },
+  navFill: {
+    backgroundColor: 'transparent'
   }
 });

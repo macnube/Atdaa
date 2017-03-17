@@ -16,7 +16,8 @@ class PlaceInfoContainer extends Component {
       distance: 0,
       editNotes: false,
       notes: props.placeInfo.notes || '',
-      keyboardHeight: 0
+      keyboardHeight: 0,
+      navFillHeight: 26
     }
   }
 
@@ -109,9 +110,29 @@ class PlaceInfoContainer extends Component {
     this.props.addPlace(newPlace, currentTime)
   }
 
+  handleScroll (event) {
+    var scrollHeight = event.nativeEvent.contentOffset.y
+    console.log('scrollHeight is: ', scrollHeight)
+    console.log('navFillHeight is: ', this.state.navFillHeight)
+    if (scrollHeight >= 250 && scrollHeight <= 275) {
+      var diff = 275 - scrollHeight
+      this.setState({
+        navFillHeight: diff
+      })
+    } else if (scrollHeight > 275 && this.state.navFillHeight !== 0) {
+      this.setState({
+        navFillHeight: 0
+      })
+    } else if (scrollHeight < 250 && this.state.navFillHeight !== 26) {
+      this.setState({
+        navFillHeight: 26
+      })
+    }
+  }
+
   getHours () {
     var d = new Date()
-    var today = d.getDay()
+    var today = (d.getDay() - 1) === -1 ? 6 : d.getDay() - 1
     return this.props.placeInfo.open.weekday[today].split('y: ')[1]
   }
 
@@ -134,6 +155,8 @@ class PlaceInfoContainer extends Component {
         handleSaveNotes={this.handleSaveNotes.bind(this)}
         notes={this.state.notes}
         keyboardHeight={this.state.keyboardHeight}
+        handleScroll={this.handleScroll.bind(this)}
+        navFillHeight={this.state.navFillHeight}
          />
     )
   }
