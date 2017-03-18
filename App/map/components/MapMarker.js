@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
 
 import {
   View,
@@ -8,17 +7,15 @@ import {
   StyleSheet
 } from 'react-native'
 
-import { setCardScrollInfo, endCardScroll, setCardId} from '../actions'
 import * as colors from '../../resources/Colors'
 
-const MapMarker = ({ selected, place, showName}) => {
-  console.log("place going into mapMarker", place)
+const MapMarker = ({ selected, place, showName }) => {
   const scoreSize = selected ? styles.selectedScoreSize : styles.scoreSize
   var uri
   if (place.score === 0 && selected) uri = place.primaryIcon.imageURI + '_inactive'
   else if (place.score === 0) uri = place.primaryIcon.imageURI + '_clean_inactive'
   else uri = place.mapIcon.imageURI
-  var markerStyle;
+  var markerStyle
   if (selected) {
     markerStyle = [styles.selectedMarker, styles.shadow]
   } else if (place.score === 1) {
@@ -37,16 +34,16 @@ const MapMarker = ({ selected, place, showName}) => {
     markerStyle = styles.markerInactive
   }
   const textStyle = selected ? styles.selectedText : styles.text
-  const score = place.score > 1 
+  const score = place.score > 1
     ? (
       <View style={[styles.scoreStyle, scoreSize]}>
         <Text style={textStyle}>{place.score}</Text>
       </View>
-    ) : 
-    <View />
+    )
+    : <View />
   const name = (place.score > 0 && showName)
     ? <Text style={styles.placeName} numberOfLines={1}>{place.name}</Text>
-    : <View style={{width: 5}}/>
+    : <View style={{width: 5}} />
   return (
     <View style={styles.container}>
       <View style={markerStyle}>
@@ -142,17 +139,17 @@ var styles = StyleSheet.create({
     height: 55,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   placeName: {
     fontSize: 10,
     marginLeft: 3,
-    width: 80,
+    width: 80
   },
   shadow: {
     shadowColor: 'rgb(0,0,0)',
     shadowOffset: {width: 1, height: 2},
     shadowRadius: 2,
-    shadowOpacity: .25
+    shadowOpacity: 0.25
   }
 })

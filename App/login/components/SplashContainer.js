@@ -22,9 +22,9 @@ class SplashContainer extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      new: true,
       reading: false
     }
+    this._userInfo = null
   }
 
   toLogIn () {
@@ -61,6 +61,7 @@ class SplashContainer extends Component {
   }
 
   getCurrentLocation () {
+    console.log('Attempting to getCurrentLocation from SplashContainer')
     var geo = navigator.geolocation
     geo.getCurrentPosition(
       (position) => {
@@ -78,29 +79,36 @@ class SplashContainer extends Component {
     )
   }
 
-  componentDidMount () {
-    // api.deleteLocalUserInfo()
-    this.getCurrentLocation()
+  componentWillMount () {
     api.getLocalUserInfo()
       .then((userInfo) => {
-        this.setState({
-          reading: true
-        })
-        if (userInfo) {
-          console.log('This is user from SplashContainer', userInfo)
-          this.props.setUserInfo(userInfo)
-          var lastUpdated = 0
-          if (userInfo.myPlaces) lastUpdated = userInfo.myPlaces.lastUpdated || 0
-          this.toDashboard(lastUpdated)
-        } else {
-          this.setState({
-            reading: false
-          })
-        }
+        this._userInfo = userInfo
       })
       .catch((error) => {
         console.log('Error', error)
       })
+    if (!this.props.region) {
+      this.getCurrentLocation()
+    }
+  }
+
+  componentWillUpdate (nextProps, nextState) {
+    console.log('componentWillUpdate from SplashContainer with nextProps', nextProps)
+    console.log('componentWillUpdate from SplashContainer with nextState', nextState)
+    // api.deleteLocalUserInfo()
+    if (nextProps.region && !this.props.region) {
+      if (!nextState.reading && this._userInfo) {
+        this.setState({
+          reading: true
+        })
+        console.log('This is user from SplashContainer', this._userInfo)
+        this.props.setUserInfo(this._userInfo)
+        var lastUpdated = 0
+        if (this._userInfo.myPlaces) lastUpdated = this._userInfo.myPlaces.lastUpdated || 0
+        this.toDashboard(lastUpdated)
+      }
+        
+    }
   }
 
   componentWillUnmount () {
@@ -112,7 +120,6 @@ class SplashContainer extends Component {
       <Splash
         toLogIn={this.toLogIn.bind(this)}
         toCreateAccount={this.toCreateAccount.bind(this)}
-        newUser={this.state.new}
         reading={this.state.reading}
         />
     )
@@ -130,5 +137,11 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(SplashContainer)
+const mapStateToProps = (state) => {
+  return {
+    region: map.selectors.getRegion(state)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SplashContainer)
 

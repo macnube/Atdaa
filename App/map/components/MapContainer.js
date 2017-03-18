@@ -117,10 +117,7 @@ class MapContainer extends Component {
 		this._fromPOI = true;
 		const { region } = this.state;
   	const { myPlaces, filters } = this.props;
-  	this.markerPlaces = this._getPlaces(myPlaces, filters, region, 5)
-  	this.visiblePlaces = this._getPlaces(this.markerPlaces, filters, region, 1.2);
-  	this.matchingPlaces = this._getMatchingPlaces(this.visiblePlaces)
-		if (this.props.searchMarker) {
+  	if (this.props.searchMarker) {
     	var nextRegion = {
         latitude: this.props.searchMarker.latlng.latitude,
         longitude: this.props.searchMarker.latlng.longitude,
@@ -130,33 +127,37 @@ class MapContainer extends Component {
     	this.setState({
     		region: nextRegion
     	})
-		} else if (!region) {
+		} else if (!region || !this.state.userLocation) {
 			this.getCurrentLocation();
+		} else if (region && this.props.userLocation) {
+			this.markerPlaces = this._getPlaces(myPlaces, filters, region, 5)
+	  	this.visiblePlaces = this._getPlaces(this.markerPlaces, filters, region, 1.2);
+	  	this.matchingPlaces = this._getMatchingPlaces(this.visiblePlaces)
+	    getNearbyPlaces(this.state.userLocation)
+	      .then((res) => res.json())
+	      .then((responseJson) => {
+	      	var filteredPlaces = filterPlacesByType(responseJson.results)
+	      	var counter = 0
+	      	var places = []
+	      	filteredPlaces.forEach((place) => {
+	      		getPlaceDetails(place.place_id)
+	      		.then((res) => res.json())
+	      		.then((details) => {
+	      			counter ++
+	      			if (counter === filteredPlaces.length) {
+	      				this.props.setNearbyPlaces(places)
+	      			}
+	      			places.push(details.result)
+	      		})
+	      		.catch((error) => {
+	      			console.log('Error getting nearby place details', error)
+	      		})
+	      	})
+	      })
+	      .catch((error) => {
+	        console.log('Error getting nearby places', error)
+	      })
 		}
-    getNearbyPlaces(this.props.userLocation)
-      .then((res) => res.json())
-      .then((responseJson) => {
-      	var filteredPlaces = filterPlacesByType(responseJson.results)
-      	var counter = 0
-      	var places = []
-      	filteredPlaces.forEach((place) => {
-      		getPlaceDetails(place.place_id)
-      		.then((res) => res.json())
-      		.then((details) => {
-      			counter ++
-      			if (counter === filteredPlaces.length) {
-      				this.props.setNearbyPlaces(places)
-      			}
-      			places.push(details.result)
-      		})
-      		.catch((error) => {
-      			console.log('Error getting nearby place details', error)
-      		})
-      	})
-      })
-      .catch((error) => {
-        console.log('Error getting nearby places', error)
-      })
 	}
 
 	componentWillUnmount() {
@@ -312,190 +313,12 @@ class MapContainer extends Component {
 
 }
 
-
-
-//==============================//
-//==============================//
-//==============================//
-//==============================//
-//VERSION WITH REDUX
-
-
-/*
-class MapContainer extends Component {
-	constructor(props) {
-		console.log("constructing map");
-		super(props);
-		this.watchID = (null: ?number);
-		this._lastRegion = null;
-		this._imageURI = null;
-		this._mapReference = null;
-		this._animating = false;
-		this._fromPOI = false;
-
-	}
-
-	shouldComponentUpdate(nextProps, nextState) {
-		//If map has moved, render again
-		if (!compareRegions(this.state.region, nextState.region)) {
-			return true
-		} 
-		//If card has changed, render again
-		else if (this.props.map.cardId !== nextProps.map.cardId) {
-			return true
-		} 
-		//If toolbar hasn't updated, don't render
-		else if (compareToolbars(this.props.filters, nextProps.filters)) {
-			return false
-		} 
-		//If cards are scrolling
-		else if (this.props.map.scrolling) {
-			return false
-		} else {
-			return true
-		}
-		return true
-	}
-
-	componentWillUpdate(nextProps, nextState) {
-  	//If new card is selected
-
-  	if ((this.props.POICardId !== nextProps.POICardId) && nextProps.POICardId) {
-  		var place = nextProps.markerPlaces.placeById[nextProps.POICardId]
-  		var nextRegion = {
-				latitude: place.latlng.latitude,
-	      longitude: place.latlng.longitude,
-	      latitudeDelta: this.props.region.latitudeDelta,
-	      longitudeDelta: this.props.region.longitudeDelta,
-			}
-			this._animating = true;
-  		this._mapReference.animateToRegion(nextRegion, .5)
-  	}
-  	//Map click without marker
-  	
-  }
-
-	componentWillMount() {
-		this._fromPOI = true;
-		if (this.props.searchMarker) {
-    	var region = {
-        latitude: this.props.searchMarker.latlng.latitude,
-        longitude: this.props.searchMarker.latlng.longitude,
-        latitudeDelta: LATITUDE_DELTA / 30,
-        longitudeDelta: LONGITUDE_DELTA / 30,
-    	}
-    	this.props.setRegion(region)
-		} else if (this.props.region) {
-			//Do nothing so it returns to same location
-		} else {
-			this.getCurrentLocation();
-		}
-	}
-
-	componentWillUnmount() {
-    navigator.geolocation.clearWatch(this.watchID);
-  }
-
-	setMapReference(map) {
-		this._mapReference = map;
-	}
-
-  saveRegion(event) {
-  	var lastRegion = this._lastRegion || this.props.region;
-  	this.props.setRegion(lastRegion)
-  }
-
-  onRegionChange(region) {
-  	console.log("On region change", region);
-  	//this.props.setCardId(null)
-  	this.props.setRegion(region)
-  	if (this._animating) {
-  		this._animating = false;
-  	} else if (this._fromPOI) {
-  		this._fromPOI = false;
-  	} else {
-  		this.props.setCardId(null)
-  		this._animating = false;
-  	}
-  }
-
-  handleMarkerClick(place) {
-  	LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-  	this.props.setCardId(place.place_id)
-  	var region = {
-			latitude: place.latlng.latitude,
-      longitude: place.latlng.longitude,
-      latitudeDelta: this.props.region.latitudeDelta,
-      longitudeDelta: this.props.region.longitudeDelta,
-		}
-  	this._mapReference.animateToRegion(region, .5)
-  	this._animating = true;
-  }
-
-  handleMapPress(event) {
-  	if (!event.nativeEvent.hasOwnProperty('action') && this.props.POICardId) {
-  		//LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-			this.props.setCardId(null)
-  	}
-  }
-
-  getCurrentLocation() {
-  	var geo = navigator.geolocation;
-  	geo.getCurrentPosition(
-      (position) => {
-      	var region = {
-	        latitude: position.coords.latitude,
-	        longitude: position.coords.longitude,
-	        latitudeDelta: LATITUDE_DELTA,
-	        longitudeDelta: LONGITUDE_DELTA,
-      	}
-      	//LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-      	this.props.setUserLocation(region)
-      },
-      (positionErr) => {
-      	console.log("Couldn't get current position", positionErr)
-      }
-    )
-  }
-
-	render() {
-		console.log("rendering map with props", this.props);
-		return (
-			<Map
-				setMapReference={this.setMapReference.bind(this)}
-				handleRegionChange={this.onRegionChange.bind(this)}
-				handleMarkerClick={this.handleMarkerClick.bind(this)}
-				handleMapPress={this.handleMapPress.bind(this)}
-				getLocation={this.getCurrentLocation.bind(this)}
-				{...this.props} />
-			)
-	}
-}
-
-*/
-
 MapContainer.defaultProps = {
 	showGPS: true,
 	scrollEnabled: true,
 	pitchEnabled: true,
 	rotateEnabled: true
 }
-/*
-const mapStateToProps = (state) => {
-	return {
-		layoutInfo: dashboard.selectors.getLayoutInfo(state.dashboard),
-		filters: toolbar.selectors.getFilters(state.toolbar),
-		matchingPlaces: getMatchingPlaces(state),
-		visiblePlaces: getVisiblePlaces(state),
-		markerPlaces: getMarkerPlaces(state),
-		region: getRegion(state),
-		userLocation: getUserLocation(state),
-		POICardId: getCardId(state),
-		showNames: getShowNames(state),
-		tab: dashboard.selectors.getSelectedTab(state.dashboard)
-	}
-}
-*/
 
 const mapStateToProps = (state) => {
 	return {
