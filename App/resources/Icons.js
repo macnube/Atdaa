@@ -502,10 +502,34 @@ const Icons = {
     name: 'Disco',
     imageURI: 'dj'
   },
+  fifties: {
+    id: 'fifties',
+    type: 'tag',
+    name: '50s',
+    imageURI: 'dj'
+  },
+  sixties: {
+    id: 'sixties',
+    type: 'tag',
+    name: '60s',
+    imageURI: 'dj'
+  },
+  seventies: {
+    id: 'seventies',
+    type: 'tag',
+    name: '70s',
+    imageURI: 'dj'
+  },
   eighties: {
     id: 'eighties',
     type: 'tag',
     name: '80s',
+    imageURI: 'dj'
+  },
+  nineties: {
+    id: 'nineties',
+    type: 'tag',
+    name: '90s',
     imageURI: 'dj'
   },
   dubstep: {
@@ -517,13 +541,103 @@ const Icons = {
   hiphop: {
     id: 'hiphop',
     type: 'tag',
-    name: 'Hiphop',
+    name: 'Hip Hop',
     imageURI: 'dj'
   },
   rave: {
     id: 'rave',
     type: 'tag',
     name: 'Rave',
+    imageURI: 'dj'
+  },
+  blues: {
+    id: 'blues',
+    type: 'tag',
+    name: 'Blues',
+    imageURI: 'dj'
+  },
+  cumbia: {
+    id: 'cumbia',
+    type: 'tag',
+    name: 'Cumbia',
+    imageURI: 'dj'
+  },
+  dancehall: {
+    id: 'dancehall',
+    type: 'tag',
+    name: 'Dancehall',
+    imageURI: 'dj'
+  },
+  folk: {
+    id: 'folk',
+    type: 'tag',
+    name: 'Folk',
+    imageURI: 'dj'
+  },
+  italo_disco: {
+    id: 'italo_disco',
+    type: 'tag',
+    name: 'Italo Disco',
+    imageURI: 'dj'
+  },
+  new_wave: {
+    id: 'new_wave',
+    type: 'tag',
+    name: 'New Wave',
+    imageURI: 'dj'
+  },
+  pop: {
+    id: 'pop',
+    type: 'tag',
+    name: 'Pop',
+    imageURI: 'dj'
+  },
+  punk_rock: {
+    id: 'punk_rock',
+    type: 'tag',
+    name: 'Punk Rock',
+    imageURI: 'dj'
+  },
+  rap: {
+    id: 'rap',
+    type: 'tag',
+    name: 'Rap',
+    imageURI: 'dj'
+  },
+  reggae: {
+    id: 'reggae',
+    type: 'tag',
+    name: 'Reggae',
+    imageURI: 'dj'
+  },
+  reggaeton: {
+    id: 'reggaeton',
+    type: 'tag',
+    name: 'Reggaeton',
+    imageURI: 'dj'
+  },
+  retro: {
+    id: 'retro',
+    type: 'tag',
+    name: 'Retro',
+    imageURI: 'dj'
+  },
+  rock: {
+    id: 'rock',
+    type: 'tag',
+    name: 'Rock',
+    imageURI: 'dj'
+  },
+  synth_pop: {
+    id: 'synth_pop',
+    type: 'tag',
+    name: 'Synth Pop',
+    imageURI: 'dj'
+  },
+  tech_house: {
+    id: 'tech_house',
+    type: 'tag',
+    name: 'Tech House',
     imageURI: 'dj'
   },
 
