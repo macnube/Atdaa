@@ -31,6 +31,8 @@
 	<string>1</string>
 	<key>CodePushDeploymentKey</key>
 	<string>$(__RN_CONFIG_CODEPUSH_KEY)</string>
+	<key>BugsnagAPIKey</key>
+	<string>$(__RN_CONFIG_BUGSNAG_CLIENT)</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
