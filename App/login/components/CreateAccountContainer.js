@@ -15,6 +15,7 @@ class CreateAccountContainer extends Component {
   }
 
   toCreateEmail () {
+    console.log('Moving from CreateAccount to CreateEmail')
     this.props.navigator.push({
       title: 'Sign Up',
       component: CreateEmailContainer,
@@ -26,6 +27,7 @@ class CreateAccountContainer extends Component {
   }
 
   toLogIn () {
+    console.log('Moving from CreateAccount to Login')
     this.props.navigator.push({
       title: 'Login',
       component: LoginContainer,
@@ -37,10 +39,10 @@ class CreateAccountContainer extends Component {
   }
 
   onFacebookCreateAccount (data) {
+    console.log('Creating account with Facebook')
     this.setState({
       isLoading: true
     })
-
     let token = data.credentials.token
     api.signInFacebook(token)
       .then((data) => {
@@ -51,9 +53,8 @@ class CreateAccountContainer extends Component {
         }
         api.getFirebaseUserPlaces(userInfo.id)
           .then((snapshot) => {
-            console.log('here with snapshot', snapshot)
             if (snapshot.value) {
-              console.log('snapshot value from snapshot', snapshot.value)
+              console.log('user information found on server')
               userInfo = {
                 ...userInfo,
                 myPlaces: {...snapshot.value.myPlaces}
@@ -76,7 +77,7 @@ class CreateAccountContainer extends Component {
           })
       })
       .catch((error) => {
-        console.log('Facebook login failed with', error)
+        console.log('Facebook create account failed with', error)
       })
   }
 

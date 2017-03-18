@@ -32,6 +32,7 @@ class ManageTagsContainer extends Component {
   }
 
   componentWillMount () {
+    console.log('ManageTagsContainer mounted')
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this))
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this))
     if (this.props.myPlaces.editPlaceCategory) {
@@ -40,6 +41,7 @@ class ManageTagsContainer extends Component {
   }
 
   componentWillUnmount () {
+    console.log('ManageTagsContainer unmounted')
     this.props.clearPlaceCategory()
     this.keyboardDidShowListener.remove()
     this.keyboardDidHideListener.remove()
@@ -58,7 +60,7 @@ class ManageTagsContainer extends Component {
   }
 
   handleAddPlace () {
-    console.log('this is selectedTags', this.state.selectedTags)
+    console.log('handleAddPlace from ManageTagsContainer, place: ', this.props.placeInfo.name)
     if (this.state.selectedTags.length > 0) {
       const newPlace = {
         ...this.props.placeInfo,
@@ -88,21 +90,16 @@ class ManageTagsContainer extends Component {
   }
 
   handleSaveNotes () {
+    console.log('handleSaveNotes from ManageTagsContainer')
     var newCategoryNotes = {...this.state.categoryNotes, [this.state.categoryIcon.id]: this.state.notes}
     var newSelectedTags = [...this.state.selectedTags]
-    console.log('Category notes are:', newCategoryNotes)
-    console.log('category Icon is: ', this.state.categoryIcon)
-    console.log('notes : ', this.state.notes)
     if (!(this.state.categoryIcon.id in this.state.categoryNotes) && this.state.notes !== '') {
-      console.log('adding food tag')
       newSelectedTags.push(this.state.categoryIcon.id)
     } else if (this.state.categoryIcon.id in this.state.categoryNotes && this.state.notes === '') {
-      console.log('removing food tag')
       delete newCategoryNotes[this.state.categoryIcon.id]
       var index = newSelectedTags.indexOf(this.state.categoryIcon.id)
       newSelectedTags = [...newSelectedTags.slice(0, index), ...newSelectedTags.slice(index + 1)]
     }
-    console.log('Selectedtags before iconData', this.state.selectedTags)
     var iconData = this._getData(newSelectedTags)
     this.setState({
       dataSource: this.ds.cloneWithRows(iconData),
@@ -113,6 +110,7 @@ class ManageTagsContainer extends Component {
   }
 
   handleBackToCategory () {
+    console.log('handleBackToCategory from ManageTagsContainer')
     var iconData = this._getData(this.state.selectedTags)
     this.setState({
       dataSource: this.ds.cloneWithRows(iconData),
@@ -121,7 +119,7 @@ class ManageTagsContainer extends Component {
   }
 
   handleAddRemoveTag (tag) {
-    console.log('here in handleAddRemoveTag', tag)
+    console.log('handleAddRemoveTag from ManageTagsContainer', tag)
     var selectedTags = this.state.selectedTags
     const index = selectedTags.indexOf(tag.id)
     if (index === -1) {
@@ -136,7 +134,7 @@ class ManageTagsContainer extends Component {
   }
 
   handleShowTags (category) {
-    console.log('category icon is:', category)
+    console.log('handleShowTags from ManageTagsContainer with category icon as:', category)
     if (category.type === 'note') {
       var notes = ''
       if (category.id in this.state.categoryNotes) {

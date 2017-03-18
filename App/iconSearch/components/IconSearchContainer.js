@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { ListView } from 'react-native'
 import dashboard from '../../dashboard'
 import toolbar from '../../toolbar'
-import { setNewIcon } from '../actions'
 import { compareToolbars, getAllCategories, getIconById, getTagsByCategoryId, getCategoryIdByTagId, isInToolbar } from '../../utils/helpers'
 import IconSearch from './IconSearch'
 
@@ -33,6 +32,10 @@ class IconSearchContainer extends Component {
 
   componentWillMount () {
     console.log('IconSearchContainer will mount')
+  }
+
+  componentWillUnmount () {
+    console.log('IconSearchContainer will unmount')
   }
 
   componentWillReceiveProps (nextProps) {
@@ -76,19 +79,16 @@ class IconSearchContainer extends Component {
   }
 
   handleUpdateToolbar (icon) {
-    console.log('iconSelected', this.props.iconSelected.priority)
-    console.log('Toolbar is: ', this.props.toolbar)
-    console.log('Icon is ', icon)
+    console.log('Updating toolbar with icon', icon.id)
     if (!isInToolbar(icon, this.props.toolbar)) {
       this.props.updateToolbarIcon(icon.id, this.props.toolbar, this.props.iconSelected.priority)
     }
   }
 
   _getData (toolbar) {
+    console.log('Getting toolbar _getData from IconSearchContainer')
     var categories = getAllCategories()
     var filterCategories = toolbar.map((filter) => getCategoryIdByTagId(filter.id))
-    console.log('categories are: ', categories)
-    console.log('filterCategories are: ', filterCategories)
     return categories.map((category) => {
       if (filterCategories.indexOf(category.id) > -1) {
         return category
@@ -102,11 +102,10 @@ class IconSearchContainer extends Component {
   }
 
   _getTagData (data, toolbar) {
-    console.log('toolbar from getTagData', toolbar)
+    console.log('getting toolbar _getTagData from IconSearchContainer')
     var toolbarIds = toolbar.map((toolbarIcon) => toolbarIcon.id)
     const color = data[0].iconColor
     return data.map((icon, index) => {
-      console.log('icon from data in getTagData', icon)
       var selected = false
       if (toolbarIds.indexOf(icon.id) > -1) {
         selected = true
@@ -121,7 +120,7 @@ class IconSearchContainer extends Component {
   }
 
   render () {
-    console.log('Rerendering IconSearchContainer with props', this.props)
+    console.log('Rendering IconSearch')
     return (
       <IconSearch
         dataSource={this.state.dataSource}
@@ -146,9 +145,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setNewIcon (icon) {
-      dispatch(setNewIcon(icon))
-    },
     setSelectedTab (tab) {
       dispatch(dashboard.actions.setSelectedTab(tab))
     },

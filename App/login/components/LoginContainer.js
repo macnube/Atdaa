@@ -21,6 +21,7 @@ class LoginContainer extends Component {
   }
 
   componentWillMount () {
+    console.log('LoginContainer mounting')
     const keyboardOpen = () => {
       console.log('toggling Keyboard')
       this.setState({
@@ -38,12 +39,13 @@ class LoginContainer extends Component {
   }
 
   componentWillUnmount () {
+    console.log('LoginContainer unmounting')
     this.keyboardDidShowListener.remove()
     this.keyboardDidHideListener.remove()
   }
 
   handleLogIn () {
-    console.log('Handling Log In')
+    console.log('Handling Email Log In')
     dismissKeyboard()
     this.setState({
       isLoading: true,
@@ -56,14 +58,14 @@ class LoginContainer extends Component {
           id: data.user.uid,
           email: data.user.email
         }
-        console.log('userInfo', userInfo)
+        console.log('userInfo before firebase check', userInfo)
         this.setState({
           downloading: 'downloading info'
         })
         api.getFirebaseUserPlaces(userInfo.id)
           .then((snapshot) => {
             if (snapshot.value) {
-              console.log('snapshot value from snapshot', snapshot.value)
+              console.log('User information found on server')
               userInfo = {
                 ...userInfo,
                 myPlaces: {...snapshot.value.myPlaces}
@@ -71,7 +73,6 @@ class LoginContainer extends Component {
             } else {
               console.log('no data on server')
             }
-            console.log('UserInfo before local write', userInfo)
             api.setLocalUserInfo(userInfo)
             this.props.setUserInfo(userInfo)
             this.props.toDashboard()
@@ -106,16 +107,14 @@ class LoginContainer extends Component {
           id: data.user.uid,
           email: data.user.email
         }
-        console.log('userInfo', userInfo)
+        console.log('userInfo before firebase check', userInfo)
         this.setState({
           downloading: 'downloading and updating userInfo'
         })
-        console.log('Right before getFirebaseUserPlaces')
         api.getFirebaseUserPlaces(userInfo.id)
           .then((snapshot) => {
-            console.log('here with snapshot', snapshot)
             if (snapshot.value) {
-              console.log('snapshot value from snapshot', snapshot.value)
+              console.log('User information found on server')
               userInfo = {
                 ...userInfo,
                 myPlaces: {...snapshot.value.myPlaces}
@@ -123,7 +122,6 @@ class LoginContainer extends Component {
             } else {
               console.log('no data on server')
             }
-            console.log('UserInfo before local write', userInfo)
             api.setLocalUserInfo(userInfo)
             this.props.setUserInfo(userInfo)
             this.setState({

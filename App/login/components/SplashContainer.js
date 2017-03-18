@@ -103,6 +103,10 @@ class SplashContainer extends Component {
       })
   }
 
+  componentWillUnmount () {
+    console.log('Unmounting Splash Container')
+  }
+
   render () {
     return (
       <Splash

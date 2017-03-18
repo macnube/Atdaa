@@ -47,7 +47,6 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 class MapContainer extends Component {
 	constructor(props) {
-		console.log("constructor for MapContainer")
 		super(props);
 		this.watchID = (null: ?number);
 		this._lastRegion = null;
@@ -67,7 +66,6 @@ class MapContainer extends Component {
 
 	componentWillUpdate(nextProps, nextState) {
   	//If new card is selected
-  	console.log("Component will update MapContainer");
   	const { region } = nextState;
   	const { myPlaces, filters } = nextProps
   	this.markerPlaces = this._getPlaces(myPlaces, filters, region, 5)
@@ -86,13 +84,12 @@ class MapContainer extends Component {
       		.then((details) => {
       			counter ++
       			if (counter === filteredPlaces.length) {
-    					console.log('Setting Nearby Places with ', places)
       				this.props.setNearbyPlaces(places)
       			}
       			places.push(details.result)
       		})
       		.catch((error) => {
-      			console.log('Error getting plcae details', error)
+      			console.log('Error getting place details for nearby places', error)
       		})
       	})
       })
@@ -116,7 +113,7 @@ class MapContainer extends Component {
   }
 
 	componentWillMount() {
-		console.log("componentWillMount from mapContainer")
+		console.log("MapContainer will mount")
 		this._fromPOI = true;
 		const { region } = this.state;
   	const { myPlaces, filters } = this.props;
@@ -148,13 +145,12 @@ class MapContainer extends Component {
       		.then((details) => {
       			counter ++
       			if (counter === filteredPlaces.length) {
-    					console.log('Setting Nearby Places with ', places)
       				this.props.setNearbyPlaces(places)
       			}
       			places.push(details.result)
       		})
       		.catch((error) => {
-      			console.log('Error getting plcae details', error)
+      			console.log('Error getting nearby place details', error)
       		})
       	})
       })
@@ -164,6 +160,7 @@ class MapContainer extends Component {
 	}
 
 	componentWillUnmount() {
+		console.log('MapContainer will unmount')
     navigator.geolocation.clearWatch(this.watchID);
     this.props.setRegion(this.state.region)
   }
@@ -200,7 +197,6 @@ class MapContainer extends Component {
 	}
 
 	moveMapToPlace(place) {
-		console.log("moving map");
 		this._animating = true;
 		var nextRegion = {
 				latitude: place.latlng.latitude,
@@ -219,7 +215,6 @@ class MapContainer extends Component {
   }
 
   onRegionChange(region) {
-  	console.log("On region change", region);
   	if (this._animating) {
   		this._animating = false;
   		this.setState({
@@ -240,13 +235,13 @@ class MapContainer extends Component {
   }
 
   handleMarkerClick(place) {
+  	console.log('User clicked marker')
   	var region = {
 			latitude: place.latlng.latitude,
       longitude: place.latlng.longitude,
       latitudeDelta: this.state.region.latitudeDelta,
       longitudeDelta: this.state.region.longitudeDelta,
 		}
-		console.log("moving map from handleMarkerClick")
   	this._mapReference.animateToRegion(region, .5)
   	LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
   	this.setState({
@@ -266,6 +261,7 @@ class MapContainer extends Component {
   }
 
   getCurrentLocation() {
+  	console.log('getCurrentLocation from MapContainer')
   	var geo = navigator.geolocation;
   	geo.getCurrentPosition(
       (position) => {
@@ -288,7 +284,6 @@ class MapContainer extends Component {
   }
 
 	render() {
-		console.log("rendering map with props", this.props);
 		return (
 			<Map
 				setMapReference={this.setMapReference.bind(this)}

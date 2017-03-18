@@ -42,6 +42,7 @@ class DashboardContainer extends Component {
   }
 
   componentWillMount () {
+    console.log('DashboardContainer mounted')
     this.props.setLayout(getLayout())
     api.getFirebaseUserPlaces(this.props.user.id)
       .then((snapshot) => {
@@ -63,6 +64,10 @@ class DashboardContainer extends Component {
       })
   }
 
+  componentWillUnmount () {
+    console.log('Unmounting DashboardContainer')
+  }
+
   componentWillUpdate (nextProps, nextState) {
     const currentTab = this.props.dashboard.selectedTab
     const nextTab = nextProps.dashboard.selectedTab
@@ -75,11 +80,13 @@ class DashboardContainer extends Component {
   }
 
   openLogoutModal () {
+    console.log('Logout modal opened')
     const logoutText = 'Are you sure you want to log out?'
     this.props.openModal(logoutText, this.handleLogout.bind(this), 'Log Out', 'logoutModal')
   }
 
   handleLogout () {
+    console.log('User logging out')
     const { SplashContainer } = login
     this.props.closeModal()
     this.props.logout()

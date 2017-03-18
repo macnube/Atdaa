@@ -15,7 +15,6 @@ const { ToolbarContainer } = toolbar
 const Dashboard = (props) => {
   const { layoutInfo, selectedTab, modal } = props.dashboard
   const { setSelectedTab, closeModal } = props
-  console.log('rerendering Dashboard with modal', modal)
   return (
     <View style={styles.container}>
       <NavBar

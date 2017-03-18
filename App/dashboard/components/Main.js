@@ -17,7 +17,7 @@ const { PlaceInfoContainer, ManageTagsContainer } = managePlaces
 
 const Main = (props) => {
   var component
-  console.log('props from Main', props)
+  console.log('Selected tab from main is : ', props.selectedTab)
   if (props.selectedTab === 'iconSearch') component = <IconSearchContainer />
   else if (props.selectedTab === 'manageTags') component = <ManageTagsContainer />
   else if (props.selectedTab === 'map') component = <MapContainer cardId={props.cardId} searchMarker={props.placeInfo} />

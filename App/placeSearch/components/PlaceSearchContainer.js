@@ -5,15 +5,11 @@ import { setPlaceInfo } from '../actions'
 import { formatPlaceDetails } from '../../utils/helpers'
 import api from '../../utils/api'
 import PlaceSearch from './PlaceSearch'
-import map from '../../map'
 
 class PlaceSearchContainer extends Component {
 
   constructor (props) {
     super(props)
-    console.log('PlaceSearch with location: ', props.userLocation.latitude + ',' + props.userLocation.longitude)
-    console.log('PlaceSearch with nearbyPlaces', props.nearbyPlaces)
-    console.log('map', map)
     var location
     if (props.userLocation.latitude) {
       location = props.userLocation.latitude + ',' + props.userLocation.longitude
@@ -41,8 +37,7 @@ class PlaceSearchContainer extends Component {
   }
 
   handleSetPlace (data, details) {
-    console.log('data from handleSetPlace', data)
-    console.log('details from handleSetPlace', details)
+    console.log('handleSetPlace from PlaceSearchContainer for:', details.name)
     this.setState({
       loading: true,
       showNearby: false
@@ -63,12 +58,11 @@ class PlaceSearchContainer extends Component {
         this.props.setPlaceInfo(place)
       }
     } else {
-      console.log('Data from placeSearchContianer', data)
+      console.log('Could not get details for', data)
     }
   }
 
   handleChangeText (text) {
-    console.log('handleChangeText with text', text)
     if (text.length > 0) {
       this.setState({
         showNearby: false
@@ -78,7 +72,6 @@ class PlaceSearchContainer extends Component {
         showNearby: true
       })
     }
-
   }
 
   render () {

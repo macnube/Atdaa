@@ -9,6 +9,8 @@ import {
   StyleSheet
 } from 'react-native'
 
+import CodePush from 'react-native-code-push'
+
 const ConfirmModal = (props) => {
   return (
     <View style={styles.container}>
@@ -30,7 +32,11 @@ const ConfirmModal = (props) => {
             <View style={styles.buttonContainer}>
               <TouchableHighlight
                 style={styles.buttonNo}
-                onPress={() => props.close()}>
+                onPress={() => {
+                  CodePush.sync()
+                  console.log('Just attempted CodePush.sync')
+                  props.close()
+                }}>
                 <Text style={styles.buttonNoText}>Cancel</Text>
               </TouchableHighlight>
               <TouchableHighlight

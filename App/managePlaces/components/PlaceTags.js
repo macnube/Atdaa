@@ -13,8 +13,6 @@ import PlaceNotesRow from './placeTagsResources/PlaceNotesRow'
 const PlaceTags = (props) => {
   const tags = props.placeCategories.map((data, index) => {
     const icon = getIconById(data.category)
-    console.log('Cateogry Icon from PlaceTags', icon)
-    console.log('props into PlaceTags:', props)
     var categoryNotes = props.categoryNotes || {}
     if (icon.id in categoryNotes) {
       return (

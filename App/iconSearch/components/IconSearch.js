@@ -12,7 +12,7 @@ import IconTagSearchRow from './IconTagSearchRow'
 import IconTagSearchHeader from './IconTagSearchHeader'
 
 const IconSearch = (props) => {
-  const { dataSource, layoutInfo, handleShowTags, handleBackToMap,
+  const { dataSource, layoutInfo, handleShowTags,
     scrollEnabled, categoryIcon } = props
 
   const renderRow = (data) => {
@@ -45,10 +45,10 @@ const IconSearch = (props) => {
       )
     } else {
       return (
-        <IconSearchHeader 
+        <IconSearchHeader
           layoutInfo={layoutInfo}
           onBack={props.handleBackToMap} />
-        )
+      )
     }
   }
 
@@ -62,7 +62,7 @@ const IconSearch = (props) => {
         renderHeader={renderHeader}
         scrollEnabled={scrollEnabled}
         enableEmptySections={true} />
-    </View>     
+    </View>  
   )
 }
 
@@ -73,19 +73,21 @@ IconSearch.propTypes = {
   categoryIcon: React.PropTypes.object,
   layoutInfo: React.PropTypes.object.isRequired,
   handleShowTags: React.PropTypes.func.isRequired,
-  handleBackToMap: React.PropTypes.func.isRequired
+  handleBackToMap: React.PropTypes.func.isRequired,
+  handleBackToCategory: React.PropTypes.func.isRequired,
+  handleUpdateToolbar: React.PropTypes.func.isRequired
 }
 
 var styles = StyleSheet.create({
   iconSearch: {
     flex: 1,
-    backgroundColor: 'rgb(250,250,250)',
+    backgroundColor: 'rgb(250,250,250)'
   },
   contentContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   iconRow: {
     margin: 5,
@@ -99,11 +101,11 @@ var styles = StyleSheet.create({
     flex: 1,
     padding: 8,
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   list: {
     flex: 1,
-    marginTop: 30,
+    marginTop: 30
   },
   textClosed: {
     color: 'white',

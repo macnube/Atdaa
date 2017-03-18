@@ -22,11 +22,12 @@ class PlaceInfoContainer extends Component {
   }
 
   componentDidMount () {
+    console.log('PlaceInfoContainer did mount')
     const place = this.props.placeInfo
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this))
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this))
     if (!place.photoURI) {
-      console.log('Here')
+      console.log('Place did not have photoURI, fetching new one. PlaceInfoContainer')
       if (place.photos) {
         api.getPlacePhoto(place.photos[0].photo_reference, 180)
         .then((res) => {
@@ -49,12 +50,12 @@ class PlaceInfoContainer extends Component {
   }
 
   componentWillUnmount () {
+    console.log('PlaceInfoContainer did unmount')
     this.keyboardDidShowListener.remove()
     this.keyboardDidHideListener.remove()
   }
 
   keyboardDidShow (e) {
-    console.log('Keyboard is showing with height', e.endCoordinates.height)
     this.setState({
       keyboardHeight: e.endCoordinates.height
     })
@@ -67,14 +68,17 @@ class PlaceInfoContainer extends Component {
   }
 
   handleAddTag () {
+    console.log('handleAddTag from PlaceInfoContainer, moving to ManageTagsContainer')
     this.props.setSelectedTab('manageTags')
   }
 
   handleEditCategory (categoryIcon) {
+    console.log('handleEditCategory from PlaceInfoContainer')
     this.props.editPlaceCategory(categoryIcon)
   }
 
   handleToMap () {
+    console.log('handleToMap from PlaceInfoContainer')
     if (this.state.editNotes) {
       this.setState({
         editNotes: false
@@ -98,6 +102,7 @@ class PlaceInfoContainer extends Component {
   }
 
   handleSaveNotes () {
+    console.log('handleSaveNotes, saving general note, from PlaceInfoContainer')
     this.setState({
       editNotes: false
     })
@@ -112,8 +117,6 @@ class PlaceInfoContainer extends Component {
 
   handleScroll (event) {
     var scrollHeight = event.nativeEvent.contentOffset.y
-    console.log('scrollHeight is: ', scrollHeight)
-    console.log('navFillHeight is: ', this.state.navFillHeight)
     if (scrollHeight >= 250 && scrollHeight <= 275) {
       var diff = 275 - scrollHeight
       this.setState({
@@ -141,7 +144,6 @@ class PlaceInfoContainer extends Component {
   }
 
   render () {
-    console.log('Props from PlaceInfoContainer', this.props)
     return (
       <PlaceInfo
         placeInfo={this.props.placeInfo}

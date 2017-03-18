@@ -64,7 +64,6 @@ class ToolbarIconAnimated extends Component {
 		var icon = this._getIconInfo();
 		icon.dropZones.forEach((zone, index) => {
 			if (inDropZone(gesture, zone, this.props.layoutInfo, index)) {
-				console.log("DROPZONE with gesture", gesture);
 				this.props.onDrop(icon, index);
 			} else {
 				this.snapBack()

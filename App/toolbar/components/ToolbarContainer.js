@@ -12,14 +12,15 @@ import Toolbar from './Toolbar'
 class ToolbarContainer extends Component {
 
   handleDrop (icon, index) {
+    console.log('handleDrop from ToolbarContainer')
     LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
-    console.log('HANDLING DROP FROM TOOLBARCONTAINER')
     // If the icon is dropped on the trash delete
     if (index === 4) this.props.deleteToolbarIcon(icon.priority)
     else this.props.switchToolbarIcons(icon.priority, index)
   }
 
   handleSelect (index) {
+    console.log('handleSelect from ToolbarContainer')
     this.props.setSelectedIcon(this.props.toolbarIcons[index])
   }
 

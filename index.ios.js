@@ -16,7 +16,6 @@ const store = configureStore()
 
 class Atdaa extends Component {
   render() {
-    //this.client.notify(new Error('Test Error'));
     return <Root store={store}/>
   }
 }
@@ -25,4 +24,4 @@ Atdaa = CodePush(Atdaa)
 
 export default Atdaa
 
-AppRegistry.registerComponent('Atdaa', () => Atdaa);
+AppRegistry.registerComponent('Atdaa', () => Atdaa)
