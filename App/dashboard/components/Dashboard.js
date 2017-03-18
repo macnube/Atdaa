@@ -1,7 +1,8 @@
 import React from 'react'
 import {
   View,
-  StyleSheet
+  StyleSheet,
+  Text
 } from 'react-native'
 
 import Main from './Main'
@@ -22,7 +23,9 @@ const Dashboard = (props) => {
         selectedTab={selectedTab}
         setSelectedTab={setSelectedTab}
         isVisible={props.navVisible}
-        handleLogout={props.handleLogout} />
+        handleLogout={props.handleLogout}
+        syncImmediate={props.syncImmediate}
+        syncVisible={props.syncVisible} />
       <Main cardId={props.cardId} selectedTab={selectedTab} placeInfo={props.placeInfo} />
       <ToolbarContainer />
       <ConfirmModal

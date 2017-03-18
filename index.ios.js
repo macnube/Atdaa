@@ -20,8 +20,8 @@ class Atdaa extends Component {
   }
 }
 
-Atdaa = CodePush(Atdaa)
+let codePushOptions = { checkFrequency: CodePush.CheckFrequency.MANUAL }
 
-export default Atdaa
+Atdaa = CodePush(codePushOptions)(Atdaa)
 
 AppRegistry.registerComponent('Atdaa', () => Atdaa)

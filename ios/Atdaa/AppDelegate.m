@@ -14,6 +14,7 @@
 #import "ReactNativeConfig.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import <BugsnagReactNative/BugsnagReactNative.h>
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -22,6 +23,7 @@
 #import <React/RCTLog.h>
 
 @import GoogleMaps;
+@import Firebase;
 
 @implementation AppDelegate
 
@@ -41,7 +43,9 @@
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
-
+  
+  [BugsnagReactNative start];
+  [FIRApp configure];
   NSString *googleAPIKey = [ReactNativeConfig envFor:@"GOOGLE_API_KEY"];
   [GMSServices provideAPIKey:googleAPIKey];
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

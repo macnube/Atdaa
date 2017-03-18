@@ -4,14 +4,27 @@ import {
   View,
   StyleSheet,
   Image,
-  TouchableHighlight
+  TouchableHighlight,
+  Text
 } from 'react-native'
 
 import NavBarIcon from './NavBarIcon'
 import * as colors from '../../resources/Colors'
 
-const NavBar = ({ selectedTab, setSelectedTab, layoutInfo, isVisible, handleLogout }) => {
+const NavBar = (props) => {
+  const { selectedTab, setSelectedTab, layoutInfo,
+    isVisible, handleLogout, syncImmediate, syncVisible } = props
   const height = isVisible ? 66 : 0
+  const sync = syncVisible
+  ? (
+    <TouchableHighlight
+      onPress={() => syncImmediate()}>
+      <View style={styles.nav}>
+        <Text>Sync to latest</Text>
+      </View>
+    </TouchableHighlight>
+  )
+  : <View style={{width: 50}} />
   const backButton = selectedTab === 'placeSearch'
     ? (
       <TouchableHighlight
@@ -21,7 +34,7 @@ const NavBar = ({ selectedTab, setSelectedTab, layoutInfo, isVisible, handleLogo
         </View>
       </TouchableHighlight>
       )
-    : <View style={{width: 50}} />
+    : sync
   const navMargin = selectedTab === 'map' ? 4 : 0
   return (
     <View
