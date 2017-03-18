@@ -93,8 +93,7 @@ class SplashContainer extends Component {
   }
 
   componentWillUpdate (nextProps, nextState) {
-    console.log('componentWillUpdate from SplashContainer with nextProps', nextProps)
-    console.log('componentWillUpdate from SplashContainer with nextState', nextState)
+    console.log('componentWillUpdate from SplashContainer')
     // api.deleteLocalUserInfo()
     if (nextProps.region && !this.props.region) {
       if (!nextState.reading && this._userInfo) {
@@ -107,7 +106,6 @@ class SplashContainer extends Component {
         if (this._userInfo.myPlaces) lastUpdated = this._userInfo.myPlaces.lastUpdated || 0
         this.toDashboard(lastUpdated)
       }
-        
     }
   }
 
