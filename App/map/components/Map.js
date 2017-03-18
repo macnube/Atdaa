@@ -20,7 +20,7 @@ class Map extends Component {
       const selected = place.place_id === this.props.POICardId
       const zIndex = selected ? 10 : 1
       const anchor = this.props.showNames
-        ? { x: 0.1, y: 0.6 }
+        ? { x: 0.18, y: 0.5 }
         : { x: 0.5, y: 0.5 }
       return (
         <MapView.Marker

@@ -20,7 +20,7 @@ const NavBar = (props) => {
     <TouchableHighlight
       onPress={() => syncImmediate()}>
       <View style={styles.nav}>
-        <Text>Sync to latest</Text>
+        <Text style={{textAlign: 'center'}}>Sync to latest</Text>
       </View>
     </TouchableHighlight>
   )

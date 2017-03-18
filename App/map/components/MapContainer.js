@@ -188,7 +188,6 @@ class MapContainer extends Component {
 	}
 
 	_shouldShowNames(region) {
-		if (!region) 
 		if (region.longitudeDelta > .010) {
 			return false
 		} else return true

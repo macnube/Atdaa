@@ -9,30 +9,21 @@ import {
 
 import * as colors from '../../resources/Colors'
 
+import Icon from '../../shared/Icon'
+
 const MapMarker = ({ selected, place, showName }) => {
   const scoreSize = selected ? styles.selectedScoreSize : styles.scoreSize
-  var uri
-  if (place.score === 0 && selected) uri = place.primaryIcon.imageURI + '_inactive'
-  else if (place.score === 0) uri = place.primaryIcon.imageURI + '_clean_inactive'
-  else uri = place.mapIcon.imageURI
-  var markerStyle
-  if (selected) {
-    markerStyle = [styles.selectedMarker, styles.shadow]
-  } else if (place.score === 1) {
-    markerStyle = showName ? styles.markerOneBig : styles.markerOne
-    markerStyle = [markerStyle, styles.shadow]
-  } else if (place.score === 2) {
-    markerStyle = showName ? styles.markerTwoBig : styles.markerTwo
-    markerStyle = [markerStyle, styles.shadow]
-  } else if (place.score === 3) {
-    markerStyle = showName ? styles.markerThreeBig : styles.markerThree
-    markerStyle = [markerStyle, styles.shadow]
-  } else if (place.score === 4) {
-    markerStyle = showName ? styles.markerFourBig : styles.markerFour
-    markerStyle = [markerStyle, styles.shadow]
-  } else {
-    markerStyle = styles.markerInactive
-  }
+  var icon = {...place.primaryIcon}
+  if (place.score === 0 && selected) icon.imageURI += '_inactive'
+  else if (place.score === 0) icon.imageURI += '_clean_inactive'
+  else icon.imageURI = place.mapIcon.imageURI
+  var iconHeight
+  if (selected) iconHeight = 43
+  else if (place.score === 1) iconHeight = showName ? 25 : 23
+  else if (place.score === 2) iconHeight = showName ? 30 : 28
+  else if (place.score === 3) iconHeight = showName ? 31 : 33
+  else if (place.score === 4) iconHeight = showName ? 33 : 35
+  else iconHeight = 18
   const textStyle = selected ? styles.selectedText : styles.text
   const score = place.score > 1
     ? (
@@ -46,8 +37,8 @@ const MapMarker = ({ selected, place, showName }) => {
     : <View style={{width: 5}} />
   return (
     <View style={styles.container}>
-      <View style={markerStyle}>
-        <Image source={{uri: uri}} style={{flex: 1}} resizeMode='contain' />
+      <View>
+        <Icon shadow={true} style={{height: iconHeight}} icon={icon} />
         {score}
       </View>
       {name}
@@ -58,6 +49,16 @@ const MapMarker = ({ selected, place, showName }) => {
 export default MapMarker
 
 var styles = StyleSheet.create({
+  container: {
+    height: 55,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexDirection: 'row'
+  },
+  iconContainer: {
+    height: 55,
+    width: 55
+  },
   selectedMarker: {
     height: 43,
     width: 43,
@@ -90,56 +91,6 @@ var styles = StyleSheet.create({
     backgroundColor: colors.activeIcon,
     alignItems: 'center',
     justifyContent: 'center'
-  },
-  markerInactive: {
-    height: 18,
-    width: 18
-  },
-  markerOne: {
-    height: 23,
-    width: 23,
-    borderRadius: 10
-  },
-  markerOneBig: {
-    height: 25,
-    width: 25,
-    borderRadius: 13
-  },
-  markerTwo: {
-    height: 28,
-    width: 28,
-    borderRadius: 11
-  },
-  markerTwoBig: {
-    height: 30,
-    width: 30,
-    borderRadius: 14
-  },
-  markerThree: {
-    height: 31,
-    width: 31,
-    borderRadius: 12
-  },
-  markerThreeBig: {
-    height: 33,
-    width: 33,
-    borderRadius: 15
-  },
-  markerFour: {
-    height: 33,
-    width: 33,
-    borderRadius: 13
-  },
-  markerFourBig: {
-    height: 35,
-    width: 35,
-    borderRadius: 16
-  },
-  container: {
-    height: 55,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    flexDirection: 'row'
   },
   placeName: {
     fontSize: 10,
