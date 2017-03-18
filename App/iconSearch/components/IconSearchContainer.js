@@ -31,6 +31,10 @@ class IconSearchContainer extends Component {
     }
   }
 
+  componentWillMount () {
+    console.log('IconSearchContainer will mount')
+  }
+
   componentWillReceiveProps (nextProps) {
     var data
     var toolbarsEqual = compareToolbars(this.props.toolbar, nextProps.toolbar)
@@ -50,6 +54,7 @@ class IconSearchContainer extends Component {
   }
 
   handleBackToCategory () {
+    console.log('Moving back to category view of IconSearch')
     var iconData = this._getData(this.props.toolbar, null)
     this.setState({
       dataSource: this.ds.cloneWithRows(iconData),
@@ -58,29 +63,16 @@ class IconSearchContainer extends Component {
   }
 
   handleShowTags (icon) {
+    console.log('Showing tags of category: ', icon.id)
     var categoryIcon = {
       ...icon,
       imageURI: icon.imageURI.split('_')[0]
     }
-    console.log('categoryIcon is:', categoryIcon)
     var newData = this._getTagData([categoryIcon, ...getTagsByCategoryId(icon.id)], this.props.toolbar)
     this.setState({
       dataSource: this.ds.cloneWithRows(newData),
       categoryIcon: categoryIcon
     })
-  }
-
-  handleNewIcon (icon, e) {
-    icon = {
-      ...icon,
-      imageURI: icon.imageURI.split('_')[0]
-    }
-    var newIcon = {
-      info: icon,
-      left: e.nativeEvent.pageX,
-      top: e.nativeEvent.pageY
-    }
-    this.props.setNewIcon(newIcon)
   }
 
   handleUpdateToolbar (icon) {
@@ -136,7 +128,6 @@ class IconSearchContainer extends Component {
         categoryIcon={this.state.categoryIcon}
         layoutInfo={this.props.layoutInfo}
         scrollEnabled={this.state.scrollEnabled}
-        handleNewIcon={this.handleNewIcon.bind(this)}
         handleShowTags={this.handleShowTags.bind(this)}
         handleBackToCategory={this.handleBackToCategory.bind(this)}
         handleBackToMap={() => this.props.setSelectedTab('map')}

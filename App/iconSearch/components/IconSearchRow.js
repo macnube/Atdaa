@@ -24,8 +24,7 @@ const IconSearchRow = ({ layoutInfo, icon, handleNewIcon, handleShowTags, handle
   return (
     <View style={[styles.iconRow, styleRow]}>
       <TouchableWithoutFeedback
-        onPress={() => handlePress(icon)}
-        onLongPress={(e) => handleNewIcon(icon, e)}>
+        onPress={() => handlePress(icon)}>
         <View>
           <Icon
             icon={icon}
@@ -44,7 +43,6 @@ export default IconSearchRow
 IconSearchRow.propTypes = {
   layoutInfo: React.PropTypes.object.isRequired,
   icon: React.PropTypes.object.isRequired,
-  handleNewIcon: React.PropTypes.func.isRequired,
   handleShowTags: React.PropTypes.func.isRequired
 }
 

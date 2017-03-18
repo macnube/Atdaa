@@ -13,7 +13,7 @@ import IconTagSearchHeader from './IconTagSearchHeader'
 
 const IconSearch = (props) => {
   const { dataSource, layoutInfo, handleShowTags, handleBackToMap,
-    handleNewIcon, scrollEnabled, categoryIcon } = props
+    scrollEnabled, categoryIcon } = props
 
   const renderRow = (data) => {
     if (categoryIcon) {
@@ -21,7 +21,6 @@ const IconSearch = (props) => {
         <IconTagSearchRow
           layoutInfo={layoutInfo}
           icon={data}
-          handleNewIcon={handleNewIcon}
           handleUpdateToolbar={props.handleUpdateToolbar} />
       )
     } else {
@@ -29,7 +28,6 @@ const IconSearch = (props) => {
         <IconSearchRow
           layoutInfo={layoutInfo}
           icon={data}
-          handleNewIcon={handleNewIcon}
           handleShowTags={handleShowTags}
           handleUpdateToolbar={props.handleUpdateToolbar}
         />
@@ -75,8 +73,7 @@ IconSearch.propTypes = {
   categoryIcon: React.PropTypes.object,
   layoutInfo: React.PropTypes.object.isRequired,
   handleShowTags: React.PropTypes.func.isRequired,
-  handleBackToMap: React.PropTypes.func.isRequired,
-  handleNewIcon: React.PropTypes.func.isRequired,
+  handleBackToMap: React.PropTypes.func.isRequired
 }
 
 var styles = StyleSheet.create({
