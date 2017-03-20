@@ -65,9 +65,11 @@ class PlaceSearch extends Component {
         )
       })
       return (
-        <View>
-          <Text>Places Nearby</Text>
-          {nearby}
+        <View style={styles.nearbyContainer}>
+          <Text style={styles.nearbyText}>Places Nearby</Text>
+          <View style={styles.nearbyResultsContainer}>
+            {nearby}
+          </View>
         </View>
       )
     } else {
@@ -93,7 +95,7 @@ class PlaceSearch extends Component {
         {loadingText}
         <GooglePlacesAutocomplete
           ref="placeSearch"
-          placeholder='Search'
+          placeholder='Search for a Place...'
           textInputProps={{onChangeText: this.props.handleChangeText}}
           minLength={2} // minimum length of text to search
           autoFocus={true}
@@ -129,7 +131,23 @@ class PlaceSearch extends Component {
               height: StyleSheet.hairlineWidth
             },
             container: {
-              flex: 1
+              flex: 1,
+              backgroundColor: 'rgb(240,240,240)'
+            },
+            listView: {
+              backgroundColor: 'white',
+              borderRadius: 3,
+              marginTop: 50,
+              marginHorizontal: 11
+            },
+            textInputContainer: {
+              backgroundColor: 'rgb(240,240,240)',
+              borderBottomWidth: 0
+            },
+            textInput: {
+              height: 40,
+              borderRadius: 3,
+              paddingLeft: 15
             }
           }}
 
@@ -161,6 +179,24 @@ var styles = StyleSheet.create({
   },
   loadingText: {
     fontSize: 20,
+  },
+  nearbyContainer: {
+    marginTop: 15,
+    flex: 1
+  },
+  nearbyText: {
+    fontSize: 16,
+    height: 22,
+    marginLeft: 25,
+    color: 'rgb(156,156,156)',
+    fontWeight: 'bold'
+  },
+  nearbyResultsContainer: {
+    backgroundColor: 'white',
+    borderRadius: 3,
+    marginHorizontal: 11,
+    marginTop: 13,
+    flex: 1
   },
   nearbyRow: {
     justifyContent: 'space-around',
