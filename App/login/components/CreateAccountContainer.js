@@ -46,38 +46,50 @@ class CreateAccountContainer extends Component {
     let token = data.credentials.token
     api.signInFacebook(token)
       .then((data) => {
-        console.log('data from firestack', data)
+        console.log('data from signIn', data)
         var userInfo = {
           id: data.user.uid,
           email: data.user.email
         }
-        api.getFirebaseUserPlaces(userInfo.id)
-          .then((snapshot) => {
-            if (snapshot.value) {
-              console.log('user information found on server')
-              userInfo = {
-                ...userInfo,
-                myPlaces: {...snapshot.value.myPlaces}
-              }
-            } else {
-              console.log('no data on server')
-            }
-            api.setLocalUserInfo(userInfo)
-            this.props.setUserInfo(userInfo)
-            this.props.toDashboard()
-          })
-          .catch((error) => {
-            this.setState({
-              downloading: error
-            })
-            api.setLocalUserInfo(userInfo)
-            this.props.setUserInfo(userInfo)
-            this.props.toDashboard()
-            console.log('error fetching data from server', error)
-          })
+        console.log('userInfo before firebase check', userInfo)
+        this.setState({
+          downloading: 'downloading and updating userInfo'
+        })
+        return Promise.all([userInfo, api.getFirebaseUserPlaces(userInfo.id)])
+      })
+      .then((results) => {
+        var [userInfo, snapshot] = results
+        if (snapshot.value) {
+          console.log('User information found on server')
+          userInfo = {
+            ...userInfo,
+            myPlaces: {...snapshot.value.myPlaces}
+          }
+          return Promise.resolve([userInfo, {}])
+        } else {
+          return Promise.all([userInfo, api.getFirebaseUserPlaces('mCrr7jrsfJTpooIGJPPPfL0p4c42')]) // Get Kaan's data
+        }
+      })
+      .then((results) => {
+        var [userInfo, kaanData] = results
+        if (Object.keys(kaanData).length > 0) {
+          console.log('Getting Kaan data for new user')
+          userInfo = {
+            ...userInfo,
+            myPlaces: {...kaanData.value.myPlaces}
+          }
+        }
+        api.setLocalUserInfo(userInfo)
+        this.props.setUserInfo(userInfo)
+        this.props.toDashboard()
       })
       .catch((error) => {
-        console.log('Facebook create account failed with', error)
+        console.log('Facebook login failed with', error)
+        this.setState({
+          facebookLoading: false,
+          downloading: error,
+          error: error.description
+        })
       })
   }
 

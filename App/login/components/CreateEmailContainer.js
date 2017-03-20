@@ -54,11 +54,19 @@ class CreateEmailContainer extends Component {
           id: data.uid,
           email: data.email
         }
+        return Promise.all([userInfo, api.getFirebaseUserPlaces('mCrr7jrsfJTpooIGJPPPfL0p4c42')]) // Get Kaan's data
+      })
+      .then((results) => {
+        var [userInfo, kaanData] = results
+        if (Object.keys(kaanData).length > 0) {
+          console.log('Getting Kaan data for new user')
+          userInfo = {
+            ...userInfo,
+            myPlaces: {...kaanData.value.myPlaces}
+          }
+        }
         api.setLocalUserInfo(userInfo)
         this.props.setUserInfo(userInfo)
-        this.setState({
-          isLoading: false
-        })
         this.props.toDashboard()
       })
       .catch((error) => {
