@@ -9,6 +9,8 @@ const clearPlace = (state, action) => {
 const setIsNew = (state) => {
   var newPlace = {...state}
   newPlace.isNew = true
+  newPlace.tags = []
+  newPlace.categoryNotes = {}
   return newPlace
 }
 
