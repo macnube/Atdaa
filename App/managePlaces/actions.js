@@ -8,6 +8,14 @@ export function addPlace (place, time) {
   }
 }
 
+export function deletePlace (placeId, time) {
+  return {
+    type: types.DELETE_PLACE,
+    placeId,
+    time
+  }
+}
+
 export function updatePlaceNote (note) {
   return {
     type: types.UPDATE_PLACE_NOTE,

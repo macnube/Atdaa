@@ -40,11 +40,25 @@ function updatePlace (state, place) {
   return {...state, [place.place_id]: place}
 }
 
+function deletePlace (state, placeID) {
+  var newState = {...state}
+  delete newState[placeID]
+  return newState
+}
+
+function deletePlaceId (state, placeId) {
+  var newState = [...state]
+  var index = newState.indexOf(placeId)
+  newState.splice(index, 1)
+  return newState
+}
+
 export function placeById (state = {}, action) {
   switch (action.type) {
     case types.UPDATE_PLACE: return updatePlace(state, action.place)
     case types.SET_USER_INFO: return readLocalPlaces(state, action.info)
     case types.ADD_PLACE: return updateObject(state, createPlace(action.place))
+    case types.DELETE_PLACE: return deletePlace(state, action.placeId)
     case types.LOGOUT: return {}
     default: return state
   }
@@ -54,6 +68,7 @@ export function ids (state = [], action) {
   switch (action.type) {
     case types.SET_USER_INFO: return readLocalPlaceIds(state, action.info)
     case types.ADD_PLACE: return updatePlaceIds(state, getPlaceId(action.place))
+    case types.DELETE_PLACE: return deletePlaceId(state, action.placeId)
     case types.LOGOUT: return []
     default: return state
   }
@@ -63,6 +78,7 @@ export function lastUpdated (state = null, action) {
   switch (action.type) {
     case types.SET_USER_INFO: return readLocalLastUpdated(state, action.info)
     case types.ADD_PLACE: return action.time
+    case types.DELETE_PLACE: return action.time
     case types.LOGOUT: return null
     default: return state
   }

@@ -38,10 +38,11 @@ const PlaceDetails = ({ placeInfo, icon, handleAddTag, hours, distance, open }) 
           </View>
         </TouchableOpacity>
       </View>
-      <View style={styles.contactContainer}>
-        <Phone />
-        <AddTag handlePress={handleAddTag} />
-        <Website />
+      <View style={styles.editContainer}>
+        <AddTag
+          handlePress={handleAddTag}
+          isNew={placeInfo.isNew}
+          color={mainInfoColor} />
       </View>
       <View style={styles.locationContainer}>
         <Address address={placeInfo.address} />
@@ -105,19 +106,19 @@ const styles = StyleSheet.create({
     color: 'rgb(120,120,120)',
     fontSize: 14
   },
-  contactContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  editContainer: {
     alignItems: 'center',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: 'rgb(238,238,238)',
-    height: 80,
-    paddingHorizontal: 30,
-    zIndex: 1
+    justifyContent: 'center',
+    height: 66
   },
   locationContainer: {
     flexDirection: 'column',
     height: 80,
+    marginHorizontal: 12,
+    backgroundColor: 'rgb(250,250,250)',
+    borderRadius: 3,
+    borderColor: 'rgb(230,230,230)',
+    borderWidth: 1,
     justifyContent: 'space-around',
     alignItems: 'flex-start',
     paddingBottom: 10,

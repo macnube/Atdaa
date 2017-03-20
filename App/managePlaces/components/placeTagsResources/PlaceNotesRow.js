@@ -31,6 +31,7 @@ export default PlaceNotesRow
 var styles = StyleSheet.create({
   container: {
     minHeight: 80,
+    marginLeft: 25,
     flexDirection: 'row',
     alignItems: 'center',
     borderColor: 'rgb(238,238,238)',

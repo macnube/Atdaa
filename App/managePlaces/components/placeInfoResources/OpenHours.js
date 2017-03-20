@@ -32,6 +32,7 @@ var styles = StyleSheet.create({
 	},
 	text: {
 		fontSize: 12,
-		marginLeft: 15
+		marginLeft: 15,
+		color: 'rgb(156,156,156)'
 	}
 })

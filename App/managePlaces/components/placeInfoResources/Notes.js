@@ -12,7 +12,7 @@ const Notes = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text>Notes</Text>
+        <Text style={styles.headerText}>Notes</Text>
       </View>
       <TextInput
         style={styles.textInput}
@@ -40,18 +40,28 @@ export default Notes
 var styles = StyleSheet.create({
   container: {
     marginTop: 15,
-    marginHorizontal: 30,
-    marginBottom: 50
+    marginHorizontal: 12,
+    marginBottom: 25
   },
   headerContainer: {
-    height: 30,
+    height: 20,
     width: 40,
-    justifyContent: 'center',
-    borderBottomWidth: 1,
-    borderColor: 'black'
+    marginLeft: 20
+  },
+  headerText: {
+    color: 'rgb(156,156,156)',
+    fontSize: 13,
+    fontWeight: 'bold'
   },
   textInput: {
-    height: 50
+    minHeight: 100,
+    color: 'rgb(178,178,178)',
+    backgroundColor: 'rgb(250,250,250)',
+    borderRadius: 3,
+    borderWidth: 1,
+    borderColor: 'rgb(230,230,230)',
+    paddingHorizontal: 15,
+    paddingVertical: 10
   },
   editButton: {
     alignSelf: 'flex-end',

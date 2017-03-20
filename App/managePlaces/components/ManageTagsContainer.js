@@ -5,7 +5,7 @@ import { ListView, Keyboard } from 'react-native'
 
 import dashboard from '../../dashboard'
 import login from '../../login'
-import { addPlace, editPlaceCategory, clearPlaceCategory } from '../actions'
+import { addPlace, editPlaceCategory, clearPlaceCategory, deletePlace } from '../actions'
 import ManageTags from './ManageTags'
 import api from '../../utils/api'
 import * as helpers from '../../utils/helpers'
@@ -59,6 +59,11 @@ class ManageTagsContainer extends Component {
     })
   }
 
+  handleDeletePlace () {
+    const currentTime = new Date().getTime() / 1000
+    this.props.deletePlace(this.props.placeInfo.place_id, currentTime)
+  }
+
   handleAddPlace () {
     console.log('handleAddPlace from ManageTagsContainer, place: ', this.props.placeInfo.name)
     if (this.state.selectedTags.length > 0) {
@@ -73,7 +78,7 @@ class ManageTagsContainer extends Component {
       api.updateMyPlaces(this.props.userId, this.props.myPlaces, newPlace, currentTime)
       this.props.addPlace(newPlace, currentTime)
     } else {
-      this.props.setSelectedTab('placeInfo')
+      this.handleDeletePlace()
     }
   }
 
@@ -217,6 +222,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addPlace (place, currentTime) {
       dispatch(addPlace(place, currentTime))
+    },
+    deletePlace (placeId, currentTime) {
+      dispatch(deletePlace(placeId, currentTime))
     },
     setSelectedTab (tab) {
       dispatch(dashboard.actions.setSelectedTab(tab))

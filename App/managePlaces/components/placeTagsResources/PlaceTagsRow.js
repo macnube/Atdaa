@@ -48,6 +48,7 @@ export default PlaceTagsRow
 var styles = StyleSheet.create({
   container: {
     height: 80,
+    marginLeft: 25,
     flexDirection: 'row',
     alignItems: 'center',
     borderColor: 'rgb(238,238,238)',

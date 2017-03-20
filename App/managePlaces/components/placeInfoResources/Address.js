@@ -13,7 +13,7 @@ const Address = (props) => {
 	//Additional 4 for elipsis
 	const containerWidth = width - 78
 	return (
-		<View style={[styles.container, {width: containerWidth}]}>
+		<View style={[styles.container, {width: containerWidth - 15}]}>
 			<Image source={{uri: 'address'}} style={styles.image} />
 			<Text style={styles.text} numberOfLines={1}>{props.address}</Text>
 		</View>
@@ -35,5 +35,6 @@ var styles = StyleSheet.create({
 	text: {
 		fontSize: 12,
 		marginLeft: 15,
+		color: 'rgb(156,156,156)'
 	}
 })

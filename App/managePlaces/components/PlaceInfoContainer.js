@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addPlace, editPlaceCategory } from '../actions'
+import { addPlace, editPlaceCategory, deletePlace } from '../actions'
 import { Keyboard } from 'react-native'
 import dashboard from '../../dashboard'
 import api from '../../utils/api'
@@ -65,6 +65,17 @@ class PlaceInfoContainer extends Component {
     this.setState({
       keyboardHeight: 0
     })
+  }
+
+  openDeleteModal () {
+    const deleteText = 'Are you sure you want to completely delete this place?'
+    this.props.openModal(deleteText, this.handleDeletePlace.bind(this), 'Delete', 'clearModal')
+  }
+
+  handleDeletePlace () {
+    const currentTime = new Date().getTime() / 1000
+    this.props.deletePlace(this.props.placeInfo.place_id, currentTime)
+    this.props.closeModal()
   }
 
   handleAddTag () {
@@ -155,6 +166,7 @@ class PlaceInfoContainer extends Component {
         handleToMap={this.handleToMap.bind(this)}
         handleNotesChange={this.handleNotesChange.bind(this)}
         handleSaveNotes={this.handleSaveNotes.bind(this)}
+        openDeleteModal={this.openDeleteModal.bind(this)}
         notes={this.state.notes}
         keyboardHeight={this.state.keyboardHeight}
         handleScroll={this.handleScroll.bind(this)}
@@ -180,8 +192,17 @@ const mapDispatchToProps = (dispatch) => {
     addPlace (place, currentTime) {
       dispatch(addPlace(place, currentTime))
     },
+    deletePlace (placeId, currentTime) {
+      dispatch(deletePlace(placeId, currentTime))
+    },
     editPlaceCategory (category) {
       dispatch(editPlaceCategory(category))
+    },
+    openModal (text, onYes, yesText, uri) {
+      dispatch(dashboard.actions.openModal(text, onYes, yesText, uri))
+    },
+    closeModal () {
+      dispatch(dashboard.actions.closeModal())
     }
   }
 }

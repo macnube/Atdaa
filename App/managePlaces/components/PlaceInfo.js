@@ -4,7 +4,9 @@ import {
   View,
   Image,
   StyleSheet,
+  TouchableOpacity,
   ScrollView,
+  Text,
   KeyboardAvoidingView
 } from 'react-native'
 
@@ -49,13 +51,24 @@ const PlaceInfo = (props) => {
         handleSaveNotes={props.handleSaveNotes}
         notes={props.notes} />
     )
+  const deletePlace = props.placeInfo.isNew
+    ? <View />
+    : (
+      <TouchableOpacity
+        onPress={props.openDeleteModal}>
+        <View style={styles.deleteContainer}>
+          <Text style={styles.deleteText}>Delete all tags and notes</Text>
+        </View>
+      </TouchableOpacity>
+    )
   return (
     <KeyboardAvoidingView
       style={[styles.container, {paddingBottom: containerPadding}]}
       behavior='position'>
       <ScrollView
         onScroll={(event) => props.handleScroll(event)}
-        scrollEventThrottle={50}>
+        scrollEventThrottle={50}
+        contentContainerStyle={{backgroundColor: 'rgb(240,240,240)'}}>
         {placeImage}
         <PlaceDetails
           placeInfo={props.placeInfo}
@@ -67,6 +80,7 @@ const PlaceInfo = (props) => {
         {tags}
         {map}
         {notes}
+        {deletePlace}
       </ScrollView>
       <PlaceInfoNavBar
         handleToMap={props.handleToMap}
@@ -93,10 +107,25 @@ var styles = StyleSheet.create({
     alignItems: 'stretch',
     backgroundColor: 'rgb(250,250,250)'
   },
+  deleteContainer: {
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  deleteText: {
+    color: 'rgb(177,177,177)',
+    fontSize: 10,
+    textDecorationLine: 'underline'
+  },
   imageContainer: {
     height: 250
   },
   mapContainer: {
-    height: 250
+    height: 250,
+    marginHorizontal: 12,
+    marginTop: 20,
+    borderRadius: 3,
+    borderWidth: 1,
+    borderColor: 'rgb(230,230,230)'
   }
 })

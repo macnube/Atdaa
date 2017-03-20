@@ -11,12 +11,13 @@ import Icon from '../../../shared/Icon'
 
 const AddTag = (props) => {
   const icon = {id: 'editTags', imageURI: 'editTags'}
+  const text = props.isNew ? 'Add Place' : 'Edit Place'
+  const color = props.isNew ? 'rgb(156,156,156)' : props.color
   return (
     <TouchableHighlight
       onPress={() => props.handlePress()}>
-      <View style={styles.container}>
-        <Icon icon={icon} style={{height: 20}} shadow={false} />
-        <Text style={styles.text}>Edit Tags</Text>
+      <View style={[styles.container, {borderColor: color}]}>
+        <Text style={[styles.text, {color: color}]}>{text}</Text>
       </View>
     </TouchableHighlight>
   )
@@ -30,13 +31,16 @@ AddTag.propTypes = {
 
 var styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+    height: 27,
+    width: 125,
+    borderRadius: 3,
+    borderWidth: 2,
+    backgroundColor: 'rgb(250,250,250)',
+    justifyContent: 'center', 
     alignItems: 'center',
-    height: 45,
-    paddingLeft: 25
   },
   text: {
-    fontSize: 12
+    fontSize: 12,
+    textAlign: 'center',
   }
 })
