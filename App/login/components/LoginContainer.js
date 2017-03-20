@@ -15,8 +15,7 @@ class LoginContainer extends Component {
       isLoading: false,
       facebookLoading: false,
       error: '',
-      keyboard: false,
-      downloading: ''
+      keyboard: false
     }
   }
 
@@ -48,8 +47,7 @@ class LoginContainer extends Component {
     console.log('Handling Email Log In')
     dismissKeyboard()
     this.setState({
-      isLoading: true,
-      downloading: 'Checking User Credentials'
+      isLoading: true
     })
     api.signIn(this.state.email, this.state.password)
       .then((data) => {
@@ -59,9 +57,6 @@ class LoginContainer extends Component {
           email: data.user.email
         }
         console.log('userInfo before firebase check', userInfo)
-        this.setState({
-          downloading: 'downloading info'
-        })
         return Promise.all([userInfo, api.getFirebaseUserPlaces(userInfo.id)])
       })
       .then((results) => {
@@ -102,8 +97,7 @@ class LoginContainer extends Component {
   onFacebookLogin (data) {
     console.log('LOGGING IN WITH FACEBOOK')
     this.setState({
-      facebookLoading: true,
-      downloading: 'Checking User Credentials'
+      facebookLoading: true
     })
     let token = data.credentials.token
     api.signInFacebook(token)
@@ -114,9 +108,6 @@ class LoginContainer extends Component {
           email: data.user.email
         }
         console.log('userInfo before firebase check', userInfo)
-        this.setState({
-          downloading: 'downloading and updating userInfo'
-        })
         return Promise.all([userInfo, api.getFirebaseUserPlaces(userInfo.id)])
       })
       .then((results) => {
