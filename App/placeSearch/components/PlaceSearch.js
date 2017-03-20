@@ -7,6 +7,7 @@ import {
   Text,
   Dimensions,
   StyleSheet,
+  Image,
   TouchableHighlight
 } from 'react-native'
 
@@ -76,8 +77,11 @@ class PlaceSearch extends Component {
 
   renderLoading () {
     return (
-      <View style={styles.textContainer}>
-        <Text style={styles.loadingText}>Loading Place Card</Text>
+      <View style={styles.gifContainer}>
+        <Image
+          source={require('../../shared/Images/loading_place.gif')}
+          style={{flex: 1}}
+          resizeMode='contain' />
       </View>
     )
   }
@@ -147,10 +151,10 @@ class PlaceSearch extends Component {
 }
 
 var styles = StyleSheet.create({
-  textContainer: {
+  gifContainer: {
     position: 'absolute',
-    height: 50,
-    width: Dimensions.get('window').width,
+    height: 200,
+    width: 200,
     top: 100,
     alignSelf: 'center',
     alignItems: 'center',
