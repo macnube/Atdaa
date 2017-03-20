@@ -79,11 +79,13 @@ class PlaceSearch extends Component {
 
   renderLoading () {
     return (
-      <View style={styles.gifContainer}>
-        <Image
-          source={require('../../shared/Images/loading_place.gif')}
-          style={{flex: 1}}
-          resizeMode='contain' />
+      <View style={styles.loadingContainer}>
+        <View style={styles.gifContainer}>
+          <Image
+            source={require('../../shared/Images/loading_place.gif')}
+            style={{flex: 1}}
+            resizeMode='contain' />
+        </View>
       </View>
     )
   }
@@ -92,7 +94,6 @@ class PlaceSearch extends Component {
     var loadingText = this.props.loading ? this.renderLoading() : <View />
     return (
       <View style={{flex: 1}}>
-        {loadingText}
         <GooglePlacesAutocomplete
           ref="placeSearch"
           placeholder='Search for a Place...'
@@ -160,6 +161,7 @@ class PlaceSearch extends Component {
           }}
           >
           {this.renderNearby(this.props.nearbyPlaces)}
+          {loadingText}
           </GooglePlacesAutocomplete>
       </View>
     )
@@ -169,16 +171,20 @@ class PlaceSearch extends Component {
 }
 
 var styles = StyleSheet.create({
+  loadingContainer: {
+    flex: 1,
+    backgroundColor: 'white',
+    marginTop: 50,
+    marginHorizontal: 11,
+    borderRadius: 3,
+    alignItems: 'center'
+  },
   gifContainer: {
-    position: 'absolute',
     height: 200,
-    width: 200,
-    top: 100,
-    alignSelf: 'center',
-    alignItems: 'center',
+    alignSelf: 'center'
   },
   loadingText: {
-    fontSize: 20,
+    fontSize: 20
   },
   nearbyContainer: {
     marginTop: 15,
@@ -216,4 +222,4 @@ var styles = StyleSheet.create({
   }
 })
 
-export default PlaceSearch;
+export default PlaceSearch
