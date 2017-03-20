@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 
 import {
   View,
-  StyleSheet,
-  Text
+  StyleSheet
 } from 'react-native'
 
 import MapView from 'react-native-maps'

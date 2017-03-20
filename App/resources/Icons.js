@@ -1000,23 +1000,59 @@ const Icons = {
     imageURI: 'cocktail'
   },
 
-  //Live Music Tags
+  // Live Music Tags
+  bachata: {
+    id: 'bachata',
+    type: 'tag',
+    name: 'Bachata',
+    imageURI: 'livemusic'
+  },
   milonga: {
     id: 'milonga',
     type: 'tag',
     name: 'Milonga',
     imageURI: 'livemusic'
   },
-  rock: {
-    id: 'rock',
+  ballenato: {
+    id: 'ballenato',
     type: 'tag',
-    name: 'Rock',
+    name: 'Ballenato',
     imageURI: 'livemusic'
   },
-  concert: {
-    id: 'concert',
+  live_folk: {
+    id: 'live_folk',
     type: 'tag',
-    name: 'Concert',
+    name: 'Folk',
+    imageURI: 'livemusic'
+  },
+  live_blues: {
+    id: 'live_blues',
+    type: 'tag',
+    name: 'Blues',
+    imageURI: 'livemusic'
+  },
+  live_hip_hop: {
+    id: 'live_hip_hop',
+    type: 'tag',
+    name: 'Hip Hop',
+    imageURI: 'livemusic'
+  },
+  indie: {
+    id: 'indie',
+    type: 'tag',
+    name: 'indie',
+    imageURI: 'livemusic'
+  },
+  lindy_hop: {
+    id: 'lindy_hop',
+    type: 'tag',
+    name: 'Lindy Hop',
+    imageURI: 'livemusic'
+  },
+  live_pop: {
+    id: 'live_pop',
+    type: 'tag',
+    name: 'Pop',
     imageURI: 'livemusic'
   },
   jazz: {
@@ -1025,8 +1061,62 @@ const Icons = {
     name: 'Jazz',
     imageURI: 'livemusic'
   },
+  live_rap: {
+    id: 'live_rap',
+    type: 'tag',
+    name: 'Rap',
+    imageURI: 'livemusic'
+  },
+  live_reggae: {
+    id: 'live_reggae',
+    type: 'tag',
+    name: 'reggae',
+    imageURI: 'livemusic'
+  },
+  live_rock: {
+    id: 'live_rock',
+    type: 'tag',
+    name: 'Rock',
+    imageURI: 'livemusic'
+  },
+  salsa: {
+    id: 'salsa',
+    type: 'tag',
+    name: 'Salsa',
+    imageURI: 'livemusic'
+  },
+  ska: {
+    id: 'ska',
+    type: 'tag',
+    name: 'Ska',
+    imageURI: 'livemusic'
+  },
+  funk: {
+    id: 'funk',
+    type: 'tag',
+    name: 'Funk',
+    imageURI: 'livemusic'
+  },
+  soul: {
+    id: 'soul',
+    type: 'tag',
+    name: 'Soul',
+    imageURI: 'livemusic'
+  },
+  swing: {
+    id: 'swing',
+    type: 'tag',
+    name: 'Swing',
+    imageURI: 'livemusic'
+  },
+  tango: {
+    id: 'tango',
+    type: 'tag',
+    name: 'Tango',
+    imageURI: 'livemusic'
+  },
 
-  //Fingerfood Tags
+  // Fingerfood Tags
   hot_dog: {
     id: 'hot_dog',
     type: 'tag',
