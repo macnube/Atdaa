@@ -73,7 +73,7 @@ class ToolbarIconAnimated extends Component {
 
 	_handlePanResponderMove(e, gesture) {
 		this.moveTime = Date.now();
-		var delay = this.moveTime - this.startTime > 1000
+		var delay = this.moveTime - this.startTime > 800
 		if (!this.trashToggled && delay) {	
 			this.props.toggleTrash();
 			this.trashToggled = true;
@@ -98,7 +98,7 @@ class ToolbarIconAnimated extends Component {
 
 	_handlePanResponderEnd(e, gesture) {
 		this.endTime = Date.now();
-		if (this.endTime - this.startTime < 1000) {
+		if (this.endTime - this.startTime < 800) {
 			this.snapBack()
 			this.props.handleSelect(this.props.icon.priority)
 			if (this.trashToggled) {
