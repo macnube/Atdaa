@@ -62,27 +62,22 @@ class LoginContainer extends Component {
         this.setState({
           downloading: 'downloading info'
         })
-        api.getFirebaseUserPlaces(userInfo.id)
-          .then((snapshot) => {
-            if (snapshot.value) {
-              console.log('User information found on server')
-              userInfo = {
-                ...userInfo,
-                myPlaces: {...snapshot.value.myPlaces}
-              }
-            } else {
-              console.log('no data on server')
-            }
-            api.setLocalUserInfo(userInfo)
-            this.props.setUserInfo(userInfo)
-            this.props.toDashboard()
-          })
-          .catch((error) => {
-            console.log('error fetching data from server', error)
-            this.setState({
-              isLoading: false
-            })
-          })
+        return Promise.all([userInfo, api.getFirebaseUserPlaces(userInfo.id)])
+      })
+      .then((results) => {
+        var [userInfo, snapshot] = results
+        if (snapshot.value) {
+          console.log('User information found on server')
+          userInfo = {
+            ...userInfo,
+            myPlaces: {...snapshot.value.myPlaces}
+          }
+        } else {
+          console.log('no data on server')
+        }
+        api.setLocalUserInfo(userInfo)
+        this.props.setUserInfo(userInfo)
+        this.props.toDashboard()
       })
       .catch((error) => {
         console.log('Error from login', error)
@@ -111,35 +106,31 @@ class LoginContainer extends Component {
         this.setState({
           downloading: 'downloading and updating userInfo'
         })
-        api.getFirebaseUserPlaces(userInfo.id)
-          .then((snapshot) => {
-            if (snapshot.value) {
-              console.log('User information found on server')
-              userInfo = {
-                ...userInfo,
-                myPlaces: {...snapshot.value.myPlaces}
-              }
-            } else {
-              console.log('no data on server')
-            }
-            api.setLocalUserInfo(userInfo)
-            this.props.setUserInfo(userInfo)
-            this.setState({
-              facebookLoading: false
-            })
-            this.props.toDashboard()
-          })
-          .catch((error) => {
-            this.setState({
-              downloading: error
-            })
-            console.log('error fetching data from server', error)
-          })
+        return Promise.all([userInfo, api.getFirebaseUserPlaces(userInfo.id)])
+      })
+      .then((results) => {
+        var [userInfo, snapshot] = results
+        if (snapshot.value) {
+          console.log('User information found on server')
+          userInfo = {
+            ...userInfo,
+            myPlaces: {...snapshot.value.myPlaces}
+          }
+        } else {
+          console.log('no data on server')
+        }
+        api.setLocalUserInfo(userInfo)
+        this.props.setUserInfo(userInfo)
+        this.setState({
+          facebookLoading: false
+        })
+        this.props.toDashboard()
       })
       .catch((error) => {
         console.log('Facebook login failed with', error)
         this.setState({
           facebookLoading: false,
+          downloading: error,
           error: error.description
         })
       })
