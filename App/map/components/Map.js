@@ -17,9 +17,12 @@ class Map extends Component {
   renderPlaces () {
     console.log('Rerendering Map Places')
     return this.props.markerPlaces.ids.map((id, index) => {
+      var zIndex
       const place = this.props.markerPlaces.placeById[id]
       const selected = place.place_id === this.props.POICardId
-      const zIndex = selected ? 10 : 1
+      if (selected) zIndex = 10
+      else if (this.props.matchingPlaces.ids.indexOf(place.place_id) > -1) zIndex = 5
+      else zIndex = 1
       const anchor = this.props.showNames
         ? { x: 0.18, y: 0.5 }
         : { x: 0.5, y: 0.5 }
