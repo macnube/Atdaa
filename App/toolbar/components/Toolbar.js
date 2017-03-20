@@ -2,6 +2,7 @@ import React from 'react'
 
 import {
   View,
+  Dimensions,
   StyleSheet
 } from 'react-native'
 
@@ -51,10 +52,13 @@ const Toolbar = (props) => {
   function render () {
     if (props.isVisible) {
       return (
-        <View style={[styles.toolbar, extraToolbarStyles]}>
-          {iconContainers}
-          {icons}
-          <ToolbarIconLabels toolbar={toolbarIcons} layoutInfo={layoutInfo} />
+        <View>
+          <View style={[styles.toolbarBackground, {width: layoutInfo.toolbar.width}]} />
+          <View style={[styles.toolbar, extraToolbarStyles]}>
+            {iconContainers}
+            {icons}
+            <ToolbarIconLabels toolbar={toolbarIcons} layoutInfo={layoutInfo} />
+          </View>
         </View>
       )
     } else return <View />
@@ -86,6 +90,13 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'flex-start'
+  },
+  toolbarBackground: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    height: 70,
+    backgroundColor: 'rgba(255,255,255,0.9)'
   }
 })
 

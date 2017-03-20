@@ -8,8 +8,8 @@ import {
 
 const ToolbarIconLabels = ({ toolbar, layoutInfo }) => {
 	const labels = toolbar.map( (icon, index) => {
-		const label = icon.abName || icon.name
-		if (index === 4 || icon.id === 'empty') return <View key={index} style={{width: layoutInfo.icon.height}} />;
+		var label = icon.abName || icon.name || 'Add Filter'
+		if (index === 4 ) return <View key={index} style={{width: layoutInfo.icon.height}} />;
 		else {
 			return (
 				<View key={index} style={[styles.textContainer, {width: layoutInfo.icon.height}]}>
@@ -45,10 +45,7 @@ var styles = StyleSheet.create({
 	text: {
 		fontSize: 9,
 		textAlign: 'center',
-		backgroundColor: 'rgba(250,250,250,0.8)',
-		borderRadius: 3,
-		paddingHorizontal: 3,
 		paddingVertical: 1,
-		color: 'rgb(100,99,99)',
+		color: 'rgb(100,99,99)'
 	}
 })
