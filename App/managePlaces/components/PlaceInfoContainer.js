@@ -74,6 +74,7 @@ class PlaceInfoContainer extends Component {
 
   handleDeletePlace () {
     const currentTime = new Date().getTime() / 1000
+    api.updateMyPlaces(this.props.userId, this.props.myPlaces, this.props.placeInfo, currentTime, true)
     this.props.deletePlace(this.props.placeInfo.place_id, currentTime)
     this.props.closeModal()
   }

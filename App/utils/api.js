@@ -88,16 +88,25 @@ export const getFirebaseUserPlaces = (userId) => {
 
 // Async Data calls
 
-export const updateMyPlaces = (userId, currentPlaces, newPlace, currentTime) => {
+export const updateMyPlaces = (userId, currentPlaces, newPlace, currentTime, deletePlace = false) => {
   var id = newPlace.place_id
-  const placeIds = currentPlaces.ids.indexOf(id) === -1
+  var placeIds = [...currentPlaces.ids]
+  var placeById = {...currentPlaces.placeById}
+  if (deletePlace) {
+    var index = currentPlaces.ids.indexOf(id)
+    if (index !== -1) placeIds.splice(index, 1)
+    delete placeById[id]
+  } else {
+    placeIds = currentPlaces.ids.indexOf(id) === -1
     ? [...currentPlaces.ids, id]
     : [...currentPlaces.ids]
+    placeById[id] = newPlace
+  }
   var delta = {
     myPlaces: {
       lastUpdated: currentTime,
       ids: placeIds,
-      placeById: {...currentPlaces.placeById, [id]: newPlace}
+      placeById: placeById
     }
   }
   setFirebaseUserPlaces(userId, delta)

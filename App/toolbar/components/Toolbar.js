@@ -36,10 +36,14 @@ const Toolbar = (props) => {
     if (icon.id === 'openButton') {
       return <SearchButtonContainer key={index} />
     } else {
+      var newIcon = {...icon}
+      if (icon.id === 'empty') {
+        newIcon.imageURI += index
+      }
       return (
         <ToolbarIconAnimated
           key={index}
-          icon={icon}
+          icon={newIcon}
           shadow={true}
           layoutInfo={layoutInfo}
           toggleTrash={toggleTrash}
