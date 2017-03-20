@@ -173,7 +173,7 @@ class DashboardContainer extends Component {
   /** Update pops a confirmation dialog, and then immediately reboots the app */
   syncImmediate() {
     CodePush.sync(
-      { installMode: CodePush.InstallMode.IMMEDIATE, updateDialog: true },
+      { installMode: CodePush.InstallMode.IMMEDIATE, updateDialog: true, appendReleaseDescription: true },
       this.codePushStatusDidChange.bind(this),
       this.codePushDownloadDidProgress.bind(this)
     );
