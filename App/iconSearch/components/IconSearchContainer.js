@@ -41,17 +41,20 @@ class IconSearchContainer extends Component {
   componentWillReceiveProps (nextProps) {
     var data
     var toolbarsEqual = compareToolbars(this.props.toolbar, nextProps.toolbar)
-    if (!this.state.categoryIcon || (nextProps.iconSelected.id === 'empty' || nextProps.iconSelected.type === 'note')) {
+    if (nextProps.iconSelected.id === 'empty' || nextProps.iconSelected.type === 'note') {
+      console.log('here')
       data = this._getData(nextProps.toolbar)
       this.setState({
         dataSource: this.ds.cloneWithRows(data),
         categoryIcon: null
       })
-    } else if (!toolbarsEqual && nextProps.iconSelected.id !== 'empty') {
-      data = this._getTagData([this.state.categoryIcon,
-        ...getTagsByCategoryId(this.state.categoryIcon.id)], nextProps.toolbar)
+    } else if (nextProps.iconSelected.id !== 'empty') {
+      var categoryId = getCategoryIdByTagId(nextProps.iconSelected.id)
+      var categoryIcon = getIconById(categoryId)
+      data = this._getTagData([categoryIcon, ...getTagsByCategoryId(categoryIcon.id)], nextProps.toolbar)
       this.setState({
-        dataSource: this.ds.cloneWithRows(data)
+        dataSource: this.ds.cloneWithRows(data),
+        categoryIcon: categoryIcon
       })
     }
   }
