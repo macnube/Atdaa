@@ -63,7 +63,8 @@ class Map extends Component {
           userLocation={this.props.userLocation}
           setCardId={this.props.setCardId}
           cardId={this.props.POICardId}
-          moveMapToPlace={this.props.moveMapToPlace} />
+          moveMapToPlace={this.props.moveMapToPlace}
+          smallScreen={this.props.layoutInfo.smallScreen} />
       )
     } else return <View />
   }
