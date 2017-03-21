@@ -314,6 +314,7 @@ export const inDropZone = (gesture, zone, layoutInfo, index) => {
 
 export const getLayout = () => {
   const height = Dimensions.get('window').height
+  const smallScreen = height <= 570
   const width = Dimensions.get('window').width
   const isVertical = height > width
   const toolPaddingTop = 15
@@ -359,7 +360,8 @@ export const getLayout = () => {
     searchIcon: {
       height: iconHeight * 1.2
     },
-    dropZones: dropZones
+    dropZones: dropZones,
+    smallScreen: smallScreen
   }
 }
 
