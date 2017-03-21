@@ -16,7 +16,6 @@ const PlaceInfoNavBar = (props) => {
   const mainInfoColor = props.placeInfo.isNew ? 'rgb(240, 240, 240)' : props.icon.iconColor
   const solid = (
     <View style={[styles.mainContainer, {top: props.keyboardHeight}]}>
-      <View style={[styles.navFill, {height: props.navFillHeight}]} />
       <View style={[styles.mainInfo, {backgroundColor: mainInfoColor}]}>
         <TouchableHighlight
           onPress={() => props.handleToMap()}>
@@ -46,7 +45,7 @@ const PlaceInfoNavBar = (props) => {
     </LinearGradient>
   )
 
-  return props.navFillHeight <= 20 || props.keyboardHeight > 0 ? solid : normal
+  return props.navSolid || props.keyboardHeight > 0 ? solid : normal
 }
 
 export default PlaceInfoNavBar
