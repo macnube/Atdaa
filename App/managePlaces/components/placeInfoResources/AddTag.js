@@ -34,7 +34,7 @@ var styles = StyleSheet.create({
     height: 35,
     width: 125,
     borderRadius: 3,
-    borderWidth: 2,
+    borderWidth: StyleSheet.hairlineWidth,
     backgroundColor: 'rgb(250,250,250)',
     justifyContent: 'center', 
     alignItems: 'center',
