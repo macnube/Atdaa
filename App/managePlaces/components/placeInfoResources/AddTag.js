@@ -31,7 +31,7 @@ AddTag.propTypes = {
 
 var styles = StyleSheet.create({
   container: {
-    height: 27,
+    height: 35,
     width: 125,
     borderRadius: 3,
     borderWidth: 2,
