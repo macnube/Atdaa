@@ -14,6 +14,7 @@ import Icon from '../../shared/Icon'
 const MapMarker = ({ selected, place, showName }) => {
   const scoreSize = selected ? styles.selectedScoreSize : styles.scoreSize
   var icon = {...place.primaryIcon}
+  var shadow = place.score === 0 && !selected ? false : true
   if (place.score === 0 && selected) icon.imageURI += '_inactive'
   else if (place.score === 0) icon.imageURI += '_clean_inactive'
   else icon.imageURI = place.mapIcon.imageURI
@@ -38,7 +39,7 @@ const MapMarker = ({ selected, place, showName }) => {
   return (
     <View style={styles.container}>
       <View>
-        <Icon shadow={true} style={{height: iconHeight}} icon={icon} />
+        <Icon shadow={shadow} style={{height: iconHeight}} icon={icon} />
         {score}
       </View>
       {name}
