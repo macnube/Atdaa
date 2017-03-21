@@ -14,8 +14,8 @@ const OpenHours = (props) => {
   return (
     <View style={[styles.container, {width: containerWidth - 15}]}>
       <Image source={{uri: 'openHours'}} style={styles.image} />
-      <Text style={styles.text}>Today</Text>
-      <Text style={styles.text} numberOfLines={1}>{props.hours}</Text>
+      <Text style={styles.text}>Today:</Text>
+      <Text style={styles.textHours} numberOfLines={1}>{props.hours}</Text>
     </View>
   )
 }
@@ -25,9 +25,8 @@ export default OpenHours;
 var styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    marginLeft: 32,
+    marginLeft: 27,
   },
   image: {
     width: 17,
@@ -36,6 +35,11 @@ var styles = StyleSheet.create({
   text: {
     fontSize: 12,
     marginLeft: 15,
+    color: 'rgb(156,156,156)'
+  },
+  textHours: {
+    fontSize: 12,
+    marginLeft: 5,
     color: 'rgb(156,156,156)'
   }
 })

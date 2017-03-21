@@ -26,7 +26,7 @@ var styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 32,
+    marginLeft: 27,
   },
   image: {
     width: 17,
