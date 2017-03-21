@@ -17,7 +17,7 @@ class PlaceInfoContainer extends Component {
       editNotes: false,
       notes: props.placeInfo.notes || '',
       keyboardHeight: 0,
-      navFillHeight: 26
+      navSolid: false
     }
   }
 
@@ -129,18 +129,13 @@ class PlaceInfoContainer extends Component {
 
   handleScroll (event) {
     var scrollHeight = event.nativeEvent.contentOffset.y
-    if (scrollHeight >= 250 && scrollHeight <= 275) {
-      var diff = 275 - scrollHeight
+    if (scrollHeight > 270) {
       this.setState({
-        navFillHeight: diff
+        navSolid: true
       })
-    } else if (scrollHeight > 275 && this.state.navFillHeight !== 0) {
+    } else if (scrollHeight < 270 && this.state.navSolid) {
       this.setState({
-        navFillHeight: 0
-      })
-    } else if (scrollHeight < 250 && this.state.navFillHeight !== 26) {
-      this.setState({
-        navFillHeight: 26
+        navSolid: false
       })
     }
   }
@@ -171,7 +166,7 @@ class PlaceInfoContainer extends Component {
         notes={this.state.notes}
         keyboardHeight={this.state.keyboardHeight}
         handleScroll={this.handleScroll.bind(this)}
-        navFillHeight={this.state.navFillHeight}
+        navSolid={this.state.navSolid}
          />
     )
   }
