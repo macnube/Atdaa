@@ -10,7 +10,7 @@ import {
 
 const GPSButton = (props) => {
 	const style = {
-		bottom: props.layoutInfo.toolbar.height - 10,
+		bottom: props.layoutInfo.toolbar.height - 5,
 		left: props.layoutInfo.dropZones[4].xmin, 
 		height: props.layoutInfo.icon.height,
 		width: props.layoutInfo.icon.height,
