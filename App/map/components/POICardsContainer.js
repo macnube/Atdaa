@@ -12,7 +12,7 @@ class POICardsContainer extends Component {
   constructor (props) {
     super(props)
     this._matchingPlaces = this.props.matchingPlaces
-    this._totalCardWidth = 310 // Update this if the card width ever changes, here and in POICards & POICard
+    this._totalCardWidth = this.props.smallScreen ? 295 : 310 // Update this if the card width ever changes, here and in POICards & POICard
     this.state = {
       cardIndex: this._matchingPlaces.ids.indexOf(this.props.cardId),
       matched: this._isMatched(this.props.matchingPlaces.ids, this.props.cardId)
@@ -75,7 +75,8 @@ class POICardsContainer extends Component {
         match={index > -1}
         open={placeOpen(placeInfo)}
         placeInfo={placeInfo}
-        setPlaceInfo={setPlaceInfo} />
+        setPlaceInfo={setPlaceInfo}
+        smallScreen={this.props.smallScreen} />
     )
   }
 
@@ -114,7 +115,8 @@ class POICardsContainer extends Component {
           setPlaceInfo={this.props.setPlaceInfo}
           cardIndex={this.state.cardIndex}
           onScrollEnd={this._onCardScrollEnd.bind(this)}
-          filters={this.props.filters} />
+          filters={this.props.filters}
+          smallScreen={this.props.smallScreen} />
       )
     } else {
       return this._getSingleCard(this.props.cardId)

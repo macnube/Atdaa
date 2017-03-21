@@ -99,7 +99,7 @@ var styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     left: 0,
-    height: 70,
+    height: Dimensions.get('window').height > 570 ? 70 : 60,
     backgroundColor: 'rgba(255,255,255,0.9)'
   }
 })

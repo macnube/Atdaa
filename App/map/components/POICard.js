@@ -11,7 +11,7 @@ import Icon from '../../shared/Icon'
 import POITagsBar from './POITagsBar'
 import POIOpen from './POIOpen'
 
-const POICard = ({ placeInfo, setPlaceInfo, distance, cardIcons, open, match }) => {
+const POICard = ({ placeInfo, setPlaceInfo, smallScreen, distance, cardIcons, open, match }) => {
   console.log('placeInfo going into POICard', placeInfo)
   console.log('cardIcons going into POICard', cardIcons)
   const backgroundColor = match ? placeInfo.mapIcon.iconColor : 'rgb(74,74,74)'
@@ -20,7 +20,7 @@ const POICard = ({ placeInfo, setPlaceInfo, distance, cardIcons, open, match }) 
     <TouchableOpacity
       activeOpacity={1}
       onPress={() => setPlaceInfo(placeInfo)}>
-      <View style={styles.container}>
+      <View style={[styles.container, {width: smallScreen ? 285 : 300}]}>
         <View style={[styles.iconContainer, {backgroundColor: backgroundColor}]}>
           <Icon
             icon={icon}
@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
   container: {
     height: 95,
     margin: 5,
-    width: 300,
     flexDirection: 'row',
     zIndex: 10,
     backgroundColor: 'white',
