@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   locationContainer: {
     flexDirection: 'column',
     height: 80,
-    marginHorizontal: 12,
+    marginHorizontal: 18,
     backgroundColor: 'rgb(250,250,250)',
     borderRadius: 3,
     borderColor: 'rgb(230,230,230)',

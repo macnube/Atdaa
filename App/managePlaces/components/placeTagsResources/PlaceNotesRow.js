@@ -43,6 +43,7 @@ var styles = StyleSheet.create({
     marginHorizontal: 20
   },
   noteText: {
-    fontSize: 12
+    fontSize: 12,
+    color: 'rgb(146,146,146)'
   }
 })

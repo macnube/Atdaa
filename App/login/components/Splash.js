@@ -11,9 +11,6 @@ import {
 import * as colors from '../../resources/Colors'
 
 const Splash = (props) => {
-  var prompt = props.reading
-  ? 'Signing you in...'
-  : 'Please sign in'
   return (
     <Image
       source={{uri: 'splashBackground'}}
@@ -21,8 +18,8 @@ const Splash = (props) => {
       style={styles.backgroundImage}>
       <View style={styles.brandContainer}>
         <Image source={{uri: 'atdaaLarge'}} resizeMode='contain' style={{flex: 1, width: 204}} />
-        <Text style={styles.brandText}>Life is too short to be bored</Text>
-        <Text style={{backgroundColor: 'transparent', color: 'white'}}>{prompt}</Text>
+        <Text style={styles.brandText}>Life is too short</Text>
+        <Text style={styles.brandText}>to be bored</Text>
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
@@ -56,7 +53,7 @@ var styles = StyleSheet.create({
     backgroundColor: 'transparent',
     color: 'white',
     width: 153,
-    fontSize: 18
+    fontSize: 20
   },
   brandContainer: {
     marginTop: 155,
@@ -66,14 +63,15 @@ var styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'column',
-    marginTop: 85,
+    position: 'absolute',
+    bottom: 50,
     justifyContent: 'space-between'
   },
   loginButton: {
     width: 222,
     height: 44,
     borderRadius: 3,
-    backgroundColor: colors.pumpkinOrange,
+    backgroundColor: 'rgba(241,126,2,0.9)',
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -88,7 +86,7 @@ var styles = StyleSheet.create({
     height: 44,
     borderRadius: 3,
     borderColor: 'white',
-    borderWidth: 2,
+    borderWidth: StyleSheet.hairlineWidth,
     backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center'

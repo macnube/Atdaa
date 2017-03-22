@@ -52,6 +52,9 @@ var styles = StyleSheet.create({
   },
   tagText: {
     fontSize: 14,
+    width: 100,
+    letterSpacing: 0.3,
+    lineHeight: 20,
     textAlign: 'center',
     backgroundColor: 'transparent'
   },

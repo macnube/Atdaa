@@ -52,7 +52,7 @@ PlaceTags.propTypes = {
 
 var styles = StyleSheet.create({
   container: {
-    marginHorizontal: 12,
+    marginHorizontal: 18,
     marginTop: 7,
     backgroundColor: 'rgb(250,250,250)',
     borderRadius: 3,

@@ -14,7 +14,7 @@ class CategoryNotes extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.headerContainer}>
-          <Text>Notes</Text>
+          <Text style={styles.headerText}>Notes</Text>
         </View>
         <View style={styles.inputContainer}>
           <TextInput
@@ -25,7 +25,7 @@ class CategoryNotes extends Component {
             value={this.props.notes || ''}
             onChangeText={(text) => this.props.handleNotesChange(text)}
             onContentSizeChange={(event) => this.props.handleNoteSizeChange(event.nativeEvent.contentSize.height)}
-            placeholder='No notes...Click to edit' />
+            placeholder='Tap to edit your notes' />
         </View>
       </View>
     )
@@ -39,15 +39,20 @@ var styles = StyleSheet.create({
     marginTop: 15,
     marginHorizontal: 30
   },
+  headerText: {
+    color: 'rgb(156,156,156)',
+    fontSize: 13,
+    fontWeight: 'bold'
+  },
   headerContainer: {
     height: 30,
     width: 40,
     justifyContent: 'center',
-    borderBottomWidth: 1,
-    borderColor: 'black'
   },
   textInput: {
     padding: 5,
+    fontSize: 15,
+    color: 'rgb(178,178,178)',
     minHeight: 140
   },
   inputContainer: {

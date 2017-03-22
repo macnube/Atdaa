@@ -14,10 +14,10 @@ const ManageTagsNavBar = ({ categoryIcon, width, placeInfo, handlePress, barColo
     ? {width: width, backgroundColor: barColor}
     : [styles.navBarShadow, {width: width, backgroundColor: barColor, marginBottom: 30}]
   const backURI = categoryIcon ? 'backArrowLight' : 'backArrowDark'
-  const navTextColor = categoryIcon ? 'white' : 'rgb(74,74,74)'
+  const navTextColor = categoryIcon ? 'white' : 'rgb(135,135,135)'
   const title = categoryIcon
     ? <View />
-    : <Text style={[styles.navText, {color: navTextColor}]}>Editing {placeInfo.name}</Text>
+    : <Text numberOfLines={2} style={[styles.navText, {color: navTextColor}]}>Editing {placeInfo.name}</Text>
   return (
     <View style={[styles.navBar, extraStyle]}>
       <TouchableHighlight
@@ -64,11 +64,10 @@ var styles = StyleSheet.create({
     shadowOpacity: 1
   },
   navText: {
-    fontSize: 16,
-    marginTop: 25,
+    fontSize: 14,
+    marginTop: 15,
     textAlign: 'center',
     width: 150,
-    marginBottom: 15
   },
   doneText: {
     fontSize: 15,
@@ -88,8 +87,8 @@ var styles = StyleSheet.create({
     marginTop: 15
   },
   nav: {
-    marginTop: 15,
     width: 60,
+    marginTop: 15,
     alignItems: 'center',
     flexDirection: 'row'
   }

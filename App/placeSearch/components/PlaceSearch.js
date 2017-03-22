@@ -7,6 +7,7 @@ import {
   Text,
   Dimensions,
   StyleSheet,
+  ScrollView,
   Image,
   TouchableHighlight
 } from 'react-native'
@@ -67,9 +68,9 @@ class PlaceSearch extends Component {
       return (
         <View style={styles.nearbyContainer}>
           <Text style={styles.nearbyText}>Places Nearby</Text>
-          <View style={styles.nearbyResultsContainer}>
+          <ScrollView contentContainerStyle={styles.nearbyResultsContainer}>
             {nearby}
-          </View>
+          </ScrollView>
         </View>
       )
     } else {
@@ -218,7 +219,8 @@ var styles = StyleSheet.create({
   nearbyName: {
     color: 'rgb(139, 139, 139)',
     fontSize: 18,
-    width: 300
+    width: 300,
+    paddingRight: 25
   }
 })
 

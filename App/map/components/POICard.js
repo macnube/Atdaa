@@ -60,7 +60,7 @@ POICard.defaultProps = {
 
 const styles = StyleSheet.create({
   container: {
-    height: 95,
+    height: 85,
     margin: 5,
     flexDirection: 'row',
     zIndex: 10,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     shadowColor: 'rgb(0,0,0)',
     shadowOffset: {width: 0, height: 2},
     shadowRadius: 2,
-    shadowOpacity: 0.5,
+    shadowOpacity: 0.1,
     borderRadius: 6
   },
   iconContainer: {
@@ -95,13 +95,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   nameText: {
-    fontSize: 17
+    fontSize: 17,
+    color: 'rgb(135,135,135)'
   },
   infoContainer: {
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     height: 40
+  },
+  distance: {
+    color: 'rgb(156,156,156)'
   }
 })
 

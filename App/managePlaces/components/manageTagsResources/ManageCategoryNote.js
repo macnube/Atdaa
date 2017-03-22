@@ -26,8 +26,8 @@ const ManageCategoryNote = (props) => {
         notes={props.notes}
         noteHeight={props.noteHeight} />
       <View style={styles.textContainer}>
-        <Text>What did you like from the menu?</Text>
-        <Text>Please add it to the notes above</Text>
+        <Text style={styles.text}>What did you like from the menu?</Text>
+        <Text style={styles.text}>Please add it to the notes above</Text>
       </View>
     </View>
   )
@@ -41,5 +41,8 @@ var styles = StyleSheet.create({
   textContainer: {
     alignSelf: 'center',
     marginTop: 10
+  },
+  text: {
+    color: 'rgb(178,178,178)',
   }
 })

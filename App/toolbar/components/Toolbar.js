@@ -100,7 +100,7 @@ var styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     height: Dimensions.get('window').height > 570 ? 70 : 60,
-    backgroundColor: 'rgba(255,255,255,0.9)'
+    backgroundColor: 'rgb(255,255,255)'
   }
 })
 

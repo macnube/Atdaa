@@ -19,8 +19,8 @@ class SearchButtonContainer extends Component {
   }
 
   openClearModal () {
-    const text = 'Are you sure you want to clear your filters?'
-    this.props.openModal(text, this.handleClearToolbar.bind(this), 'Clear', 'clearModal')
+    const text = 'Are you sure you want to trash all your filters?'
+    this.props.openModal(text, this.handleClearToolbar.bind(this), 'Trash', 'iconTrash')
   }
 
   handleClearToolbar () {

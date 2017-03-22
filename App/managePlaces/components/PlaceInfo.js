@@ -35,13 +35,13 @@ const PlaceInfo = (props) => {
     : <View />
   tags = props.placeInfo.isNew
     ? <View />
-    : <PlaceTagsContainer place={props.placeInfo} handleEditCategory={props.handleEditCategory}/>
+    : <PlaceTagsContainer place={props.placeInfo} handleEditCategory={props.handleEditCategory} />
   icon = props.placeInfo.isNew
     ? {id: 'addTagLight', imageURI: 'addTagLight'}
     : props.placeInfo.primaryIcon
   const placeImage = props.placeInfo.photoURI
     ? <Image style={styles.imageContainer} source={{uri: props.placeInfo.photoURI}} />
-    : <View style={[styles.imageContainer, {backgroundColor: 'grey'}]} />
+    : <Image style={styles.imageContainer} source={{uri: 'noPhoto'}} />
   const containerPadding = props.editNotes ? 50 : 0
   const notes = props.placeInfo.isNew
     ? <View />

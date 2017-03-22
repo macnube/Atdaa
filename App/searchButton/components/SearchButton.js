@@ -18,10 +18,17 @@ const SearchButton = (props) => {
     shadowRadius: 2,
     shadowOpacity: 0.5
   }
-  var buttonURI = selectedTab === 'iconSearch' ? 'closeButtonLight' : 'addPlace'
+  const trashContainerStyle = {
+    position: 'absolute',
+    top: layoutInfo.dropZones[4].ymin,
+    left: layoutInfo.dropZones[4].xmin,
+    backgroundColor: 'transparent'
+  }
+  const buttonStyle = selectedTab === 'iconSearch' ? trashContainerStyle : containerStyle
+  var buttonURI = selectedTab === 'iconSearch' ? 'iconTrash' : 'addPlace'
   return (
     <TouchableOpacity
-      style={containerStyle}
+      style={buttonStyle}
       activeOpacity={1}
       onPress={() => handlePress()}>
       <View style={{height: layoutInfo.icon.height, width: layoutInfo.icon.height}}>

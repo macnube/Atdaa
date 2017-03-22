@@ -21,8 +21,7 @@ const Notes = (props) => {
         value={props.notes || ''}
         onChangeText={(text) => props.handleNotesChange(text)}
         onEndEditing={props.handleSaveNotes}
-        onFocus={() => console.log('clicking on notes!!!!')}
-        placeholder='No notes...Touch to edit, touch away to save' />
+        placeholder='Tap to edit your notes' />
     </View>
   )
 }
@@ -40,7 +39,7 @@ export default Notes
 var styles = StyleSheet.create({
   container: {
     marginTop: 15,
-    marginHorizontal: 12,
+    marginHorizontal: 18,
     marginBottom: 25
   },
   headerContainer: {
@@ -56,6 +55,7 @@ var styles = StyleSheet.create({
   textInput: {
     minHeight: 100,
     color: 'rgb(178,178,178)',
+    fontSize: 15,
     backgroundColor: 'rgb(250,250,250)',
     borderRadius: 3,
     borderWidth: 1,
