@@ -17,7 +17,7 @@ class POICards extends Component {
     this.ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     })
-    this._totalCardWidth = props.smallScreen ? 295 : 310
+    this._totalCardWidth = props.smallScreen ? 285 : 310
     this.state = {
       dataSource: this.ds.cloneWithRows(props.cardsInfo)
     }
@@ -91,7 +91,7 @@ class POICards extends Component {
 
   render () {
     const width = Dimensions.get('window').width
-    const cardWidth = this.props.smallScreen ? 285 : 300
+    const cardWidth = this.props.smallScreen ? 275 : 300
     const cardMargin = 5
     const padding = (width - cardWidth) / 2 - cardMargin
     return (

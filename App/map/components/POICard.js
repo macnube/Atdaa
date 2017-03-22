@@ -20,7 +20,7 @@ const POICard = ({ placeInfo, setPlaceInfo, smallScreen, distance, cardIcons, op
     <TouchableOpacity
       activeOpacity={1}
       onPress={() => setPlaceInfo(placeInfo)}>
-      <View style={[styles.container, {width: smallScreen ? 285 : 300}]}>
+      <View style={[styles.container, {width: smallScreen ? 275 : 300}]}>
         <View style={[styles.iconContainer, {backgroundColor: backgroundColor}]}>
           <Icon
             icon={icon}

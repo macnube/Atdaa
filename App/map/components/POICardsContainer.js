@@ -12,7 +12,7 @@ class POICardsContainer extends Component {
   constructor (props) {
     super(props)
     this._matchingPlaces = this.props.matchingPlaces
-    this._totalCardWidth = this.props.smallScreen ? 295 : 310 // Update this if the card width ever changes, here and in POICards & POICard
+    this._totalCardWidth = this.props.smallScreen ? 285 : 310 // Update this if the card width ever changes, here and in POICards & POICard
     this.state = {
       cardIndex: this._matchingPlaces.ids.indexOf(this.props.cardId),
       matched: this._isMatched(this.props.matchingPlaces.ids, this.props.cardId)
