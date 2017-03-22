@@ -254,7 +254,16 @@ const toMilitaryTime = (hour) => {
   } else return Number(newHour)
 }
 
+export const cleanType = (type) => {
+  if (type.search('_') > -1) {
+    type = type.split('_')
+    return type.map((word) => word[0].toUpperCase() + word.slice(1)).join(' ')
+  }
+  return type
+}
+
 export const formatPlaceDetails = (details, myPlaces) => {
+  console.log('Details coming back from formatPlaceDetails', details)
   var openText, weekday
   if (details.opening_hours) {
     openText = details.opening_hours.open_now
@@ -265,7 +274,8 @@ export const formatPlaceDetails = (details, myPlaces) => {
     openText = 'Unknown'
     weekday = 'Unknown'
   }
-  var type = details.types[0]
+  console.log('Types from formatPlaceDetails are: ', details.types)
+  var type = cleanType(details.types[0])
   const isNew = myPlaces.ids.indexOf(details.place_id) === -1
   const tags = isNew ? [] : myPlaces.placeById[details.place_id].tags
   const categoryNotes = isNew ? {} : (myPlaces.placeById[details.place_id].categoryNotes || {})

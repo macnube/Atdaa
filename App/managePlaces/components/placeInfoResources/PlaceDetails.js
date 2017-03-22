@@ -7,26 +7,23 @@ import {
   StyleSheet
 } from 'react-native'
 
-import * as colors from '../../../resources/Colors'
-
+import { cleanType } from '../../../utils/helpers'
 import Icon from '../../../shared/Icon'
 
-import Phone from './Phone'
 import AddTag from './AddTag'
-import Website from './Website'
 import Address from './Address'
 import OpenHours from './OpenHours'
-import Open from './Open'
 
 const PlaceDetails = ({ placeInfo, icon, handleAddTag, hours, distance, open }) => {
   const textColor = placeInfo.isNew ? 'rgb(120,120,120)' : 'white'
   const mainInfoColor = placeInfo.isNew ? 'rgb(240, 240, 240)' : icon.iconColor
+  const type = cleanType(placeInfo.type)
   return (
     <View style={styles.container}>
       <View style={styles.mainContainer}>
         <View style={[styles.mainInfo, {backgroundColor: mainInfoColor}]}>
           <Text style={[styles.nameText, {color: textColor}]} numberOfLines={1}>{placeInfo.name}</Text>
-          <Text style={[styles.typeText, {color: textColor}]}>{placeInfo.type}</Text>
+          <Text style={[styles.typeText, {color: textColor}]}>{type}</Text>
         </View>
         <TouchableOpacity
           onPress={() => handleAddTag()}>
