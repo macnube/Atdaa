@@ -11,7 +11,7 @@ import * as colors from '../../resources/Colors'
 
 const POIOpen = (props) => {
 	const uri = props.open === 'Open Now' ? 'clockOpen' : 'clockClosed'
-	const color = props.open === 'Open Now' ? colors.paleOliveGreen : colors.carnationPink
+	const color = props.open === 'Open Now' ? colors.paleOliveGreen : 'rgb(243,89,112)'
 	return (
 		<View style={styles.container}>
 			<Image source={{uri: uri}} style={styles.image} />
@@ -28,8 +28,8 @@ var styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	image: {
-		width: 10,
-		height: 10,
+		width: 12,
+		height: 12,
 	},
 	text: {
 		fontSize: 14,
