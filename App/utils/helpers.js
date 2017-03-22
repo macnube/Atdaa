@@ -28,7 +28,9 @@ export const getTagsByCategoryId = (categoryId) => {
   return getTagIdsByCategoryId(categoryId).map((tagId) => {
     return getIconById(tagId)
   }).sort((a, b) => {
-    if (a.name < b.name) return -1
+    if (b.name === 'Other') return -1
+    else if (a.name === 'Other') return 1
+    else if (a.name < b.name) return -1
     else return 1
   })
 }

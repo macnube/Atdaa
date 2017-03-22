@@ -309,6 +309,12 @@ const Icons = {
     name: 'Turnip',
     imageURI: 'juice'
   },
+  other_juice: {
+    id: 'other_juice',
+    type: 'tag',
+    name: 'Other',
+    imageURI: 'juice'
+  },
 
   // Tea Tags
 
@@ -382,6 +388,12 @@ const Icons = {
     id: 'white_tea',
     type: 'tag',
     name: 'White Tea',
+    imageURI: 'tea'
+  },
+  other_tea: {
+    id: 'other_tea',
+    type: 'tag',
+    name: 'Other',
     imageURI: 'tea'
   },
 
@@ -474,6 +486,12 @@ const Icons = {
     id: 'moka',
     type: 'tag',
     name: 'Moka',
+    imageURI: 'coffee'
+  },
+  other_coffee: {
+    id: 'other_coffee',
+    type: 'tag',
+    name: 'Other',
     imageURI: 'coffee'
   },
 
@@ -640,6 +658,12 @@ const Icons = {
     name: 'Tech House',
     imageURI: 'dj'
   },
+  other_dj: {
+    id: 'other_dj',
+    type: 'tag',
+    name: 'Other',
+    imageURI: 'dj'
+  },
 
   //Wine Tags
   merlot: {
@@ -696,7 +720,12 @@ const Icons = {
     name: 'Pinot Noir',
     imageURI: 'wine'
   },
-
+  other_wine: {
+    id: 'other_wine',
+    type: 'tag',
+    name: 'Other',
+    imageURI: 'wine'
+  },
 
   //Cocktail Tags
   mojito: {
@@ -999,6 +1028,12 @@ const Icons = {
     name: 'Old Fashioned',
     imageURI: 'cocktail'
   },
+  other_cocktail: {
+    id: 'other_cocktail',
+    type: 'tag',
+    name: 'Other',
+    imageURI: 'cocktail'
+  },
 
   // Live Music Tags
   bachata: {
@@ -1040,7 +1075,7 @@ const Icons = {
   indie: {
     id: 'indie',
     type: 'tag',
-    name: 'indie',
+    name: 'Indie',
     imageURI: 'livemusic'
   },
   lindy_hop: {
@@ -1070,7 +1105,7 @@ const Icons = {
   live_reggae: {
     id: 'live_reggae',
     type: 'tag',
-    name: 'reggae',
+    name: 'Reggae',
     imageURI: 'livemusic'
   },
   live_rock: {
@@ -1115,87 +1150,12 @@ const Icons = {
     name: 'Tango',
     imageURI: 'livemusic'
   },
-
-  // Fingerfood Tags
-  hot_dog: {
-    id: 'hot_dog',
+  other_livemusic: {
+    id: 'other_livemusic',
     type: 'tag',
-    name: 'Hot Dog',
-    imageURI: 'fingerfood'
+    name: 'Other',
+    imageURI: 'livemusic'
   },
-  nachos: {
-    id: 'nachos',
-    type: 'tag',
-    name: 'Nachos',
-    imageURI: 'fingerfood'
-  },
-  sandwich: {
-    id: 'sandwich',
-    type: 'tag',
-    name: 'Sandwich',
-    imageURI: 'fingerfood'
-  },
-  french_fries: {
-    id: 'french_fries',
-    type: 'tag',
-    name: 'French Fries',
-    imageURI: 'fingerfood'
-  },
-  tarta: {
-    id: 'tarta',
-    type: 'tag',
-    name: 'Tarta',
-    imageURI: 'fingerfood'
-  },
-  tortilla_espanola: {
-    id: 'tortilla_espanola',
-    type: 'tag',
-    name: 'Tortilla Espanola',
-    imageURI: 'fingerfood'
-  },
-  popcorn: {
-    id: 'popcorn',
-    type: 'tag',
-    name: 'Popcorn',
-    imageURI: 'fingerfood'
-  },
-  pizza: {
-    id: 'pizza',
-    type: 'tag',
-    name: 'Pizza',
-    imageURI: 'fingerfood'
-  },
-  empanada: {
-    id: 'empanada',
-    type: 'tag',
-    name: 'Empanada',
-    imageURI: 'fingerfood'
-  },
-  picada: {
-    id: 'picada',
-    type: 'tag',
-    name: 'Picada',
-    imageURI: 'fingerfood'
-  },
-  choripan: {
-    id: 'choripan',
-    type: 'tag',
-    name: 'Choripan',
-    imageURI: 'fingerfood'
-  },
-  churrasco: {
-    id: 'churrasco',
-    type: 'tag',
-    name: 'Churrasco',
-    imageURI: 'fingerfood'
-  },
-  humita: {
-    id: 'humita',
-    type: 'tag',
-    name: 'Humita',
-    imageURI: 'fingerfood'
-  },
-
 
   //Beer Tags
   ipa: {
@@ -1348,6 +1308,12 @@ const Icons = {
     id: 'barley_wine',
     type: 'tag',
     name: 'Barley Wine',
+    imageURI: 'beer'
+  },
+  other_beer: {
+    id: 'other_beer',
+    type: 'tag',
+    name: 'Other',
     imageURI: 'beer'
   },
 }

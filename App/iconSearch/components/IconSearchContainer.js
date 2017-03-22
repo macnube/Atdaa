@@ -69,7 +69,6 @@ class IconSearchContainer extends Component {
   }
 
   handleShowTags (icon) {
-    console.log('Showing tags of category: ', icon.id)
     var categoryIcon = {
       ...icon,
       imageURI: icon.imageURI.split('_')[0]
