@@ -20,7 +20,7 @@ const PlaceInfoNavBar = (props) => {
         <TouchableHighlight
           onPress={() => props.handleToMap()}>
           <View style={[styles.nav]}>
-            <Image style={[styles.back, {marginTop: 0}]} source={{uri: 'backArrowLight'}} />
+            <Image style={[styles.back, {marginTop: 10}]} source={{uri: 'backArrowLight'}} />
           </View>
         </TouchableHighlight>
         <View style={styles.textContainer} >
@@ -31,9 +31,10 @@ const PlaceInfoNavBar = (props) => {
       </View>
     </View>
   )
+  const endColor = props.gradient ? 'rgba(0,0,0,0.02)' : 'rgba(0,0,0,0)'
   const normal = (
     <LinearGradient
-      colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.02)']}
+      colors={['rgba(0,0,0,0)', endColor]}
       locations={[0.4, 1.0]}
       style={styles.navBar}>
       <TouchableHighlight

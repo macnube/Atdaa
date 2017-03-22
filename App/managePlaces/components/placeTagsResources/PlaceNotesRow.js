@@ -32,6 +32,8 @@ var styles = StyleSheet.create({
   container: {
     minHeight: 80,
     marginLeft: 25,
+    marginRight: 25,
+    paddingVertical: 25,
     flexDirection: 'row',
     alignItems: 'center',
     borderColor: 'rgb(238,238,238)',

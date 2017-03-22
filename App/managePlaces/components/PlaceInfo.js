@@ -87,7 +87,8 @@ const PlaceInfo = (props) => {
         keyboardHeight={props.keyboardHeight}
         icon={icon}
         placeInfo={props.placeInfo}
-        navSolid={props.navSolid} />
+        navSolid={props.navSolid}
+        gradient={props.gradient} />
     </KeyboardAvoidingView>
   )
 }

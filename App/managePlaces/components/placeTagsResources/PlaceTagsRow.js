@@ -25,20 +25,16 @@ const PlaceTagsRow = (props) => {
   }
 
   return (
-    <TouchableOpacity
-      onPress={() => props.handleEditCategory(props.icon)}
-      activeOpacity={1}>
-      <View style={styles.container}>
-        <Icon style={{height: 26}} icon={{...props.icon, imageURI: props.icon.imageURI+'Clean'}} shadow={false} />
-        <ScrollView
-          style={styles.scrollContainer}
-          horizontal={true}
-          scrollEnabled={true}
-          showsHorizontalScrollIndicator={true}>
-          {createTags()}
-        </ScrollView>
-      </View>
-    </TouchableOpacity>
+    <View style={styles.container}>
+      <Icon style={{height: 26}} icon={{...props.icon, imageURI: props.icon.imageURI+'Clean'}} shadow={false} />
+      <ScrollView
+        style={styles.scrollContainer}
+        horizontal={true}
+        scrollEnabled={true}
+        showsHorizontalScrollIndicator={true}>
+        {createTags()}
+      </ScrollView>
+    </View>
 
   )
 }
@@ -56,6 +52,7 @@ var styles = StyleSheet.create({
   },
   scrollContainer: {
     marginLeft: 20,
+    marginRight: 20,
     height: 80,
   },
   tagText: {
