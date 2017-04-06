@@ -8,6 +8,27 @@ import IconTags from '../resources/IconTags'
 
 // Icon and IconTag helpers
 
+export const cleanMyPlaces = (userInfo) => {
+  var newids = [...userInfo.myPlaces.ids]
+  var newPlaceById = {...userInfo.myPlaces.placeById}
+  userInfo.myPlaces.ids.forEach((id) => {
+    newPlaceById[id].tags = newPlaceById[id].tags.filter((tag) => {
+      return tag in Icons
+    })
+    if (newPlaceById[id].tags.length === 0) {
+      newids = [...newids.slice(newids.indexOf(0, id)), ...newids.slice(newids.indexOf(id))]
+      delete newPlaceById[id]
+    }
+  })
+  var newMyPlaces = {
+    ids: newids,
+    lastUpdated: userInfo.myPlaces.lastUpdated,
+    placeById: newPlaceById
+  }
+
+  return {...userInfo, myPlaces: newMyPlaces}
+}
+
 export const getAllIcons = () => {
   var result = []
   for (var key in Icons) {

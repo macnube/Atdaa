@@ -4,7 +4,7 @@ import { Dimensions } from 'react-native'
 
 import { setUserInfo } from '../actions'
 import api from '../../utils/api'
-import { getLatestPlaces } from '../../utils/helpers'
+import { getLatestPlaces, cleanMyPlaces } from '../../utils/helpers'
 
 import dashboard from '../../dashboard'
 import map from '../../map'
@@ -101,6 +101,7 @@ class SplashContainer extends Component {
           reading: true
         })
         console.log('This is user from SplashContainer', this._userInfo)
+        var cleanedInfo = cleanMyPlaces(this._userInfo)
         this.props.setUserInfo(this._userInfo)
         var lastUpdated = 0
         if (this._userInfo.myPlaces) lastUpdated = this._userInfo.myPlaces.lastUpdated || 0

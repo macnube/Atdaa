@@ -26,7 +26,7 @@ var codePushOptions
 if (Config.CODEPUSH_SYNC_VISIBLE === 'true') {
 	codePushOptions = { checkFrequency: CodePush.CheckFrequency.MANUAL }
 } else {
-	codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME, installMode: codePush.InstallMode.ON_APP_START }
+	codePushOptions = { checkFrequency: CodePush.CheckFrequency.ON_APP_RESUME, installMode: CodePush.InstallMode.ON_APP_START }
 }
 
 

@@ -68,7 +68,7 @@ const Icons = {
   juice: {
     id: 'juice',
     type: 'category',
-    name: 'Juice',
+    name: 'Other Drinks',
     imageURI: 'juice',
     iconColor: 'rgb(254,183,115)',
   },
@@ -135,178 +135,46 @@ const Icons = {
   },
   */
   // Juice Tags
-  apple: {
-    id: 'apple',
-    type: 'tag',
-    name: 'Apple',
-    imageURI: 'juice'
-  },
-  beet: {
-    id: 'beet',
-    type: 'tag',
-    name: 'Beet',
-    imageURI: 'juice'
-  },
-  blueberry: {
-    id: 'blueberry',
-    type: 'tag',
-    name: 'Blueberry',
-    imageURI: 'juice'
-  },
-  cantalope: {
-    id: 'cantalope',
-    type: 'tag',
-    name: 'Cantalope',
-    imageURI: 'juice'
-  },
-  carrot: {
-    id: 'carrot',
-    type: 'tag',
-    name: 'Carrot',
-    imageURI: 'juice'
-  },
-  celery: {
-    id: 'celery',
-    type: 'tag',
-    name: 'Celery',
-    imageURI: 'juice'
-  },
-  coconut: {
-    id: 'coconut',
-    type: 'tag',
-    name: 'Coconut',
-    imageURI: 'juice'
-  },
-  cranberry: {
-    id: 'cranberry',
-    type: 'tag',
-    name: 'Cranberry',
-    imageURI: 'juice'
-  },
-  grape: {
-    id: 'grape',
-    type: 'tag',
-    name: 'Grape',
-    imageURI: 'juice'
-  },
-  grapefruit: {
-    id: 'grapefruit',
-    type: 'tag',
-    name: 'Grapefruit',
-    imageURI: 'juice'
-  },
-  guava: {
-    id: 'guava',
-    type: 'tag',
-    name: 'Guava',
-    imageURI: 'juice'
-  },
-  honeydew: {
-    id: 'honeydew',
-    type: 'tag',
-    name: 'Honeydew',
-    imageURI: 'juice'
-  },
-  kiwi: {
-    id: 'kiwi',
-    type: 'tag',
-    name: 'Kiwi',
-    imageURI: 'juice'
-  },
   lemonade: {
     id: 'lemonade',
     type: 'tag',
     name: 'Lemonade',
     imageURI: 'juice'
   },
-  lime: {
-    id: 'lime',
+  smoothie: {
+    id: 'smoothie',
     type: 'tag',
-    name: 'Lime',
+    name: 'Smoothie',
     imageURI: 'juice'
   },
-  mango: {
-    id: 'mango',
+  milkshake: {
+    id: 'milkshake',
     type: 'tag',
-    name: 'Mango',
+    name: 'Milkshake',
     imageURI: 'juice'
   },
-  maracuya: {
-    id: 'maracuya',
+  fruit_juice: {
+    id: 'fruit_juice',
     type: 'tag',
-    name: 'Maracuya',
+    name: 'Fruit Juice',
     imageURI: 'juice'
   },
-  orange: {
-    id: 'orange',
+  vegetable_juice: {
+    id: 'vegetable_juice',
     type: 'tag',
-    name: 'Orange',
+    name: 'Vegetable Juice',
     imageURI: 'juice'
   },
-  melon: {
-    id: 'melon',
+  mix_juice: {
+    id: 'mix_juice',
     type: 'tag',
-    name: 'Melon',
+    name: 'Mix Juice',
     imageURI: 'juice'
   },
-  papaya: {
-    id: 'papaya',
+  flavored_water: {
+    id: 'flavored_water',
     type: 'tag',
-    name: 'Papaya',
-    imageURI: 'juice'
-  },
-  passionfruit: {
-    id: 'passionfruit',
-    type: 'tag',
-    name: 'Passionfruit',
-    imageURI: 'juice'
-  },
-  persimmon: {
-    id: 'persimmon',
-    type: 'tag',
-    name: 'Persimmon',
-    imageURI: 'juice'
-  },
-  pineapple: {
-    id: 'pineapple',
-    type: 'tag',
-    name: 'Pineapple',
-    imageURI: 'juice'
-  },
-  pomegranate: {
-    id: 'pomegranate',
-    type: 'tag',
-    name: 'Pomegranate',
-    imageURI: 'juice'
-  },
-  raspberry: {
-    id: 'raspberry',
-    type: 'tag',
-    name: 'Raspberry',
-    imageURI: 'juice'
-  },
-  spinach: {
-    id: 'spinach',
-    type: 'tag',
-    name: 'Spinach',
-    imageURI: 'juice'
-  },
-  strawberry: {
-    id: 'strawberry',
-    type: 'tag',
-    name: 'Strawberry',
-    imageURI: 'juice'
-  },
-  tomato: {
-    id: 'tomato',
-    type: 'tag',
-    name: 'Tomato',
-    imageURI: 'juice'
-  },
-  turnip: {
-    id: 'turnip',
-    type: 'tag',
-    name: 'Turnip',
+    name: 'Flavored Water',
     imageURI: 'juice'
   },
   other_juice: {
@@ -388,6 +256,12 @@ const Icons = {
     id: 'white_tea',
     type: 'tag',
     name: 'White Tea',
+    imageURI: 'tea'
+  },
+  ginger_tea: {
+    id: 'ginger_tea',
+    type: 'tag',
+    name: 'Ginger Tea',
     imageURI: 'tea'
   },
   other_tea: {
@@ -488,6 +362,18 @@ const Icons = {
     name: 'Moka',
     imageURI: 'coffee'
   },
+  nitro_cold_brew: {
+    id: 'nitro_cold_brew',
+    type: 'tag',
+    name: 'Nitro Cold Brew',
+    imageURI: 'coffee'
+  },
+  clever_dripper: {
+    id: 'clever_dripper',
+    type: 'tag',
+    name: 'Clever Dripper',
+    imageURI: 'coffee'
+  },
   other_coffee: {
     id: 'other_coffee',
     type: 'tag',
@@ -560,12 +446,6 @@ const Icons = {
     id: 'hiphop',
     type: 'tag',
     name: 'Hip Hop',
-    imageURI: 'dj'
-  },
-  rave: {
-    id: 'rave',
-    type: 'tag',
-    name: 'Rave',
     imageURI: 'dj'
   },
   blues: {
@@ -664,6 +544,36 @@ const Icons = {
     name: 'Other',
     imageURI: 'dj'
   },
+  cumbia_argentina: {
+    id: 'cumbia_argentina',
+    type: 'tag',
+    name: 'Cumbia Argentina',
+    imageURI: 'dj'
+  },
+  cumbia_villera: {
+    id: 'cumbia_villera',
+    type: 'tag',
+    name: 'Cumbia Villera',
+    imageURI: 'dj'
+  },
+  minimal_house: {
+    id: 'minimal_house',
+    type: 'tag',
+    name: 'Minimal House',
+    imageURI: 'dj'
+  },
+  minimal_techno: {
+    id: 'minimal_techno',
+    type: 'tag',
+    name: 'Minimal Techno',
+    imageURI: 'dj'
+  },
+  rock_national: {
+    id: 'rock_national',
+    type: 'tag',
+    name: 'Rock National',
+    imageURI: 'dj'
+  },
 
   //Wine Tags
   merlot: {
@@ -718,6 +628,72 @@ const Icons = {
     id: 'pinot_noir',
     type: 'tag',
     name: 'Pinot Noir',
+    imageURI: 'wine'
+  },
+  chenin: {
+    id: 'chenin',
+    type: 'tag',
+    name: 'Chenin',
+    imageURI: 'wine'
+  },
+  riesling: {
+    id: 'riesling',
+    type: 'tag',
+    name: 'Riesling',
+    imageURI: 'wine'
+  },
+  sauvignon: {
+    id: 'sauvignon',
+    type: 'tag',
+    name: 'Sauvignon',
+    imageURI: 'wine'
+  },
+  semillon: {
+    id: 'semillon',
+    type: 'tag',
+    name: 'Semillón',
+    imageURI: 'wine'
+  },
+  torrontes_mendocino: {
+    id: 'torrontes_mendocino',
+    type: 'tag',
+    name: 'Torrontés Mendocino',
+    imageURI: 'wine'
+  },
+  torrontes_riojano: {
+    id: 'torrontes_riojano',
+    type: 'tag',
+    name: 'Torrontés Riojano',
+    imageURI: 'wine'
+  },
+  torrontes_sanjuanino: {
+    id: 'torrontes_sanjuanino',
+    type: 'tag',
+    name: 'Torrontés Sanjuanino',
+    imageURI: 'wine'
+  },
+  cabernet_franc: {
+    id: 'cabernet_franc',
+    type: 'tag',
+    name: 'Cabernet Franc',
+    imageURI: 'wine'
+  },
+  petit_verdot: {
+    id: 'petit_verdot',
+    type: 'tag',
+    name: 'Petit Verdot',
+    imageURI: 'wine'
+  },
+  tannat: {
+    id: 'tannat',
+    type: 'tag',
+    name: 'Tannat',
+    imageURI: 'wine'
+  },
+  sangiovese: {
+    id: 'sangiovese',
+    type: 'tag',
+    name: 'Sangiovese',
     imageURI: 'wine'
   },
   other_wine: {
@@ -792,12 +768,6 @@ const Icons = {
     id: 'bloody_mary',
     type: 'tag',
     name: 'Bloody Mary',
-    imageURI: 'cocktail'
-  },
-  fizz: {
-    id: 'fizz',
-    type: 'tag',
-    name: 'Fizz',
     imageURI: 'cocktail'
   },
   sidecar: {
@@ -1028,6 +998,24 @@ const Icons = {
     name: 'Old Fashioned',
     imageURI: 'cocktail'
   },
+  dirty_martini: {
+    id: 'dirty_martini',
+    type: 'tag',
+    name: 'Dirty Martini',
+    imageURI: 'cocktail'
+  },
+  fernet_coke: {
+    id: 'fernet_coke',
+    type: 'tag',
+    name: 'Fernet Coke',
+    imageURI: 'cocktail'
+  },
+  gin_fizz: {
+    id: 'gin_fizz',
+    type: 'tag',
+    name: 'Gin Fizz',
+    imageURI: 'cocktail'
+  },
   other_cocktail: {
     id: 'other_cocktail',
     type: 'tag',
@@ -1135,7 +1123,7 @@ const Icons = {
   soul: {
     id: 'soul',
     type: 'tag',
-    name: 'Soul',
+    name: 'Funk & Soul',
     imageURI: 'livemusic'
   },
   swing: {
@@ -1150,6 +1138,12 @@ const Icons = {
     name: 'Tango',
     imageURI: 'livemusic'
   },
+  percussion: {
+    id: 'percussion',
+    type: 'tag',
+    name: 'Percussion',
+    imageURI: 'livemusic'
+  },
   other_livemusic: {
     id: 'other_livemusic',
     type: 'tag',
@@ -1161,7 +1155,7 @@ const Icons = {
   ipa: {
     id: 'ipa',
     type: 'tag',
-    name: 'India Pale Ale',
+    name: 'India Pale Ale (IPA)',
     abName: 'IPA',
     imageURI: 'beer'
   },
@@ -1211,7 +1205,7 @@ const Icons = {
   hefe: {
     id: 'hefe',
     type: 'tag',
-    name: 'Hefe',
+    name: 'Hefeweissen',
     imageURI: 'beer'
   },
   weiss_beer: {
@@ -1286,12 +1280,6 @@ const Icons = {
     name: 'Scotch Ale',
     imageURI: 'beer'
   },
-  kölsch: {
-    id: 'kölsch',
-    type: 'tag',
-    name: 'Kölsch',
-    imageURI: 'beer'
-  },
   stout: {
     id: 'stout',
     type: 'tag',
@@ -1308,6 +1296,30 @@ const Icons = {
     id: 'barley_wine',
     type: 'tag',
     name: 'Barley Wine',
+    imageURI: 'beer'
+  },
+  american_pale_ale: {
+    id: 'american_pale_ale',
+    type: 'tag',
+    name: 'American Pale Ale',
+    imageURI: 'beer'
+  },
+  celtic: {
+    id: 'celtic',
+    type: 'tag',
+    name: 'Celtic',
+    imageURI: 'beer'
+  },
+  dunkelweizen: {
+    id: 'dunkelweizen',
+    type: 'tag',
+    name: 'Dunkelweizen',
+    imageURI: 'beer'
+  },
+  imperial_ipa: {
+    id: 'imperial_ipa',
+    type: 'tag',
+    name: 'Imperial Ipa',
     imageURI: 'beer'
   },
   other_beer: {
