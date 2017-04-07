@@ -44,7 +44,7 @@ export const getPlaceDetails = (id) => {
 
 export const getNearbyPlaces = (userLocation) => {
   var latlng = userLocation.latitude + ',' + userLocation.longitude
-  var radius = 200
+  var radius = 400
   var url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${googleAPI}&location=${latlng}&radius=${radius}`
   console.log('this is the request url', url)
   return fetch(url)
