@@ -29,6 +29,7 @@ Currently Atdaa is in MVP state with only the ability to add places to your own 
 
 ## Tech Stack
 ### Main Framework: React Native / Redux
-### Main Libraries: react-native-maps, react-native-google-search-autocomplete
+### Main Libraries: react-native-maps
 ### Database: react-native-firebase
-### Error logging: bugsnag-react-native
+### Error logging: bugsnag-react-native & Crashalytics
+### Test disribution: Fabric & Code Push
