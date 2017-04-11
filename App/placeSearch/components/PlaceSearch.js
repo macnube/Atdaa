@@ -68,9 +68,11 @@ class PlaceSearch extends Component {
       return (
         <View style={styles.nearbyContainer}>
           <Text style={styles.nearbyText}>Places Nearby</Text>
-          <ScrollView contentContainerStyle={styles.nearbyResultsContainer}>
-            {nearby}
-          </ScrollView>
+          <View style={styles.nearbyResultsContainer}>
+            <ScrollView>
+              {nearby}
+            </ScrollView>
+          </View>
         </View>
       )
     } else {
@@ -189,6 +191,7 @@ var styles = StyleSheet.create({
   },
   nearbyContainer: {
     marginTop: 15,
+    paddingBottom: 20,
     flex: 1
   },
   nearbyText: {
