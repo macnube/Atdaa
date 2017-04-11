@@ -10,8 +10,9 @@ Futhermore, we recognize that taste is a very personal thing. Mass review system
 <img src="https://github.com/macnube/Atdaa/blob/master/Images/MapPOICard.png" width="230">
 <img src="https://github.com/macnube/Atdaa/blob/master/Images/PlaceSearch.png" width="230">
 <img src="https://github.com/macnube/Atdaa/blob/master/Images/PlaceInfo.png" width="230">
-<img src="https://github.com/macnube/Atdaa/blob/master/Images/BeerTag.png" width="230">
+<img src="https://github.com/macnube/Atdaa/blob/master/Images/CocktailTag.png" width="230">
 <img src="https://github.com/macnube/Atdaa/blob/master/Images/FoodNote.png" width="230">
+<img src="https://github.com/macnube/Atdaa/blob/master/Images/TagScreen.png" width="230">
 
 ## Current State
 Currently Atdaa is in MVP state with only the ability to add places to your own personal map. We look forward to adding the social component in future releases and to continue to develop the tags and categories available to our users. 
