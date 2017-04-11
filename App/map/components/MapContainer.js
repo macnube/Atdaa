@@ -14,7 +14,7 @@ import {
 	setUserLocation,
 	setNearbyPlaces 
 } from '../actions'
-import { getNearbyPlaces, getPlaceDetails } from '../../utils/api'
+import { getTypeNearbyPlaces, getPlaceDetails } from '../../utils/api'
 import placeSearch from '../../placeSearch'
 import dashboard from '../../dashboard'
 import { 
@@ -30,7 +30,8 @@ import {
 	getMatchingPlaces, 
 	getVisiblePlaces, 
 	getMarkerPlaces, 
-	getRegion, 
+	getRegion,
+	getNearbyPlaces,
 	getUserLocation, 
 	getCardId,
 	getShowNames
@@ -66,50 +67,15 @@ class MapContainer extends Component {
 
 	componentWillUpdate(nextProps, nextState) {
   	//If new card is selected
+  	console.log('MapContainer will update')
   	const { region } = nextState;
   	const { myPlaces, filters } = nextProps
   	this.markerPlaces = this._getPlaces(myPlaces, filters, region, 5)
   	this.visiblePlaces = this._getPlaces(this.markerPlaces, filters, region, 1.1);
   	this.matchingPlaces = this._getMatchingPlaces(this.visiblePlaces)
   	if (this.state.userLocation.latitude !== nextState.userLocation.latitude) {
-      getNearbyPlaces(this.props.userLocation)
-      .then((res) => res.json())
-      .then((responseJson) => {
-      	var filteredPlaces = filterPlacesByType(responseJson.results)
-      	var counter = 0
-      	var places = []
-      	filteredPlaces.forEach((place) => {
-      		getPlaceDetails(place.place_id)
-      		.then((res) => res.json())
-      		.then((details) => {
-      			counter ++
-      			if (counter === filteredPlaces.length) {
-      				this.props.setNearbyPlaces(places)
-      			}
-      			places.push(details.result)
-      		})
-      		.catch((error) => {
-      			console.log('Error getting place details for nearby places', error)
-      		})
-      	})
-      })
-      .catch((error) => {
-        console.log('Error getting nearby places', error)
-      })
+	  	this._getNearbyPlaces()
     }
-  	/*
-  	if ((this.state.cardId !== nextState.cardId) && nextState.cardId) {
-  		var place = this.markerPlaces.placeById[nextState.cardId]
-  		var nextRegion = {
-				latitude: place.latlng.latitude,
-	      longitude: place.latlng.longitude,
-	      latitudeDelta: this.state.region.latitudeDelta,
-	      longitudeDelta: this.state.region.longitudeDelta,
-			}
-			this._animating = true;
-  		this._mapReference.animateToRegion(nextRegion, .5)
-  	}
-  	*/
   }
 
 	componentWillMount() {
@@ -133,30 +99,11 @@ class MapContainer extends Component {
 			this.markerPlaces = this._getPlaces(myPlaces, filters, region, 5)
 	  	this.visiblePlaces = this._getPlaces(this.markerPlaces, filters, region, 1.2);
 	  	this.matchingPlaces = this._getMatchingPlaces(this.visiblePlaces)
-	    getNearbyPlaces(this.state.userLocation)
-	      .then((res) => res.json())
-	      .then((responseJson) => {
-	      	var filteredPlaces = filterPlacesByType(responseJson.results)
-	      	var counter = 0
-	      	var places = []
-	      	filteredPlaces.forEach((place) => {
-	      		getPlaceDetails(place.place_id)
-	      		.then((res) => res.json())
-	      		.then((details) => {
-	      			counter ++
-	      			if (counter === filteredPlaces.length) {
-	      				this.props.setNearbyPlaces(places)
-	      			}
-	      			places.push(details.result)
-	      		})
-	      		.catch((error) => {
-	      			console.log('Error getting nearby place details', error)
-	      		})
-	      	})
-	      })
-	      .catch((error) => {
-	        console.log('Error getting nearby places', error)
-	      })
+	  	console.log('Nearbyplaces is: ', this.props.nearbyPlaces)
+	  	if (this.props.nearbyPlaces.length === 0) {
+	  		console.log('In nearby')
+	  		this._getNearbyPlaces()
+	  	}
 		}
 	}
 
@@ -185,6 +132,42 @@ class MapContainer extends Component {
 				return acc
 			}
 		}, {ids: [], placeById: {}})
+	}
+
+	_getNearbyPlaces() {
+		console.log('userLocation from getNearbyPlaces: ', this.state.userLocation)
+		var types = [
+	  		'cafe',
+	  		'bakery',
+	  		'bar',
+	  		'meal_takeaway',
+	  		'night_club',
+	  		'restaurant'
+	  	]
+    var promises = types.map((type) => getTypeNearbyPlaces(this.state.userLocation, type))
+    Promise.all(promises)
+    	.then((results) => {
+    	  return results.reduce((acc, ele) => {
+	    		ele.forEach((place) => {
+	    			acc[place.place_id] = place
+	    		})
+	    		return acc
+	    	}, {})
+    	})
+    	.then((filteredResults) => {
+    		var details = []
+    		for (placeID in filteredResults) {
+    			details.push(
+    				getPlaceDetails(placeID)
+    				.then((res) => res.json())
+    				.then((details) => details.result)
+  				)
+    		}
+    		return Promise.all(details)
+    	})
+    	.then((detailedPlaces) => {
+    		this.props.setNearbyPlaces(detailedPlaces)
+    	})
 	}
 
 	_shouldShowNames(region) {
@@ -326,6 +309,7 @@ const mapStateToProps = (state) => {
 		myPlaces: state.myPlaces,
 		filters: toolbar.selectors.getFilters(state.toolbar),
 		region: getRegion(state),
+		nearbyPlaces: getNearbyPlaces(state),
 		userLocation: getUserLocation(state),
 		placeInfo: state.placeInfo,
 		tab: dashboard.selectors.getSelectedTab(state.dashboard)

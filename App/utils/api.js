@@ -6,6 +6,8 @@ import {
 import Config from 'react-native-config'
 import Firestack from 'react-native-firestack'
 
+import { filterPlacesByType } from './helpers'
+
 var googleAPI = Config.GOOGLE_API_KEY
 var firestackConfig = {
   debug: true
@@ -42,11 +44,23 @@ export const getPlaceDetails = (id) => {
   return fetch(url)
 }
 
-export const getNearbyPlaces = (userLocation) => {
+export const getTypeNearbyPlaces = (userLocation, type) => {
+  return getNearbyPlaces(userLocation, type)
+    .then((res) => res.json())
+    .then((responseJson) => {
+      return responseJson.results
+    })
+    .catch((error) => {
+      console.log('Error getting place details for nearby places', error)
+    })
+}
+
+export const getNearbyPlaces = (userLocation, type = '') => {
   var latlng = userLocation.latitude + ',' + userLocation.longitude
-  var radius = 400
+  var radius = 100
   var url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${googleAPI}&location=${latlng}&radius=${radius}`
-  console.log('this is the request url', url)
+  if (type) url += `&type=${type}`
+  console.log('this is the request url for nearby', url)
   return fetch(url)
 }
 
