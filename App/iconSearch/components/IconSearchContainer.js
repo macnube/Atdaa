@@ -4,7 +4,14 @@ import { connect } from 'react-redux'
 import { ListView } from 'react-native'
 import dashboard from '../../dashboard'
 import toolbar from '../../toolbar'
-import { compareToolbars, getAllCategories, getIconById, getTagsByCategoryId, getCategoryIdByTagId, isInToolbar } from '../../utils/helpers'
+import {
+  compareToolbars,
+  getAllCategories,
+  getIconById,
+  getSearchTagsByCategoryId,
+  getCategoryIdByTagId,
+  isInToolbar
+} from '../../utils/helpers'
 import IconSearch from './IconSearch'
 
 class IconSearchContainer extends Component {
@@ -15,13 +22,16 @@ class IconSearchContainer extends Component {
       rowHasChanged: (r1, r2) => r1 !== r2
     })
     var data, categoryIcon, categoryId
-    if (this.props.iconSelected.id === 'empty' || this.props.iconSelected.type === 'note') {
+    if (this.props.iconSelected.id === 'empty' ||
+      this.props.iconSelected.type === 'note') {
       data = this._getData(this.props.toolbar)
       categoryIcon = null
     } else {
       categoryId = getCategoryIdByTagId(this.props.iconSelected.id)
       categoryIcon = getIconById(categoryId)
-      data = this._getTagData([categoryIcon, ...getTagsByCategoryId(categoryIcon.id)], this.props.toolbar)
+      data = this._getTagData(
+        [categoryIcon, ...getSearchTagsByCategoryId(categoryIcon.id)],
+        this.props.toolbar)
     }
     this.state = {
       dataSource: this.ds.cloneWithRows(data),
@@ -41,7 +51,8 @@ class IconSearchContainer extends Component {
   componentWillReceiveProps (nextProps) {
     var data
     var toolbarsEqual = compareToolbars(this.props.toolbar, nextProps.toolbar)
-    if (nextProps.iconSelected.id === 'empty' || nextProps.iconSelected.type === 'note') {
+    if (nextProps.iconSelected.id === 'empty' ||
+      nextProps.iconSelected.type === 'note') {
       console.log('here')
       data = this._getData(nextProps.toolbar)
       this.setState({
@@ -51,7 +62,7 @@ class IconSearchContainer extends Component {
     } else if (nextProps.iconSelected.id !== 'empty') {
       var categoryId = getCategoryIdByTagId(nextProps.iconSelected.id)
       var categoryIcon = getIconById(categoryId)
-      data = this._getTagData([categoryIcon, ...getTagsByCategoryId(categoryIcon.id)], nextProps.toolbar)
+      data = this._getTagData([categoryIcon, ...getSearchTagsByCategoryId(categoryIcon.id)], nextProps.toolbar)
       this.setState({
         dataSource: this.ds.cloneWithRows(data),
         categoryIcon: categoryIcon
@@ -73,7 +84,7 @@ class IconSearchContainer extends Component {
       ...icon,
       imageURI: icon.imageURI.split('_')[0]
     }
-    var newData = this._getTagData([categoryIcon, ...getTagsByCategoryId(icon.id)], this.props.toolbar)
+    var newData = this._getTagData([categoryIcon, ...getSearchTagsByCategoryId(icon.id)], this.props.toolbar)
     this.setState({
       dataSource: this.ds.cloneWithRows(newData),
       categoryIcon: categoryIcon

@@ -3,6 +3,7 @@ import React from 'React'
 import {
   StyleSheet,
   Text,
+  View,
   TouchableOpacity
 } from 'react-native'
 
@@ -26,7 +27,7 @@ const IconTagSearchRow = ({ layoutInfo, icon, handleNewIcon, handleUpdateToolbar
   if (icon.index % 2 === 0) {
     borderStyle = borderLeftColumn
   } else borderStyle = borderRightColumn
-  return (
+  var tag = (
     <TouchableOpacity
       onPress={() => handleUpdateToolbar(icon)}
       style={[styles.container, borderStyle]}
@@ -34,6 +35,8 @@ const IconTagSearchRow = ({ layoutInfo, icon, handleNewIcon, handleUpdateToolbar
       <Text style={[styles.tagText, {color: textColor}]}>{name}</Text>
     </TouchableOpacity>
   )
+  var placeHolder = <View style={[styles.container, borderStyle]} />
+  return icon['type'] === 'placeHolder' ? placeHolder : tag
 }
 
 export default IconTagSearchRow
@@ -50,6 +53,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+
   tagText: {
     fontSize: 14,
     width: 100,

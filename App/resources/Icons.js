@@ -13,6 +13,12 @@ const Icons = {
     id: 'trash',
     type: 'special',
     imageURI: 'trash'},
+  placeHolder: {
+    id: 'placeHolder',
+    name: '',
+    type: 'placeHolder',
+    imageURI: ''
+  },
 
   //Categories
 

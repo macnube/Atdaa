@@ -56,6 +56,23 @@ export const getTagsByCategoryId = (categoryId) => {
   })
 }
 
+export const getSearchTagsByCategoryId = (categoryId) => {
+  var tags = getTagIdsByCategoryId(categoryId).map((tagId) => {
+    return getIconById(tagId)
+  }).sort((a, b) => {
+    if (a.name < b.name) return -1
+    else return 1
+  }).filter((icon) => {
+    return icon.name !== 'Other'
+  })
+  console.log('tags.length is: ', tags.length)
+  if (tags.length % 2 === 0) { // Because category icon is added
+    console.log('tags.length is: ', tags.length)
+    tags.push(Icons['placeHolder'])
+  }
+  return tags
+}
+
 export const getCategoryIdByTagId = (tagId) => {
   for (var key in IconTags) {
     if (IconTags[key].indexOf(tagId) > -1) return key
@@ -131,8 +148,11 @@ export const filterPlacesByType = (places) => {
     'restaurant',
     'food'
   ]
+  console.log('places before filter are', places)
+  return places
   return places.filter((place) => {
     return place.types.some((type) => {
+      console.log('type is:', type)
       return typesFilter.indexOf(type) > -1
     })
   })
