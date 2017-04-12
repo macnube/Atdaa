@@ -3,6 +3,7 @@ import api from '../../utils/api'
 import CreateEmail from './CreateEmail'
 import { Keyboard } from 'react-native'
 import dismissKeyboard from 'dismissKeyboard'
+import { cleanMyPlaces } from '../../utils/helpers'
 
 class CreateEmailContainer extends Component {
 
@@ -65,8 +66,10 @@ class CreateEmailContainer extends Component {
             myPlaces: {...kaanData.value.myPlaces}
           }
         }
-        api.setLocalUserInfo(userInfo)
-        this.props.setUserInfo(userInfo)
+        console.log('userInfo is from login: ', userInfo)
+        var cleanedInfo = cleanMyPlaces(userInfo)
+        api.setLocalUserInfo(cleanedInfo)
+        this.props.setUserInfo(cleanedInfo)
         this.props.toDashboard()
       })
       .catch((error) => {

@@ -6,8 +6,6 @@ import {
 import Config from 'react-native-config'
 import Firestack from 'react-native-firestack'
 
-import { filterPlacesByType } from './helpers'
-
 var googleAPI = Config.GOOGLE_API_KEY
 var firestackConfig = {
   debug: true
@@ -102,14 +100,20 @@ export const getFirebaseUserPlaces = (userId) => {
 
 // Async Data calls
 
-export const updateMyPlaces = (userId, currentPlaces, newPlace, currentTime, deletePlace = false) => {
+export const updateMyPlaces = (userInfo, currentPlaces, newPlace, currentTime, deletePlace = false) => {
   var id = newPlace.place_id
   var placeIds = [...currentPlaces.ids]
   var placeById = {...currentPlaces.placeById}
   if (deletePlace) {
     var index = currentPlaces.ids.indexOf(id)
-    if (index !== -1) placeIds.splice(index, 1)
+    console.log('placeIds before delete', placeIds)
+    if (index > -1) {
+      placeIds = [...placeIds.slice(0, index), ...placeIds.slice(index + 1)]
+    }
+    console.log('placeIds after delete', placeIds)
+    console.log('placeById before delete', placeById)
     delete placeById[id]
+    console.log('placeById after delete', placeById)
   } else {
     placeIds = currentPlaces.ids.indexOf(id) === -1
     ? [...currentPlaces.ids, id]
@@ -123,9 +127,13 @@ export const updateMyPlaces = (userId, currentPlaces, newPlace, currentTime, del
       placeById: placeById
     }
   }
-  setFirebaseUserPlaces(userId, delta)
+  var newLocal = {
+    ...userInfo,
+    myPlaces: delta.myPlaces
+  }
+  setFirebaseUserPlaces(userInfo.id, delta)
     .then(() => console.log('successfully wrote to database'))
-  updateLocalMyPlaces(delta)
+  updateLocalMyPlaces(newLocal)
 }
 
 export async function getLocalUserInfo () {
@@ -180,7 +188,7 @@ export async function updateLocalToolbar (toolbar) {
 export async function updateLocalMyPlaces (delta) {
   console.log('value of delta from updateLocalMyPlaces', delta)
   try {
-    await AsyncStorage.mergeItem('userInfo', JSON.stringify(delta))
+    await AsyncStorage.setItem('userInfo', JSON.stringify(delta))
     console.log('Local map updated successfully')
   } catch (error) {
     console.log('Unable to update local user map:', error)

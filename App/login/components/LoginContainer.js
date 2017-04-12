@@ -3,6 +3,7 @@ import api from '../../utils/api'
 import Login from './Login'
 import { Keyboard } from 'react-native'
 import dismissKeyboard from 'dismissKeyboard'
+import { cleanMyPlaces } from '../../utils/helpers'
 
 class LoginContainer extends Component {
 
@@ -81,8 +82,9 @@ class LoginContainer extends Component {
             myPlaces: {...kaanData.value.myPlaces}
           }
         }
-        api.setLocalUserInfo(userInfo)
-        this.props.setUserInfo(userInfo)
+        var cleanedInfo = cleanMyPlaces(userInfo)
+        api.setLocalUserInfo(cleanedInfo)
+        this.props.setUserInfo(cleanedInfo)
         this.props.toDashboard()
       })
       .catch((error) => {
@@ -132,8 +134,10 @@ class LoginContainer extends Component {
             myPlaces: {...kaanData.value.myPlaces}
           }
         }
-        api.setLocalUserInfo(userInfo)
-        this.props.setUserInfo(userInfo)
+        console.log('userInfo is from login: ', userInfo)
+        var cleanedInfo = cleanMyPlaces(userInfo)
+        api.setLocalUserInfo(cleanedInfo)
+        this.props.setUserInfo(cleanedInfo)
         this.props.toDashboard()
       })
       .catch((error) => {

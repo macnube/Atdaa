@@ -60,8 +60,11 @@ class ManageTagsContainer extends Component {
   }
 
   handleDeletePlace () {
+    console.log('Deleting place because user removed all tags',
+      this.props.placeInfo)
     const currentTime = new Date().getTime() / 1000
-    api.updateMyPlaces(this.props.userId, this.props.myPlaces, this.props.placeInfo, currentTime, true)
+    api.updateMyPlaces(this.props.userInfo, this.props.myPlaces,
+      this.props.placeInfo, currentTime, true)
     this.props.deletePlace(this.props.placeInfo.place_id, currentTime)
   }
 
@@ -76,7 +79,8 @@ class ManageTagsContainer extends Component {
         categoryNotes: this.state.categoryNotes
       }
       const currentTime = new Date().getTime() / 1000
-      api.updateMyPlaces(this.props.userId, this.props.myPlaces, newPlace, currentTime)
+      api.updateMyPlaces(this.props.userInfo, this.props.myPlaces,
+        newPlace, currentTime)
       this.props.addPlace(newPlace, currentTime)
     } else {
       this.handleDeletePlace()
@@ -215,7 +219,7 @@ const mapStateToProps = (state) => {
     layoutInfo: dashboard.selectors.getLayoutInfo(state.dashboard),
     placeInfo: state.placeInfo,
     myPlaces: state.myPlaces,
-    userId: login.selectors.getUserId(state.user)
+    userInfo: login.selectors.getUserInfo(state.user)
   }
 }
 

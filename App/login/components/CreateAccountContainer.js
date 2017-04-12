@@ -3,6 +3,7 @@ import api from '../../utils/api'
 import CreateAccount from './CreateAccount'
 import CreateEmailContainer from './CreateEmailContainer'
 import LoginContainer from './LoginContainer'
+import { cleanMyPlaces } from '../../utils/helpers'
 
 class CreateAccountContainer extends Component {
 
@@ -79,8 +80,10 @@ class CreateAccountContainer extends Component {
             myPlaces: {...kaanData.value.myPlaces}
           }
         }
-        api.setLocalUserInfo(userInfo)
-        this.props.setUserInfo(userInfo)
+        console.log('userInfo is from login: ', userInfo)
+        var cleanedInfo = cleanMyPlaces(userInfo)
+        api.setLocalUserInfo(cleanedInfo)
+        this.props.setUserInfo(cleanedInfo)
         this.props.toDashboard()
       })
       .catch((error) => {

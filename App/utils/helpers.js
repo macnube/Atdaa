@@ -9,19 +9,30 @@ import IconTags from '../resources/IconTags'
 // Icon and IconTag helpers
 
 export const cleanMyPlaces = (userInfo) => {
-  var newids = [...userInfo.myPlaces.ids]
-  var newPlaceById = {...userInfo.myPlaces.placeById}
-  userInfo.myPlaces.ids.forEach((id) => {
+  console.log('Cleaning My Places')
+  var newIds = []
+  var newPlaceById = {}
+  for (var id in userInfo.myPlaces.placeById) {
+    if (userInfo.myPlaces.placeById[id].hasOwnProperty('tags')) {
+      newIds.push(id)
+      newPlaceById[id] = userInfo.myPlaces.placeById[id]
+    }
+  }
+  newIds.forEach((id) => {
+    console.log('place tags before filter: ', newPlaceById[id].tags)
     newPlaceById[id].tags = newPlaceById[id].tags.filter((tag) => {
-      return tag in Icons
+      return Icons.hasOwnProperty(tag)
     })
+    console.log('place tags before filter: ', newPlaceById[id].tags)
     if (newPlaceById[id].tags.length === 0) {
-      newids = [...newids.slice(newids.indexOf(0, id)), ...newids.slice(newids.indexOf(id))]
+      console.log('Cleaning place and removing it from userInfo, place: ', id)
+      newIds = [...newIds.slice(newIds.indexOf(0, id)), ...newIds.slice(newIds.indexOf(id))]
       delete newPlaceById[id]
+      console.log('newPlaceById object after delete ', newPlaceById)
     }
   })
   var newMyPlaces = {
-    ids: newids,
+    ids: newIds,
     lastUpdated: userInfo.myPlaces.lastUpdated,
     placeById: newPlaceById
   }
@@ -149,7 +160,6 @@ export const filterPlacesByType = (places) => {
     'food'
   ]
   console.log('places before filter are', places)
-  return places
   return places.filter((place) => {
     return place.types.some((type) => {
       console.log('type is:', type)

@@ -28,7 +28,7 @@ class SplashContainer extends Component {
   }
 
   toLogIn () {
-    this.props.navigator.push({
+    this.props.navigator.replace({
       title: 'Login',
       component: LoginContainer,
       passProps: {
@@ -40,7 +40,7 @@ class SplashContainer extends Component {
 
   toDashboard (localLastUpdated = -1) {
     const { DashboardContainer } = dashboard
-    this.props.navigator.push({
+    this.props.navigator.replace({
       title: 'Dashboard',
       component: DashboardContainer,
       passProps: {
@@ -50,7 +50,7 @@ class SplashContainer extends Component {
   }
 
   toCreateAccount () {
-    this.props.navigator.push({
+    this.props.navigator.replace({
       title: 'Sign Up',
       component: CreateAccountContainer,
       passProps: {
@@ -102,7 +102,8 @@ class SplashContainer extends Component {
         })
         console.log('This is user from SplashContainer', this._userInfo)
         var cleanedInfo = cleanMyPlaces(this._userInfo)
-        this.props.setUserInfo(this._userInfo)
+        console.log('This is cleaned user from SplashContainer', cleanedInfo)
+        this.props.setUserInfo(cleanedInfo)
         var lastUpdated = 0
         if (this._userInfo.myPlaces) lastUpdated = this._userInfo.myPlaces.lastUpdated || 0
         this.toDashboard(lastUpdated)
