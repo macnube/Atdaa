@@ -80,8 +80,10 @@ class SplashContainer extends Component {
   }
 
   componentWillMount () {
+    console.log('componentWillMount from SplashContainer')
     api.getLocalUserInfo()
       .then((userInfo) => {
+        console.log('userInfo from local is:', userInfo)
         this._userInfo = userInfo
       })
       .catch((error) => {
@@ -96,7 +98,7 @@ class SplashContainer extends Component {
     console.log('componentWillUpdate from SplashContainer')
     // api.deleteLocalUserInfo()
     if (nextProps.region && !this.props.region) {
-      if (!nextState.reading && this._userInfo) {
+      if (!nextState.reading && this._userInfo && this._userInfo.id) {
         this.setState({
           reading: true
         })
@@ -105,7 +107,9 @@ class SplashContainer extends Component {
         console.log('This is cleaned user from SplashContainer', cleanedInfo)
         this.props.setUserInfo(cleanedInfo)
         var lastUpdated = 0
-        if (this._userInfo.myPlaces) lastUpdated = this._userInfo.myPlaces.lastUpdated || 0
+        if (this._userInfo.myPlaces) {
+          lastUpdated = this._userInfo.myPlaces.lastUpdated || 0
+        }
         this.toDashboard(lastUpdated)
       }
     }

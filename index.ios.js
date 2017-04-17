@@ -16,19 +16,20 @@ import CodePush from 'react-native-code-push'
 const store = configureStore()
 
 class Atdaa extends Component {
-  render() {
-    return <Root store={store}/>
+  render () {
+    return <Root store={store} />
   }
 }
 
 var codePushOptions
 
 if (Config.CODEPUSH_SYNC_VISIBLE === 'true') {
-	codePushOptions = { checkFrequency: CodePush.CheckFrequency.MANUAL }
+  codePushOptions = { checkFrequency: CodePush.CheckFrequency.MANUAL }
 } else {
-	codePushOptions = { checkFrequency: CodePush.CheckFrequency.ON_APP_RESUME, installMode: CodePush.InstallMode.ON_APP_START }
+  codePushOptions = {
+    checkFrequency: CodePush.CheckFrequency.ON_APP_RESUME,
+    installMode: CodePush.InstallMode.ON_APP_START }
 }
-
 
 Atdaa = CodePush(codePushOptions)(Atdaa)
 

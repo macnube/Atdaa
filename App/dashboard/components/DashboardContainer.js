@@ -55,7 +55,8 @@ class DashboardContainer extends Component {
         console.log('Info on server, checking which one is most recent')
         console.log('Server last updated is: ', snapshot.value)
         console.log('Local last updated is: ', this.props.localLastUpdated)
-        if (snapshot.value.myPlaces.lastUpdated > this.props.localLastUpdated && this.props.localLastUpdated !== -1) {
+        if (snapshot.value.myPlaces.lastUpdated > this.props.localLastUpdated
+          && this.props.localLastUpdated !== -1) {
           console.log('Updating from server!!!!')
           var userInfo = {
             ...this.props.user,
@@ -75,6 +76,7 @@ class DashboardContainer extends Component {
   }
 
   componentWillUpdate (nextProps, nextState) {
+    console.log('componentWillUpdate from DashboardContainer')
     const currentTab = this.props.dashboard.selectedTab
     const nextTab = nextProps.dashboard.selectedTab
     const { placeInfo } = this.props
@@ -98,7 +100,8 @@ class DashboardContainer extends Component {
     this.props.logout()
     api.signOut()
     api.deleteLocalUserInfo()
-    this.props.navigator.push({
+      .then(() => console.log('Successfully signed out of firebase'))
+    this.props.navigator.replace({
       title: 'Splash',
       component: SplashContainer
     })
