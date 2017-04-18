@@ -74,8 +74,11 @@ class PlaceInfoContainer extends Component {
   }
 
   handleDeletePlace () {
+    console.log('handleDeletePlace place from PlaceInfoContainer',
+      this.props.placeInfo.place_id)
     const currentTime = new Date().getTime() / 1000
-    api.updateMyPlaces(this.props.userId, this.props.myPlaces, this.props.placeInfo, currentTime, true)
+    api.updateMyPlaces(this.props.userInfo, this.props.myPlaces,
+      this.props.placeInfo, currentTime, true)
     this.props.deletePlace(this.props.placeInfo.place_id, currentTime)
     this.props.closeModal()
   }
@@ -101,7 +104,8 @@ class PlaceInfoContainer extends Component {
         notes: this.state.notes
       }
       const currentTime = new Date().getTime() / 1000
-      api.updateMyPlaces(this.props.userId, this.props.myPlaces, newPlace, currentTime)
+      api.updateMyPlaces(this.props.userInfo, this.props.myPlaces,
+        newPlace, currentTime)
       this.props.addPlace(newPlace, currentTime)
     }
     this.props.setSelectedTab('map')
@@ -124,7 +128,8 @@ class PlaceInfoContainer extends Component {
       notes: this.state.notes
     }
     const currentTime = new Date().getTime() / 1000
-    api.updateMyPlaces(this.props.userId, this.props.myPlaces, newPlace, currentTime)
+    api.updateMyPlaces(this.props.userInfo, this.props.myPlaces,
+      newPlace, currentTime)
     this.props.addPlace(newPlace, currentTime)
   }
 
@@ -185,7 +190,7 @@ class PlaceInfoContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     placeInfo: state.placeInfo,
-    userId: login.selectors.getUserId(state.user),
+    userInfo: login.selectors.getUserInfo(state.user),
     myPlaces: state.myPlaces
   }
 }

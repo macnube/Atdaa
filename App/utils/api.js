@@ -127,6 +127,7 @@ export const updateMyPlaces = (userInfo, currentPlaces, newPlace, currentTime, d
       placeById: placeById
     }
   }
+  console.log('userInfo is: ', userInfo)
   var newLocal = {
     ...userInfo,
     myPlaces: delta.myPlaces
