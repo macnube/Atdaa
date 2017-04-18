@@ -15,7 +15,6 @@ const HeaderTags = ({ layoutInfo, icon, onBack, placeInfo, marginBottom }) => {
     width: layoutInfo.searchIcon.height,
     alignSelf: 'center'
   }
-  console.log('icon going into HeaderTags', icon)
   var newIcon = {...icon}
   newIcon.imageURI = newIcon.imageURI.split('_')[0]
   return (

@@ -12,8 +12,6 @@ import POITagsBar from './POITagsBar'
 import POIOpen from './POIOpen'
 
 const POICard = ({ placeInfo, setPlaceInfo, smallScreen, distance, cardIcons, open, match }) => {
-  console.log('placeInfo going into POICard', placeInfo)
-  console.log('cardIcons going into POICard', cardIcons)
   const backgroundColor = match ? placeInfo.mapIcon.iconColor : 'rgb(74,74,74)'
   const icon = match ? placeInfo.mapIcon : placeInfo.primaryIcon
   return (

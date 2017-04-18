@@ -14,7 +14,7 @@ import GPSButton from './GPSButton'
 class Map extends Component {
 
   renderPlaces () {
-    console.log('Rerendering Map Places')
+    console.log('renderPlaces from Map')
     return this.props.markerPlaces.ids.map((id, index) => {
       var zIndex
       const place = this.props.markerPlaces.placeById[id]
@@ -44,6 +44,7 @@ class Map extends Component {
   renderSearchMarker () {
     var marker = this.props.searchMarker
     if (marker) {
+      console.log('renderSearchMarker from Map')
       return (
         <MapView.Marker
           coordinate={marker.latlng}
@@ -82,8 +83,6 @@ class Map extends Component {
   }
 
   render () {
-    console.log('Rendering map with props', this.props.scrollEnabled)
-    console.log('Rendering map with props', this.props.region)
     return (
       <View style={{flex: 1}}>
         {this.renderPOI()}

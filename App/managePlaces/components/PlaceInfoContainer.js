@@ -75,7 +75,7 @@ class PlaceInfoContainer extends Component {
 
   handleDeletePlace () {
     console.log('handleDeletePlace place from PlaceInfoContainer',
-      this.props.placeInfo.place_id)
+      this.props.placeInfo.name)
     const currentTime = new Date().getTime() / 1000
     api.updateMyPlaces(this.props.userInfo, this.props.myPlaces,
       this.props.placeInfo, currentTime, true)
@@ -84,18 +84,21 @@ class PlaceInfoContainer extends Component {
   }
 
   handleAddTag () {
-    console.log('handleAddTag from PlaceInfoContainer, moving to ManageTagsContainer')
+    console.log('handleAddTag from PlaceInfoContainer' +
+     'moving to ManageTagsContainer for place: ', this.props.placeInfo.name)
     this.props.setSelectedTab('manageTags')
   }
 
   handleEditCategory (categoryIcon) {
-    console.log('handleEditCategory from PlaceInfoContainer')
+    console.log('handleEditCategory from PlaceInfoContainer for category',
+      categoryIcon.id)
     this.props.editPlaceCategory(categoryIcon)
   }
 
   handleToMap () {
     console.log('handleToMap from PlaceInfoContainer')
     if (this.state.editNotes) {
+      console.log('Notes have been edited')
       this.setState({
         editNotes: false
       })
@@ -157,7 +160,7 @@ class PlaceInfoContainer extends Component {
   getHours () {
     var d = new Date()
     var today = (d.getDay() - 1) === -1 ? 6 : d.getDay() - 1
-    return this.props.placeInfo.open.weekday[today].split('y: ')[1]
+    return this.props.placeInfo.open.weekday[today].split('y: ')[1] || 'Unknown'
   }
 
   getOpen () {

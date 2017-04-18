@@ -63,6 +63,7 @@ class PlaceSearchContainer extends Component {
   }
 
   handleChangeText (text) {
+    console.log('User searching for place: ', text)
     if (text.length > 0) {
       this.setState({
         showNearby: false

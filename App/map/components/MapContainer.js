@@ -99,9 +99,7 @@ class MapContainer extends Component {
 			this.markerPlaces = this._getPlaces(myPlaces, filters, region, 5)
 	  	this.visiblePlaces = this._getPlaces(this.markerPlaces, filters, region, 1.2);
 	  	this.matchingPlaces = this._getMatchingPlaces(this.visiblePlaces)
-	  	console.log('Nearbyplaces is: ', this.props.nearbyPlaces)
 	  	if (this.props.nearbyPlaces.length === 0) {
-	  		console.log('In nearby')
 	  		this._getNearbyPlaces()
 	  	}
 		}
@@ -181,6 +179,7 @@ class MapContainer extends Component {
 	}
 
 	moveMapToPlace(place) {
+    console.log('moving to map place: ', place.name)
 		this._animating = true;
 		var nextRegion = {
 				latitude: place.latlng.latitude,
@@ -219,8 +218,8 @@ class MapContainer extends Component {
   }
 
   handleMarkerClick(place) {
-  	console.log('User clicked marker')
-  	var region = {
+  	console.log('User clicked marker: ', place.name)
+  	var region = { 
 			latitude: place.latlng.latitude,
       longitude: place.latlng.longitude,
       latitudeDelta: this.state.region.latitudeDelta,

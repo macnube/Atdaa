@@ -21,6 +21,7 @@ export function setSelectedTab (tab) {
 }
 
 export function loadLocalInfo (userInfo) {
+  console.log('ACTION: LOAD_LOCAL_INFO with userInfo: ', userInfo)
   return {
     type: types.LOAD_LOCAL_INFO,
     userInfo

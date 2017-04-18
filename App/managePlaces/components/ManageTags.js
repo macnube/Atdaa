@@ -16,7 +16,6 @@ import ManageCategoryNote from './manageTagsResources/ManageCategoryNote'
 const ManageTags = (props) => {
   const { dataSource, layoutInfo, handleShowTags, placeInfo,
     handleBackToMap, scrollEnabled, categoryIcon, selectedTags } = props
-  console.log('Props into ManageTags', props)
   var main
   const renderRow = (data) => {
     if (categoryIcon) {

@@ -27,8 +27,8 @@ class POICards extends Component {
     if (nextProps.cardIndex === this.props.cardIndex) {
       return false
     } else {
-      console.log('nextProps are from POICards', nextProps)
-      console.log('nextState are from POICards', nextState)
+      console.log('next card is: ',
+        nextProps.cardsInfo[nextProps.cardIndex].placeInfo.name)
       return true
     }
   }
@@ -42,7 +42,6 @@ class POICards extends Component {
   }
 
   componentDidUpdate (prevProps, prevState) {
-    console.log('Test')
     if (prevProps.cardIndex === this.props.cardIndex) {
       console.log('Card has not changed')
     } else {
@@ -54,14 +53,10 @@ class POICards extends Component {
   _getCardIcons (placeInfo, filters) {
     const tags = placeInfo.tags
     return filters.reduce((acc, filter) => {
-      console.log('value of acc is', acc)
       if (filter.priority === 0) return acc
       else if (filter.id === placeInfo.mapIcon.id) return acc
       else if ((filter.type === 'tag' || filter.type === 'note') && tags.indexOf(filter.id) > -1) {
         var categoryId = getCategoryIdByTagId(filter.id)
-        console.log('CategoryID is: ', categoryId)
-        console.log('fitler is ', filter)
-        console.log('acc is ', acc)
         if (acc.every((icon) => getCategoryIdByTagId(icon.id) !== categoryId)) {
           return acc.concat([filter])
         } else return acc
@@ -76,7 +71,6 @@ class POICards extends Component {
   }
 
   renderRow (cardInfo) {
-    console.log('rendering row with cardInfo', cardInfo)
     return (
       <POICard
         distance={cardInfo.distance}

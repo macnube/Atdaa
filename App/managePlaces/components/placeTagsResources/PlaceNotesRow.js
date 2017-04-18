@@ -10,7 +10,6 @@ import {
 import Icon from '../../../shared/Icon'
 
 const PlaceNotesRow = (props) => {
-  console.log('Props from PlaceNotesRow', props)
   return (
     <TouchableOpacity
       onPress={() => props.handleEditCategory(props.icon)}

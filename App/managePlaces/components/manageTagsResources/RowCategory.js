@@ -12,7 +12,6 @@ import Icon from '../../../shared/Icon';
 
 
 const RowCategory = ({ layoutInfo, icon, handleShowTags }) => {
-
 	const styleIcon = {
 		height: layoutInfo.searchIcon.height,
 		width: layoutInfo.searchIcon.height,

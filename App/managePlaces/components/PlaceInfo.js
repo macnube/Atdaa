@@ -19,7 +19,6 @@ import map from '../../map'
 const { MapContainer } = map
 
 const PlaceInfo = (props) => {
-  console.log('Props in PlaceInfo', props)
   var map, tags, icon
   map = props.placeInfo.isNew
     ? (

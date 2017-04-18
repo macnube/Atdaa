@@ -19,11 +19,9 @@ export const cleanMyPlaces = (userInfo) => {
     }
   }
   newIds.forEach((id) => {
-    console.log('place tags before filter: ', newPlaceById[id].tags)
     newPlaceById[id].tags = newPlaceById[id].tags.filter((tag) => {
       return Icons.hasOwnProperty(tag)
     })
-    console.log('place tags before filter: ', newPlaceById[id].tags)
     if (newPlaceById[id].tags.length === 0) {
       console.log('Cleaning place and removing it from userInfo, place: ', id)
       newIds = [...newIds.slice(newIds.indexOf(0, id)), ...newIds.slice(newIds.indexOf(id))]
@@ -106,9 +104,9 @@ export const getAllCategories = () => {
 }
 
 const getPlaceCategoryTagCount = (placeTags) => {
+  console.log('getPlaceCategoryTagCount')
   return placeTags.reduce((acc, tagId) => {
     var category = getCategoryIdByTagId(tagId)
-    console.log('accumulator value', acc)
     if (category in acc) {
       acc[category] = acc[category].concat([tagId])
     } else {
@@ -264,7 +262,6 @@ export const placeOpen = (placeInfo) => {
     var splitHours = /\d+:\d+\s\w*\s*\W\s\d+:\d+\s\w*,/g // To find split times
     var d = new Date()
     var today = (d.getDay() - 1) === -1 ? 6 : d.getDay() - 1
-    console.log('Today from placeOpen', today)
     var hours = placeInfo.open.weekday[today].split('y: ')[1]
     if (hours === 'Closed') return 'Closed'
     else if (hours === 'Open 24 hours') return 'Open Now'
@@ -291,7 +288,6 @@ const isOpen = (hours, current) => {
   var closingHour = toMilitaryTime(hours.split(' – ')[1])
   closingHour = closingHour < openingHour ? closingHour + 24 : closingHour
   if ((current >= openingHour) && (current < closingHour)) {
-    console.log('Current time is', current)
     return 'Open Now'
   } else return 'Closed'
 }
@@ -327,7 +323,6 @@ export const formatPlaceDetails = (details, myPlaces) => {
     openText = 'Unknown'
     weekday = 'Unknown'
   }
-  console.log('Types from formatPlaceDetails are: ', details.types)
   var type = cleanType(details.types[0])
   const isNew = myPlaces.ids.indexOf(details.place_id) === -1
   const tags = isNew ? [] : myPlaces.placeById[details.place_id].tags
@@ -399,7 +394,6 @@ export const getLayout = () => {
       ymax: iconHeight + toolPaddingTop
     })
   }
-  console.log('Dropzones are', dropZones)
   return {
     isVertical: isVertical,
     toolbar: {

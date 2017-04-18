@@ -32,13 +32,11 @@ export const getPlaces = (search, currentLocation) => {
   var latlng = currentLocation.latitude + ',' + currentLocation.longitude
   var radius = 1000
   var url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${googleAPI}&location=${latlng}&radius=${radius}&keyword=${search}`
-  console.log('this is the request url', url)
   return fetch(url).then((res) => res.json())
 }
 
 export const getPlaceDetails = (id) => {
   var url = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${id}&key=${googleAPI}`
-  console.log('this is the request url', url)
   return fetch(url)
 }
 
@@ -58,7 +56,6 @@ export const getNearbyPlaces = (userLocation, type = '') => {
   var radius = 100
   var url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${googleAPI}&location=${latlng}&radius=${radius}`
   if (type) url += `&type=${type}`
-  console.log('this is the request url for nearby', url)
   return fetch(url)
 }
 
@@ -142,7 +139,7 @@ export async function getLocalUserInfo () {
     var userInfo = JSON.parse(await AsyncStorage.getItem('userInfo'))
     // Use below to clear local data
     // var userInfo = {};
-    if (Object.keys(userInfo).length !== 0) {
+    if (Object.keys(userInfo).length !== 0 && userInfo.id) {
       console.log('Successfully read local userInfo', userInfo)
       return userInfo
     } else {

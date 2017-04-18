@@ -13,8 +13,6 @@ import Icon from '../../../shared/Icon';
 
 
 const RowTags = ({ layoutInfo, icon, handleAddRemoveTag }) => {
-	console.log("icon from RowTags", icon);
-
 	const selectedColor = icon.selected ? icon.iconColor : 'rgb(250,250,250)'
 	const borderColor = icon.selected ? icon.iconColor : 'rgb(199,199,199)'
 	const textColor = icon.selected ? 'white' : 'rgb(137,137,137)'

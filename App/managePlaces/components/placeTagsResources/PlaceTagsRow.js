@@ -14,7 +14,6 @@ const PlaceTagsRow = (props) => {
   const color = props.icon.iconColor
   const createTags = () => {
     return props.tags.map((tag, index) => {
-      console.log('tag from PlaceTagsRow', tag)
       return (
         <View key={index} style={[styles.tagContainer, {borderColor: color}]}>
           <Text style={[styles.tagText, {color: color}]}>{tag.name}</Text>

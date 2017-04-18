@@ -33,7 +33,6 @@ const PlaceTags = (props) => {
       )
     }
   })
-  console.log('props going into PlaceTags', props)
   return (
     <View style={styles.container}>
       {tags}

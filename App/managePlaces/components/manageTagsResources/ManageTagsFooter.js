@@ -12,11 +12,8 @@ import FooterCancel from './FooterCancel'
 import FooterDone from './FooterDone'
 
 const ManageTagsFooter = (props) => {
-  console.log("props from ManageTagsFooter", props);
-
   const doneVisible = props.selectedTags.length > 0
   const addMoreVisible = props.categoryIcon ? true : false
-
   return (
     <View style={styles.container}>
       <TagsSelectedBar selectedTags={props.selectedTags} />

@@ -1,4 +1,5 @@
 import React, { Component} from 'react'
+import Config from 'react-native-config'
 
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 
@@ -12,14 +13,9 @@ import {
   TouchableHighlight
 } from 'react-native'
 
-const googleAPI = "AIzaSyChab7O6hfps-mXbk-DDtsdThWongFboZA"
+const googleAPI = Config.GOOGLE_API_KEY
 
 class PlaceSearch extends Component {
-  /*
-  componentDidMount() {
-    this.refs['placeSearch'].triggerFocus();
-  }
-  */
 
   renderRow(rowData) {
     var name, address;
@@ -33,7 +29,6 @@ class PlaceSearch extends Component {
     } else {
       address = ""
     }
-    console.log("rowData going into PlaceSearch", rowData);
     return (
       <View>
         <Text style={{color: 'rgb(139, 139, 139)', fontSize: 18}}>{name}</Text>

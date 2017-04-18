@@ -60,8 +60,8 @@ class ManageTagsContainer extends Component {
   }
 
   handleDeletePlace () {
-    console.log('Deleting place because user removed all tags',
-      this.props.placeInfo)
+    console.log('Deleting place because user removed all tags: ',
+      this.props.placeInfo.name)
     const currentTime = new Date().getTime() / 1000
     api.updateMyPlaces(this.props.userInfo, this.props.myPlaces,
       this.props.placeInfo, currentTime, true)
@@ -129,7 +129,7 @@ class ManageTagsContainer extends Component {
   }
 
   handleAddRemoveTag (tag) {
-    console.log('handleAddRemoveTag from ManageTagsContainer', tag)
+    console.log('handleAddRemoveTag from ManageTagsContainer', tag.id)
     var selectedTags = this.state.selectedTags
     const index = selectedTags.indexOf(tag.id)
     if (index === -1) {
@@ -144,7 +144,7 @@ class ManageTagsContainer extends Component {
   }
 
   handleShowTags (category) {
-    console.log('handleShowTags from ManageTagsContainer with category icon as:', category)
+    console.log('handleShowTags from ManageTagsContainer with category icon as:', category.id)
     if (category.type === 'note') {
       var notes = ''
       if (category.id in this.state.categoryNotes) {
@@ -157,7 +157,6 @@ class ManageTagsContainer extends Component {
     } else {
       this._data = this._setSelectedTags(helpers.getTagsByCategoryId(category.id),
       category, this.state.selectedTags)
-      console.log('NewData from handleShowTags', this._data)
       this.setState({
         dataSource: this.ds.cloneWithRows(this._data),
         categoryIcon: category
@@ -189,7 +188,6 @@ class ManageTagsContainer extends Component {
   }
 
   render () {
-    console.log('Rerendering ManageTagsContainer with props', this.props)
     return (
       <ManageTags
         dataSource={this.state.dataSource}

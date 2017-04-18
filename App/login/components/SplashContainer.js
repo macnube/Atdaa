@@ -83,7 +83,6 @@ class SplashContainer extends Component {
     console.log('componentWillMount from SplashContainer')
     api.getLocalUserInfo()
       .then((userInfo) => {
-        console.log('userInfo from local is:', userInfo)
         this._userInfo = userInfo
       })
       .catch((error) => {
