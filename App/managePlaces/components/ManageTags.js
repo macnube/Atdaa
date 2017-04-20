@@ -82,7 +82,6 @@ const ManageTags = (props) => {
   } else {
     main = list
   }
-  console.log('categoryIcon is:', categoryIcon)
   return (
     <View style={styles.iconSearch}>
       {main}

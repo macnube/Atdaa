@@ -5,6 +5,7 @@ import {
 
 import Config from 'react-native-config'
 import Firestack from 'react-native-firestack'
+import { cleanMyPlaces } from './helpers'
 
 var googleAPI = Config.GOOGLE_API_KEY
 var firestackConfig = {
@@ -117,21 +118,26 @@ export const updateMyPlaces = (userInfo, currentPlaces, newPlace, currentTime, d
     : [...currentPlaces.ids]
     placeById[id] = newPlace
   }
-  var delta = {
+  var start = Date.now()
+  var cleanedData = cleanMyPlaces({
+    ...userInfo,
     myPlaces: {
       lastUpdated: currentTime,
       ids: placeIds,
       placeById: placeById
     }
+  })
+  var end = Date.now()
+  console.log('Total time to clean data: ', end - start)
+  var delta = {
+    myPlaces: cleanedData.myPlaces
   }
-  console.log('userInfo is: ', userInfo)
-  var newLocal = {
-    ...userInfo,
-    myPlaces: delta.myPlaces
-  }
-  setFirebaseUserPlaces(userInfo.id, delta)
+  console.log('cleaned ID is before updateMyPlaces: ', cleanedData.id)
+  if (cleanedData.id) {
+    setFirebaseUserPlaces(cleanedData.id, delta)
     .then(() => console.log('successfully wrote to database'))
-  updateLocalMyPlaces(newLocal)
+    updateLocalMyPlaces(cleanedData)
+  }
 }
 
 export async function getLocalUserInfo () {

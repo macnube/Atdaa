@@ -85,11 +85,15 @@ class DashboardContainer extends Component {
     } else {
       this.cardId = null
     }
+    if (!this.props.user.id) {
+      console.log('userID has been lost')
+      this.openLogoutModal('user id lost, log out and log back in')
+    }
   }
 
-  openLogoutModal () {
+  openLogoutModal (text = '') {
     console.log('Logout modal opened')
-    const logoutText = 'Are you sure you want to log out?'
+    const logoutText = text || 'Are you sure you want to log out?'
     this.props.openModal(logoutText, this.handleLogout.bind(this), 'Log Out', 'logoutModal')
   }
 

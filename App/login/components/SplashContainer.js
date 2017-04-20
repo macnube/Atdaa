@@ -101,15 +101,15 @@ class SplashContainer extends Component {
         this.setState({
           reading: true
         })
+        if (this._userInfo.myPlaces) {
+          lastUpdated = this._userInfo.myPlaces.lastUpdated || 0
+        }
+        this.toDashboard(lastUpdated)
         console.log('This is user from SplashContainer', this._userInfo)
         var cleanedInfo = cleanMyPlaces(this._userInfo)
         console.log('This is cleaned user from SplashContainer', cleanedInfo)
         this.props.setUserInfo(cleanedInfo)
         var lastUpdated = 0
-        if (this._userInfo.myPlaces) {
-          lastUpdated = this._userInfo.myPlaces.lastUpdated || 0
-        }
-        this.toDashboard(lastUpdated)
       }
     }
   }

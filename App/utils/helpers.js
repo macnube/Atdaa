@@ -8,14 +8,14 @@ import IconTags from '../resources/IconTags'
 
 // Icon and IconTag helpers
 
-export const cleanMyPlaces = (userInfo) => {
+export const cleanMyPlaces = (userData) => {
   console.log('Cleaning My Places')
   var newIds = []
   var newPlaceById = {}
-  for (var id in userInfo.myPlaces.placeById) {
-    if (userInfo.myPlaces.placeById[id].hasOwnProperty('tags')) {
+  for (var id in userData.myPlaces.placeById) {
+    if (userData.myPlaces.placeById[id].hasOwnProperty('tags')) {
       newIds.push(id)
-      newPlaceById[id] = userInfo.myPlaces.placeById[id]
+      newPlaceById[id] = Object.assign({}, userData.myPlaces.placeById[id])
     }
   }
   newIds.forEach((id) => {
@@ -23,7 +23,7 @@ export const cleanMyPlaces = (userInfo) => {
       return Icons.hasOwnProperty(tag)
     })
     if (newPlaceById[id].tags.length === 0) {
-      console.log('Cleaning place and removing it from userInfo, place: ', id)
+      console.log('Cleaning place and removing it from userData, place: ', id)
       delete newPlaceById[id]
       console.log('newPlaceById object after delete ', newPlaceById)
     }
@@ -31,11 +31,11 @@ export const cleanMyPlaces = (userInfo) => {
   newIds = newIds.filter((id) => id in newPlaceById)
   var newMyPlaces = {
     ids: newIds,
-    lastUpdated: userInfo.myPlaces.lastUpdated,
+    lastUpdated: userData.myPlaces.lastUpdated,
     placeById: newPlaceById
   }
 
-  return {...userInfo, myPlaces: newMyPlaces}
+  return {...userData, myPlaces: newMyPlaces}
 }
 
 export const getAllIcons = () => {

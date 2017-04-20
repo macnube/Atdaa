@@ -1,8 +1,6 @@
 import { createSelector } from 'reselect'
 import { NAME } from './constants'
 
-console.log('name from dashboard constants is: ', NAME);
-
 export const getSelectedTab = createSelector(
   [ (state) => state[NAME].selectedTab ],
   (selectedTab) => selectedTab
