@@ -49,7 +49,6 @@ class DashboardContainer extends Component {
 
   componentWillMount () {
     console.log('DashboardContainer mounted')
-    console.log('Dashboard props is: ', this.props.dashboard)
     this.props.setLayout(getLayout())
     api.getFirebaseUserPlaces(this.props.user.id)
       .then((snapshot) => {
