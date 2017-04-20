@@ -114,6 +114,7 @@ class MapContainer extends Component {
 
   _getPlaces(places, filters, region, scale) {
   	if (places.placeById) {
+      console.log('places from _getPlaces: ', places)
 			return getMapPlaces(places, filters, region, scale)
 		} else {
 			return {ids: [], placeById: {}}
