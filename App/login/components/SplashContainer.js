@@ -4,7 +4,7 @@ import { Dimensions } from 'react-native'
 
 import { setUserInfo } from '../actions'
 import api from '../../utils/api'
-import { getLatestPlaces, cleanMyPlaces } from '../../utils/helpers'
+import { cleanMyPlaces } from '../../utils/helpers'
 
 import dashboard from '../../dashboard'
 import map from '../../map'

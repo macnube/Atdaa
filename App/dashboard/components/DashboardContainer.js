@@ -8,11 +8,11 @@ import {
   openModal,
   closeModal
 } from '../actions'
+import { getDashboard } from '../selectors'
 import CodePush from 'react-native-code-push'
 import Config from 'react-native-config'
 
 import toolbar from '../../toolbar'
-import iconSearch from '../../iconSearch'
 import placeSearch from '../../placeSearch'
 import login from '../../login'
 import map from '../../map'
@@ -49,6 +49,7 @@ class DashboardContainer extends Component {
 
   componentWillMount () {
     console.log('DashboardContainer mounted')
+    console.log('Dashboard props is: ', this.props.dashboard)
     this.props.setLayout(getLayout())
     api.getFirebaseUserPlaces(this.props.user.id)
       .then((snapshot) => {
@@ -197,10 +198,9 @@ class DashboardContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    dashboard: state.dashboard,
-    user: login.selectors.getUserInfo(state.user),
-    newIcon: state.newIcon,
-    placeInfo: placeSearch.selectors.getPlaceInfo(state.placeInfo)
+    dashboard: getDashboard(state),
+    user: login.selectors.getUserInfo(state),
+    placeInfo: placeSearch.selectors.getPlaceInfo(state)
   }
 }
 
@@ -220,9 +220,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateToolbarIcon (iconId, index) {
       dispatch(toolbar.actions.updateToolbarIcon(iconId, index))
-    },
-    clearNewIcon () {
-      dispatch(iconSearch.actions.clearNewIcon())
     },
     loadLocalInfo (userInfo) {
       dispatch(loadLocalInfo(userInfo))

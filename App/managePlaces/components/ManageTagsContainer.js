@@ -5,7 +5,9 @@ import { ListView, Keyboard } from 'react-native'
 
 import dashboard from '../../dashboard'
 import login from '../../login'
+import placeSearch from '../../placeSearch'
 import { addPlace, editPlaceCategory, clearPlaceCategory, deletePlace } from '../actions'
+import { getMyPlaces } from '../selectors'
 import ManageTags from './ManageTags'
 import api from '../../utils/api'
 import * as helpers from '../../utils/helpers'
@@ -214,10 +216,10 @@ class ManageTagsContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    layoutInfo: dashboard.selectors.getLayoutInfo(state.dashboard),
-    placeInfo: state.placeInfo,
-    myPlaces: state.myPlaces,
-    userInfo: login.selectors.getUserInfo(state.user)
+    layoutInfo: dashboard.selectors.getLayoutInfo(state),
+    placeInfo: placeSearch.selectors.getPlaceInfo(state),
+    myPlaces: getMyPlaces(state),
+    userInfo: login.selectors.getUserInfo(state)
   }
 }
 

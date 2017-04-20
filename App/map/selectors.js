@@ -1,20 +1,22 @@
 import { createSelector } from 'reselect'
 import { getMapPlaces } from '../utils/helpers'
+import { NAME } from './constants'
 
 import toolbar from '../toolbar'
+import managePlaces from '../managePlaces'
 
-const getMapRegion = (state) => state.map.region
-const getToolbarFilters = (state) => toolbar.selectors.getFilters(state.toolbar)
-const getPlaces = (state) => state.myPlaces
-const getNearby = (state) => state.map.nearbyPlaces
+const _getRegion = (state) => state[NAME].region
+const _getToolbarFilters = (state) => toolbar.selectors.getFilters(state.toolbar)
+const _getMyPlaces = (state) => managePlaces.selectors.getMyPlaces(state)
+const _getNearbyPlaces = (state) => state[NAME].nearbyPlaces
 
 export const getNearbyPlaces = createSelector(
-  [getNearby],
+  [_getNearbyPlaces],
   (nearbyPlaces) => nearbyPlaces
 )
 
 export const getMarkerPlaces = createSelector(
-  [getMapRegion, getToolbarFilters, getPlaces],
+  [_getRegion, _getToolbarFilters, _getMyPlaces],
   (region, filters, myPlaces) => {
     if (myPlaces.placeById) {
       return getMapPlaces(myPlaces, filters, region, 5)
@@ -25,7 +27,7 @@ export const getMarkerPlaces = createSelector(
 )
 
 export const getVisiblePlaces = createSelector(
-  [getMapRegion, getToolbarFilters, getPlaces],
+  [_getRegion, _getToolbarFilters, _getMyPlaces],
   (region, filters, myPlaces) => {
     if (myPlaces.placeById) {
       return getMapPlaces(myPlaces, filters, region, 1.1)
@@ -51,21 +53,21 @@ export const getMatchingPlaces = createSelector(
 )
 
 export const getRegion = createSelector(
-  [ getMapRegion ],
+  [ _getRegion ],
   (region) => region
 )
 
 export const getUserLocation = createSelector(
-  [ (state) => state.map.userLocation ],
+  [ (state) => state[NAME].userLocation ],
   (userLocation) => userLocation
 )
 
 export const getCardId = createSelector(
-  [ (state) => state.map.cardId ],
+  [ (state) => state[NAME].cardId ],
   (cardId) => cardId
 )
 
 export const getShowNames = createSelector(
-  [(state) => state.map.showNames],
+  [(state) => state[NAME].showNames],
   (showNames) => showNames
 )

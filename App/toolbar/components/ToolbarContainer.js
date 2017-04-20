@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { toggleTrash, switchToolbarIcons, deleteToolbarIcon, setSelectedIcon } from '../actions'
+import { getToolbarIcons, getIconSelected } from '../selectors'
 
 import {
   LayoutAnimation
@@ -46,11 +47,11 @@ const isVisible = (selectedTab) => {
 
 const mapStateToProps = (state) => {
   return {
-    toolbarIcons: state.toolbar.toolbarIcons,
-    iconSelected: state.toolbar.iconSelected,
-    isVisible: isVisible(dashboard.selectors.getSelectedTab(state.dashboard)),
-    backgroundColor: getBackgroundColor(dashboard.selectors.getSelectedTab(state.dashboard)),
-    layoutInfo: dashboard.selectors.getLayoutInfo(state.dashboard)
+    toolbarIcons: getToolbarIcons(state),
+    iconSelected: getIconSelected(state),
+    isVisible: isVisible(dashboard.selectors.getSelectedTab(state)),
+    backgroundColor: getBackgroundColor(dashboard.selectors.getSelectedTab(state)),
+    layoutInfo: dashboard.selectors.getLayoutInfo(state)
   }
 }
 

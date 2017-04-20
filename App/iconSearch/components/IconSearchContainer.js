@@ -150,9 +150,9 @@ class IconSearchContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    layoutInfo: dashboard.selectors.getLayoutInfo(state.dashboard),
-    toolbar: toolbar.selectors.getFilters(state.toolbar),
-    iconSelected: state.toolbar.iconSelected
+    layoutInfo: dashboard.selectors.getLayoutInfo(state),
+    toolbar: toolbar.selectors.getFilters(state),
+    iconSelected: toolbar.selectors.getIconSelected(state)
   }
 }
 

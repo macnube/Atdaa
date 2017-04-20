@@ -1,11 +1,19 @@
-export const getUserId = (state) => {
-	return state.id
-}
+import { createSelector } from 'reselect'
+import { NAME } from './constants'
 
-export const getUserInfo = (state) => {
-	var userInfo = {
-		email: state.email,
-		id: state.id
-	}
-	return userInfo
+const _getUserInfo = (state) => {
+  var userInfo = {
+    email: state[NAME].email,
+    id: state[NAME].id
+  }
+  return userInfo
 }
+export const getUserId = createSelector(
+  [ (state) => state[NAME].id ],
+  (id) => id
+)
+
+export const getUserInfo = createSelector(
+  [_getUserInfo],
+  (userInfo) => userInfo
+)

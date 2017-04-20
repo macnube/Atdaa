@@ -15,8 +15,6 @@ import {
 	setNearbyPlaces 
 } from '../actions'
 import { getTypeNearbyPlaces, getPlaceDetails } from '../../utils/api'
-import placeSearch from '../../placeSearch'
-import dashboard from '../../dashboard'
 import { 
 	getTagIdsByCategoryId, 
 	getPlaces, 
@@ -36,8 +34,11 @@ import {
 	getCardId,
 	getShowNames
 } from '../selectors'
+import placeSearch from '../../placeSearch'
+import dashboard from '../../dashboard'
 import toolbar from '../../toolbar'
 import searchButton from '../../searchButton'
+import managePlaces from '../../managePlaces'
 import Map from './Map';
 
 const { width, height } = Dimensions.get('window');
@@ -79,7 +80,7 @@ class MapContainer extends Component {
   }
 
 	componentWillMount() {
-		console.log("MapContainer will mount")
+		console.log("MapContainer will mount ", this.props)
 		this._fromPOI = true;
 		const { region } = this.state;
   	const { myPlaces, filters } = this.props;
@@ -304,14 +305,14 @@ MapContainer.defaultProps = {
 
 const mapStateToProps = (state) => {
 	return {
-		layoutInfo: dashboard.selectors.getLayoutInfo(state.dashboard),
-		myPlaces: state.myPlaces,
-		filters: toolbar.selectors.getFilters(state.toolbar),
+		layoutInfo: dashboard.selectors.getLayoutInfo(state),
+		myPlaces: managePlaces.selectors.getMyPlaces(state),
+		filters: toolbar.selectors.getFilters(state),
 		region: getRegion(state),
 		nearbyPlaces: getNearbyPlaces(state),
 		userLocation: getUserLocation(state),
-		placeInfo: state.placeInfo,
-		tab: dashboard.selectors.getSelectedTab(state.dashboard)
+		placeInfo: placeSearch.selectors.getPlaceInfo(state),
+		tab: dashboard.selectors.getSelectedTab(state)
 	}
 }
 

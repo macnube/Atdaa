@@ -4,6 +4,8 @@ import { setPlaceInfo } from '../actions'
 
 import { formatPlaceDetails } from '../../utils/helpers'
 import api from '../../utils/api'
+import managePlaces from '../../managePlaces'
+import map from '../../map'
 import PlaceSearch from './PlaceSearch'
 
 class PlaceSearchContainer extends Component {
@@ -91,9 +93,9 @@ class PlaceSearchContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    myPlaces: state.myPlaces,
-    userLocation: state.map.userLocation,
-    nearbyPlaces: state.map.nearbyPlaces
+    myPlaces: managePlaces.selectors.getMyPlaces(state),
+    userLocation: map.selectors.getUserLocation(state),
+    nearbyPlaces: map.selectors.getNearbyPlaces(state)
   }
 }
 

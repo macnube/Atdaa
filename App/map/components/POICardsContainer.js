@@ -4,6 +4,7 @@ import { LayoutAnimation } from 'react-native'
 import { getDistanceFromLatLonInKm, placeOpen } from '../../utils/helpers'
 import placeSearch from '../../placeSearch'
 import toolbar from '../../toolbar'
+import managePlaces from '../../managePlaces'
 import POICards from './POICards'
 import POICard from './POICard'
 import SinglePOICard from './SinglePOICard'
@@ -126,8 +127,8 @@ class POICardsContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    myPlaces: state.myPlaces,
-    filters: toolbar.selectors.getFilters(state.toolbar)
+    myPlaces: managePlaces.selectors.getMyPlaces(state),
+    filters: toolbar.selectors.getFilters(state)
   }
 }
 

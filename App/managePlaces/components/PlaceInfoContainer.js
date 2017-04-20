@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addPlace, editPlaceCategory, deletePlace } from '../actions'
+import { getMyPlaces } from '../selectors'
 import { Keyboard } from 'react-native'
 import dashboard from '../../dashboard'
 import api from '../../utils/api'
@@ -29,7 +30,7 @@ class PlaceInfoContainer extends Component {
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this))
     this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this))
     if (!place.photoURI) {
-      console.log('Place did not have photoURI, fetching new one. PlaceInfoContainer')
+      console.log('Place did not have photoURI, checking if we can get new one. PlaceInfoContainer')
       if (place.photos) {
         api.getPlacePhoto(place.photos[0].photo_reference, 180)
         .then((res) => {
@@ -193,9 +194,9 @@ class PlaceInfoContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    placeInfo: state.placeInfo,
-    userInfo: login.selectors.getUserInfo(state.user),
-    myPlaces: state.myPlaces
+    placeInfo: placeSearch.selectors.getPlaceInfo(state),
+    userInfo: login.selectors.getUserInfo(state),
+    myPlaces: getMyPlaces(state)
   }
 }
 

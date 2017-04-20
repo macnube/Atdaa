@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { LayoutAnimation } from 'react-native'
 
-import { toggleSearchButton } from '../actions'
 import dashboard from '../../dashboard'
 import toolbar from '../../toolbar'
 
@@ -39,17 +37,13 @@ class SearchButtonContainer extends Component {
 
 function mapStateToProps (state) {
   return {
-    layoutInfo: state.dashboard.layoutInfo,
-    searchButtonOpen: state.searchButtonOpen,
-    selectedTab: state.dashboard.selectedTab
+    layoutInfo: dashboard.selectors.getLayoutInfo(state),
+    selectedTab: dashboard.selectors.getSelectedTab(state)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleSearchButton () {
-      dispatch(toggleSearchButton())
-    },
     setSelectedTab (tab) {
       dispatch(dashboard.actions.setSelectedTab(tab))
     },

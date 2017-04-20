@@ -48,14 +48,11 @@ Dashboard.propTypes = {
   dashboard: React.PropTypes.object.isRequired,
   updateToolbarIcon: React.PropTypes.func.isRequired,
   setSelectedTab: React.PropTypes.func.isRequired,
-  navVisible: React.PropTypes.bool,
-  newIcon: React.PropTypes.object,
-  clearNewIcon: React.PropTypes.func.isRequired
+  navVisible: React.PropTypes.bool
 }
 
 Dashboard.defaultProps = {
   navVisible: true,
-  newIcon: null
 }
 
 var styles = StyleSheet.create({

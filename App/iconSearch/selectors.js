@@ -1,4 +1,4 @@
-//TO DO
+// None needed for now
 
 const selectors = {}
 

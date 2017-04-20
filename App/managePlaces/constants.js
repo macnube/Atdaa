@@ -1,1 +1,1 @@
-export const NAME = 'placeInfo';
+export const NAME = 'myPlaces';

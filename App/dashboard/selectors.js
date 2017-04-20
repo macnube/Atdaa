@@ -1,7 +1,19 @@
-export const getSelectedTab = (state) => {
-	return state.selectedTab
-}
+import { createSelector } from 'reselect'
+import { NAME } from './constants'
 
-export const getLayoutInfo = (state) => {
-	return state.layoutInfo
-}
+console.log('name from dashboard constants is: ', NAME);
+
+export const getSelectedTab = createSelector(
+  [ (state) => state[NAME].selectedTab ],
+  (selectedTab) => selectedTab
+)
+
+export const getLayoutInfo = createSelector(
+  [ (state) => state[NAME].layoutInfo ],
+  (layoutInfo) => layoutInfo
+)
+
+export const getDashboard = createSelector(
+  [ (state) => state[NAME] ],
+  (dashboard) => dashboard
+)
