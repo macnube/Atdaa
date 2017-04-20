@@ -24,11 +24,11 @@ export const cleanMyPlaces = (userInfo) => {
     })
     if (newPlaceById[id].tags.length === 0) {
       console.log('Cleaning place and removing it from userInfo, place: ', id)
-      newIds = [...newIds.slice(newIds.indexOf(0, id)), ...newIds.slice(newIds.indexOf(id))]
       delete newPlaceById[id]
       console.log('newPlaceById object after delete ', newPlaceById)
     }
   })
+  newIds = newIds.filter((id) => id in newPlaceById)
   var newMyPlaces = {
     ids: newIds,
     lastUpdated: userInfo.myPlaces.lastUpdated,
