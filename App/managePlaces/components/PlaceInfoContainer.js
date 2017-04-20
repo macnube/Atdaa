@@ -5,6 +5,7 @@ import { Keyboard } from 'react-native'
 import dashboard from '../../dashboard'
 import api from '../../utils/api'
 import login from '../../login'
+import placeSearch from '../../placeSearch'
 import { getDistanceFromLatLonInKm, placeOpen } from '../../utils/helpers'
 import PlaceInfo from './PlaceInfo'
 
@@ -18,7 +19,7 @@ class PlaceInfoContainer extends Component {
       notes: props.placeInfo.notes || '',
       keyboardHeight: 0,
       navSolid: false,
-      gradient: true,
+      gradient: true
     }
   }
 
@@ -32,9 +33,9 @@ class PlaceInfoContainer extends Component {
       if (place.photos) {
         api.getPlacePhoto(place.photos[0].photo_reference, 180)
         .then((res) => {
+          console.log('Successfully got new photoURI')
           const updatedPlace = {...place, photoURI: res.url}
-          const currentTime = new Date().getTime() / 1000
-          this.props.addPlace(updatedPlace, currentTime)
+          this.props.setPlaceInfo(updatedPlace)
         })
         .catch((err) => console.log('error with photoURL fetch', err))
       }
@@ -202,6 +203,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setSelectedTab (tab) {
       dispatch(dashboard.actions.setSelectedTab(tab))
+    },
+    setPlaceInfo (place) {
+      dispatch(placeSearch.actions.setPlaceInfo(place))
     },
     addPlace (place, currentTime) {
       dispatch(addPlace(place, currentTime))
