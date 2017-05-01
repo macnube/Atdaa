@@ -96,6 +96,12 @@ export const getFirebaseUserPlaces = (userId) => {
   return database.ref('users/' + userId).once('myPlaces')
 }
 
+export const setFirebaseUserEmail = (email) => {
+  firestack.auth.updateUserEmail(email)
+  .then((res) => console.log('Updated user email in firebase'))
+  .catch((error) => console.log('Failed to update user email: ', error))
+}
+
 // Async Data calls
 
 export const updateMyPlaces = (userInfo, currentPlaces, newPlace, currentTime, deletePlace = false) => {
@@ -106,16 +112,14 @@ export const updateMyPlaces = (userInfo, currentPlaces, newPlace, currentTime, d
     var index = currentPlaces.ids.indexOf(id)
     console.log('placeIds before delete', placeIds)
     if (index > -1) {
-      placeIds = [...placeIds.slice(0, index), ...placeIds.slice(index + 1)]
+      placeIds.splice(index, 1)
     }
     console.log('placeIds after delete', placeIds)
     console.log('placeById before delete', placeById)
     delete placeById[id]
     console.log('placeById after delete', placeById)
   } else {
-    placeIds = currentPlaces.ids.indexOf(id) === -1
-    ? [...currentPlaces.ids, id]
-    : [...currentPlaces.ids]
+    if (currentPlaces.ids.indexOf(id) === -1) placeIds.push(id)
     placeById[id] = newPlace
   }
   var start = Date.now()
@@ -209,6 +213,7 @@ const api = {
   signInFacebook,
   signOut,
   setFirebaseUserPlaces,
+  setFirebaseUserEmail,
   updateMyPlaces,
   getLocalUserInfo,
   deleteLocalUserInfo,

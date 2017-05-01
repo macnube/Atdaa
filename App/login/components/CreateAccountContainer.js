@@ -52,6 +52,7 @@ class CreateAccountContainer extends Component {
           id: data.user.uid,
           email: data.user.email
         }
+        api.setFirebaseUserEmail(data.user.email)
         console.log('userInfo before firebase check', userInfo)
         this.setState({
           downloading: 'downloading and updating userInfo'

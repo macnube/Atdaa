@@ -109,6 +109,7 @@ class LoginContainer extends Component {
           id: data.user.uid,
           email: data.user.email
         }
+        api.setFirebaseUserEmail(date.user.email)
         console.log('userInfo before firebase check', userInfo)
         return Promise.all([userInfo, api.getFirebaseUserPlaces(userInfo.id)])
       })
